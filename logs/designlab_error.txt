@@ -1,0 +1,2 @@
+2026-07-13 12:06:38 [ERROR] [21944:MainThread] rag.indexing (indexing_service.py:201) — Qdrant upsert failed: Qdrant upsert failed: could not broadcast input array from shape (1024,) into shape (768,)
+2026-07-13 12:09:36 [ERROR] [21180:MainThread] rag.indexing (indexing_service.py:254) — PG pool acquire failed during indexing: invalid DSN: scheme is expected to be either "postgresql" or "postgres", got 'postgresql+asyncpg'

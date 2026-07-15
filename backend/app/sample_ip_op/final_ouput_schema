@@ -1,0 +1,4662 @@
+{
+  "workflow_id": "WF-TEST-RUN",
+  "workflow_status": "COMPLETED",
+  "state": {
+    "workflow_id": "WF-TEST-RUN",
+    "workflow_status": "COMPLETED",
+    "errors": [],
+    "failed_node": null,
+    "last_error": null,
+    "current_node": "validation",
+    "completed_nodes": [
+      "preprocessing",
+      "requirement_analysis",
+      "epic_generation",
+      "feature_generation",
+      "one_line_story_generation",
+      "nlp_rag_hook",
+      "user_story_generation",
+      "validation"
+    ],
+    "failed_nodes": [],
+    "retry_count": 3,
+    "retry_reason": null,
+    "retry_status": null,
+    "retry_history": [],
+    "review_required": false,
+    "review_status": null,
+    "approval_status": null,
+    "execution_history": [
+      {
+        "node_name": "preprocessing",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:03:06.290588+00:00",
+        "completed_at": "2026-07-10T05:03:06.290588+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "preprocessing",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:03:06.290588+00:00",
+        "completed_at": "2026-07-10T05:05:13.706790+00:00",
+        "duration_ms": 127416.202,
+        "error": null
+      },
+      {
+        "node_name": "requirement_analysis",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:13.713452+00:00",
+        "completed_at": "2026-07-10T05:05:13.713452+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "requirement_analysis",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:13.713452+00:00",
+        "completed_at": "2026-07-10T05:05:19.288456+00:00",
+        "duration_ms": 5575.004,
+        "error": null
+      },
+      {
+        "node_name": "epic_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:19.293798+00:00",
+        "completed_at": "2026-07-10T05:05:19.293798+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "epic_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:19.293798+00:00",
+        "completed_at": "2026-07-10T05:05:24.605242+00:00",
+        "duration_ms": 5311.444,
+        "error": null
+      },
+      {
+        "node_name": "feature_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:24.607261+00:00",
+        "completed_at": "2026-07-10T05:05:24.607261+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "feature_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:24.607261+00:00",
+        "completed_at": "2026-07-10T05:05:24.607363+00:00",
+        "duration_ms": 0.102,
+        "error": null
+      },
+      {
+        "node_name": "one_line_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:24.610249+00:00",
+        "completed_at": "2026-07-10T05:05:24.610249+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "one_line_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:24.610249+00:00",
+        "completed_at": "2026-07-10T05:05:24.610545+00:00",
+        "duration_ms": 0.296,
+        "error": null
+      },
+      {
+        "node_name": "nlp_rag_hook",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:24.613418+00:00",
+        "completed_at": "2026-07-10T05:05:24.613418+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "nlp_rag_hook",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:24.613418+00:00",
+        "completed_at": "2026-07-10T05:05:41.066451+00:00",
+        "duration_ms": 16453.033,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:41.076026+00:00",
+        "completed_at": "2026-07-10T05:05:41.076026+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:41.076026+00:00",
+        "completed_at": "2026-07-10T05:06:11.516602+00:00",
+        "duration_ms": 30440.576,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:06:11.519548+00:00",
+        "completed_at": "2026-07-10T05:06:11.519548+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:06:11.519548+00:00",
+        "completed_at": "2026-07-10T05:07:01.074456+00:00",
+        "duration_ms": 49554.908,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.079728+00:00",
+        "completed_at": "2026-07-10T05:07:01.079728+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.079728+00:00",
+        "completed_at": "2026-07-10T05:07:01.087860+00:00",
+        "duration_ms": 8.132,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.098232+00:00",
+        "completed_at": "2026-07-10T05:07:01.098232+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.098232+00:00",
+        "completed_at": "2026-07-10T05:07:01.106261+00:00",
+        "duration_ms": 8.029,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.109665+00:00",
+        "completed_at": "2026-07-10T05:07:01.109665+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.109665+00:00",
+        "completed_at": "2026-07-10T05:07:01.113636+00:00",
+        "duration_ms": 3.971,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.115648+00:00",
+        "completed_at": "2026-07-10T05:07:01.115648+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.115648+00:00",
+        "completed_at": "2026-07-10T05:07:01.121562+00:00",
+        "duration_ms": 5.914,
+        "error": null
+      }
+    ],
+    "workflow_progress": 100,
+    "warnings": [],
+    "node_execution_log": [
+      {
+        "node_name": "preprocessing",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:03:06.290588+00:00",
+        "completed_at": "2026-07-10T05:03:06.290588+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "preprocessing",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:03:06.290588+00:00",
+        "completed_at": "2026-07-10T05:05:13.706790+00:00",
+        "duration_ms": 127416.202,
+        "error": null
+      },
+      {
+        "node_name": "requirement_analysis",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:13.713452+00:00",
+        "completed_at": "2026-07-10T05:05:13.713452+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "requirement_analysis",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:13.713452+00:00",
+        "completed_at": "2026-07-10T05:05:19.288456+00:00",
+        "duration_ms": 5575.004,
+        "error": null
+      },
+      {
+        "node_name": "epic_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:19.293798+00:00",
+        "completed_at": "2026-07-10T05:05:19.293798+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "epic_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:19.293798+00:00",
+        "completed_at": "2026-07-10T05:05:24.605242+00:00",
+        "duration_ms": 5311.444,
+        "error": null
+      },
+      {
+        "node_name": "feature_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:24.607261+00:00",
+        "completed_at": "2026-07-10T05:05:24.607261+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "feature_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:24.607261+00:00",
+        "completed_at": "2026-07-10T05:05:24.607363+00:00",
+        "duration_ms": 0.102,
+        "error": null
+      },
+      {
+        "node_name": "one_line_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:24.610249+00:00",
+        "completed_at": "2026-07-10T05:05:24.610249+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "one_line_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:24.610249+00:00",
+        "completed_at": "2026-07-10T05:05:24.610545+00:00",
+        "duration_ms": 0.296,
+        "error": null
+      },
+      {
+        "node_name": "nlp_rag_hook",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:24.613418+00:00",
+        "completed_at": "2026-07-10T05:05:24.613418+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "nlp_rag_hook",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:24.613418+00:00",
+        "completed_at": "2026-07-10T05:05:41.066451+00:00",
+        "duration_ms": 16453.033,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:41.076026+00:00",
+        "completed_at": "2026-07-10T05:05:41.076026+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:41.076026+00:00",
+        "completed_at": "2026-07-10T05:06:11.516602+00:00",
+        "duration_ms": 30440.576,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:06:11.519548+00:00",
+        "completed_at": "2026-07-10T05:06:11.519548+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:06:11.519548+00:00",
+        "completed_at": "2026-07-10T05:07:01.074456+00:00",
+        "duration_ms": 49554.908,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.079728+00:00",
+        "completed_at": "2026-07-10T05:07:01.079728+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.079728+00:00",
+        "completed_at": "2026-07-10T05:07:01.087860+00:00",
+        "duration_ms": 8.132,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.098232+00:00",
+        "completed_at": "2026-07-10T05:07:01.098232+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.098232+00:00",
+        "completed_at": "2026-07-10T05:07:01.106261+00:00",
+        "duration_ms": 8.029,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.109665+00:00",
+        "completed_at": "2026-07-10T05:07:01.109665+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.109665+00:00",
+        "completed_at": "2026-07-10T05:07:01.113636+00:00",
+        "duration_ms": 3.971,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.115648+00:00",
+        "completed_at": "2026-07-10T05:07:01.115648+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.115648+00:00",
+        "completed_at": "2026-07-10T05:07:01.121562+00:00",
+        "duration_ms": 5.914,
+        "error": null
+      }
+    ],
+    "audit_log": [
+      {
+        "node_name": "preprocessing",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:03:06.290588+00:00",
+        "completed_at": "2026-07-10T05:03:06.290588+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "preprocessing",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:03:06.290588+00:00",
+        "completed_at": "2026-07-10T05:05:13.706790+00:00",
+        "duration_ms": 127416.202,
+        "error": null
+      },
+      {
+        "node_name": "requirement_analysis",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:13.713452+00:00",
+        "completed_at": "2026-07-10T05:05:13.713452+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "requirement_analysis",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:13.713452+00:00",
+        "completed_at": "2026-07-10T05:05:19.288456+00:00",
+        "duration_ms": 5575.004,
+        "error": null
+      },
+      {
+        "node_name": "epic_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:19.293798+00:00",
+        "completed_at": "2026-07-10T05:05:19.293798+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "epic_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:19.293798+00:00",
+        "completed_at": "2026-07-10T05:05:24.605242+00:00",
+        "duration_ms": 5311.444,
+        "error": null
+      },
+      {
+        "node_name": "feature_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:24.607261+00:00",
+        "completed_at": "2026-07-10T05:05:24.607261+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "feature_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:24.607261+00:00",
+        "completed_at": "2026-07-10T05:05:24.607363+00:00",
+        "duration_ms": 0.102,
+        "error": null
+      },
+      {
+        "node_name": "one_line_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:24.610249+00:00",
+        "completed_at": "2026-07-10T05:05:24.610249+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "one_line_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:24.610249+00:00",
+        "completed_at": "2026-07-10T05:05:24.610545+00:00",
+        "duration_ms": 0.296,
+        "error": null
+      },
+      {
+        "node_name": "nlp_rag_hook",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:24.613418+00:00",
+        "completed_at": "2026-07-10T05:05:24.613418+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "nlp_rag_hook",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:24.613418+00:00",
+        "completed_at": "2026-07-10T05:05:41.066451+00:00",
+        "duration_ms": 16453.033,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:05:41.076026+00:00",
+        "completed_at": "2026-07-10T05:05:41.076026+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:05:41.076026+00:00",
+        "completed_at": "2026-07-10T05:06:11.516602+00:00",
+        "duration_ms": 30440.576,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:06:11.519548+00:00",
+        "completed_at": "2026-07-10T05:06:11.519548+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:06:11.519548+00:00",
+        "completed_at": "2026-07-10T05:07:01.074456+00:00",
+        "duration_ms": 49554.908,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.079728+00:00",
+        "completed_at": "2026-07-10T05:07:01.079728+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.079728+00:00",
+        "completed_at": "2026-07-10T05:07:01.087860+00:00",
+        "duration_ms": 8.132,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.098232+00:00",
+        "completed_at": "2026-07-10T05:07:01.098232+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.098232+00:00",
+        "completed_at": "2026-07-10T05:07:01.106261+00:00",
+        "duration_ms": 8.029,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.109665+00:00",
+        "completed_at": "2026-07-10T05:07:01.109665+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "user_story_generation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.109665+00:00",
+        "completed_at": "2026-07-10T05:07:01.113636+00:00",
+        "duration_ms": 3.971,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "RUNNING",
+        "started_at": "2026-07-10T05:07:01.115648+00:00",
+        "completed_at": "2026-07-10T05:07:01.115648+00:00",
+        "duration_ms": 0,
+        "error": null
+      },
+      {
+        "node_name": "validation",
+        "status": "COMPLETED",
+        "started_at": "2026-07-10T05:07:01.115648+00:00",
+        "completed_at": "2026-07-10T05:07:01.121562+00:00",
+        "duration_ms": 5.914,
+        "error": null
+      }
+    ],
+    "execution_time": 5.914,
+    "file_path": "sample_brd.txt",
+    "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+    "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+    "confidence_threshold": 0.8,
+    "max_retry_attempts": 3,
+    "parsed_text": "Business Requirement Document: User Management System\n\n1. Introduction\nThe system shall provide a secure user authentication mechanism.\n\n2. Functional Requirements\nFR-1: User Registration\nThe system shall allow users to register using their email address, password, and full name.\n\nFR-2: User Login\nThe system shall allow users to log in with their email address and password.\n\n3. Non-Functional Requirements\nNFR-1: Security\nPasswords shall be encrypted before storing them in the database.",
+    "chunks": [
+      {
+        "id": "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 0,
+        "section_title": "Business Requirement Document: User Management System",
+        "context": null,
+        "content": "Business Requirement Document: User Management System",
+        "token_count": 7,
+        "content_hash": "366d09faa411f54bd7acd6ab42f2ac232995e2dff49763a1192de9ee4510d077",
+        "metadata": {
+          "sequence_number": 1,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199092+00:00"
+      },
+      {
+        "id": "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 1,
+        "section_title": "",
+        "context": null,
+        "content": "1.",
+        "token_count": 2,
+        "content_hash": "c977dbe785221d34114d345fdf8ff4e18bb4af66750751dbea29407f9738735f",
+        "metadata": {
+          "sequence_number": 2,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199144+00:00"
+      },
+      {
+        "id": "494507aa-aab8-4de6-8f31-96de6721e582",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 2,
+        "section_title": "",
+        "context": null,
+        "content": "Introduction The system shall provide a secure user authentication mechanism.",
+        "token_count": 11,
+        "content_hash": "2135376512072ce6cbb8597d9d8c53a46a78e5ac581de55b51904b0a951bfa6f",
+        "metadata": {
+          "sequence_number": 3,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199188+00:00"
+      },
+      {
+        "id": "a080a258-410a-4cc2-a114-c58eef6051e2",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 3,
+        "section_title": "",
+        "context": null,
+        "content": "2.",
+        "token_count": 2,
+        "content_hash": "6bc54f13bea593dc5e1c8e6b16249e669d1ce99cbeac65f2a10f36e1d86f1fd4",
+        "metadata": {
+          "sequence_number": 4,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199216+00:00"
+      },
+      {
+        "id": "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 4,
+        "section_title": "",
+        "context": null,
+        "content": "Functional Requirements FR-1: User Registration The system shall allow users to register using their email address, password, and full name. FR-2: User Login The system shall allow users to log in with their email address and password.",
+        "token_count": 43,
+        "content_hash": "c814b187c132442a11af2f665712bf569dd73ce2b74bd8610283e6aa3b8aba66",
+        "metadata": {
+          "sequence_number": 5,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199280+00:00"
+      },
+      {
+        "id": "ac04f361-040b-4d69-8d63-69d6820bad7d",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 5,
+        "section_title": "",
+        "context": null,
+        "content": "3.",
+        "token_count": 2,
+        "content_hash": "267c23695b6e8fc29bd88b9f5d1962d3d208fa9c2fafd974614e6ab3b84fa55c",
+        "metadata": {
+          "sequence_number": 6,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199307+00:00"
+      },
+      {
+        "id": "9566f108-0c8e-45b9-ae21-ea5e438d07dc",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 6,
+        "section_title": "",
+        "context": null,
+        "content": "Non-Functional Requirements NFR-1: Security Passwords shall be encrypted before storing them in the database.",
+        "token_count": 16,
+        "content_hash": "e16050023f973e223574a7e6054f0c48e918e68b1a9132b0b53de49514296137",
+        "metadata": {
+          "sequence_number": 7,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199348+00:00"
+      }
+    ],
+    "labeled_chunks": [
+      {
+        "id": "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 0,
+        "section_title": "Business Requirement Document: User Management System",
+        "context": "User Management",
+        "content": "Business Requirement Document: User Management System",
+        "token_count": 7,
+        "content_hash": "366d09faa411f54bd7acd6ab42f2ac232995e2dff49763a1192de9ee4510d077",
+        "metadata": {
+          "sequence_number": 1,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199092+00:00"
+      },
+      {
+        "id": "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 1,
+        "section_title": "",
+        "context": "Introduction",
+        "content": "1.",
+        "token_count": 2,
+        "content_hash": "c977dbe785221d34114d345fdf8ff4e18bb4af66750751dbea29407f9738735f",
+        "metadata": {
+          "sequence_number": 2,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199144+00:00"
+      },
+      {
+        "id": "494507aa-aab8-4de6-8f31-96de6721e582",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 2,
+        "section_title": "",
+        "context": "Authentication",
+        "content": "Introduction The system shall provide a secure user authentication mechanism.",
+        "token_count": 11,
+        "content_hash": "2135376512072ce6cbb8597d9d8c53a46a78e5ac581de55b51904b0a951bfa6f",
+        "metadata": {
+          "sequence_number": 3,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199188+00:00"
+      },
+      {
+        "id": "a080a258-410a-4cc2-a114-c58eef6051e2",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 3,
+        "section_title": "",
+        "context": "Requirements",
+        "content": "2.",
+        "token_count": 2,
+        "content_hash": "6bc54f13bea593dc5e1c8e6b16249e669d1ce99cbeac65f2a10f36e1d86f1fd4",
+        "metadata": {
+          "sequence_number": 4,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199216+00:00"
+      },
+      {
+        "id": "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 4,
+        "section_title": "",
+        "context": "User Registration",
+        "content": "Functional Requirements FR-1: User Registration The system shall allow users to register using their email address, password, and full name. FR-2: User Login The system shall allow users to log in with their email address and password.",
+        "token_count": 43,
+        "content_hash": "c814b187c132442a11af2f665712bf569dd73ce2b74bd8610283e6aa3b8aba66",
+        "metadata": {
+          "sequence_number": 5,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199280+00:00"
+      },
+      {
+        "id": "ac04f361-040b-4d69-8d63-69d6820bad7d",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 5,
+        "section_title": "",
+        "context": "Requirements",
+        "content": "3.",
+        "token_count": 2,
+        "content_hash": "267c23695b6e8fc29bd88b9f5d1962d3d208fa9c2fafd974614e6ab3b84fa55c",
+        "metadata": {
+          "sequence_number": 6,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199307+00:00"
+      },
+      {
+        "id": "9566f108-0c8e-45b9-ae21-ea5e438d07dc",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 6,
+        "section_title": "",
+        "context": "Security",
+        "content": "Non-Functional Requirements NFR-1: Security Passwords shall be encrypted before storing them in the database.",
+        "token_count": 16,
+        "content_hash": "e16050023f973e223574a7e6054f0c48e918e68b1a9132b0b53de49514296137",
+        "metadata": {
+          "sequence_number": 7,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199348+00:00"
+      }
+    ],
+    "retrieved_chunks": [
+      {
+        "id": "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+        "content": "Business Requirement Document: User Management System",
+        "source": "sample_brd.txt",
+        "metadata": {
+          "sequence_number": 1,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        }
+      },
+      {
+        "id": "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+        "content": "1.",
+        "source": "sample_brd.txt",
+        "metadata": {
+          "sequence_number": 2,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        }
+      },
+      {
+        "id": "494507aa-aab8-4de6-8f31-96de6721e582",
+        "content": "Introduction The system shall provide a secure user authentication mechanism.",
+        "source": "sample_brd.txt",
+        "metadata": {
+          "sequence_number": 3,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        }
+      },
+      {
+        "id": "a080a258-410a-4cc2-a114-c58eef6051e2",
+        "content": "2.",
+        "source": "sample_brd.txt",
+        "metadata": {
+          "sequence_number": 4,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        }
+      },
+      {
+        "id": "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+        "content": "Functional Requirements FR-1: User Registration The system shall allow users to register using their email address, password, and full name. FR-2: User Login The system shall allow users to log in with their email address and password.",
+        "source": "sample_brd.txt",
+        "metadata": {
+          "sequence_number": 5,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        }
+      },
+      {
+        "id": "ac04f361-040b-4d69-8d63-69d6820bad7d",
+        "content": "3.",
+        "source": "sample_brd.txt",
+        "metadata": {
+          "sequence_number": 6,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        }
+      },
+      {
+        "id": "9566f108-0c8e-45b9-ae21-ea5e438d07dc",
+        "content": "Non-Functional Requirements NFR-1: Security Passwords shall be encrypted before storing them in the database.",
+        "source": "sample_brd.txt",
+        "metadata": {
+          "sequence_number": 7,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        }
+      }
+    ],
+    "requirement_chunks": [
+      {
+        "chunk_id": "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 0,
+        "section_title": "Business Requirement Document: User Management System",
+        "content": "Business Requirement Document: User Management System",
+        "token_count": 7,
+        "context": "User Management",
+        "content_hash": "366d09faa411f54bd7acd6ab42f2ac232995e2dff49763a1192de9ee4510d077",
+        "metadata": {
+          "sequence_number": 1,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199092+00:00"
+      },
+      {
+        "chunk_id": "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 1,
+        "section_title": "",
+        "content": "1.",
+        "token_count": 2,
+        "context": "Introduction",
+        "content_hash": "c977dbe785221d34114d345fdf8ff4e18bb4af66750751dbea29407f9738735f",
+        "metadata": {
+          "sequence_number": 2,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199144+00:00"
+      },
+      {
+        "chunk_id": "494507aa-aab8-4de6-8f31-96de6721e582",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 2,
+        "section_title": "",
+        "content": "Introduction The system shall provide a secure user authentication mechanism.",
+        "token_count": 11,
+        "context": "Authentication",
+        "content_hash": "2135376512072ce6cbb8597d9d8c53a46a78e5ac581de55b51904b0a951bfa6f",
+        "metadata": {
+          "sequence_number": 3,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199188+00:00"
+      },
+      {
+        "chunk_id": "a080a258-410a-4cc2-a114-c58eef6051e2",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 3,
+        "section_title": "",
+        "content": "2.",
+        "token_count": 2,
+        "context": "Requirements",
+        "content_hash": "6bc54f13bea593dc5e1c8e6b16249e669d1ce99cbeac65f2a10f36e1d86f1fd4",
+        "metadata": {
+          "sequence_number": 4,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199216+00:00"
+      },
+      {
+        "chunk_id": "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 4,
+        "section_title": "",
+        "content": "Functional Requirements FR-1: User Registration The system shall allow users to register using their email address, password, and full name. FR-2: User Login The system shall allow users to log in with their email address and password.",
+        "token_count": 43,
+        "context": "User Registration",
+        "content_hash": "c814b187c132442a11af2f665712bf569dd73ce2b74bd8610283e6aa3b8aba66",
+        "metadata": {
+          "sequence_number": 5,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199280+00:00"
+      },
+      {
+        "chunk_id": "ac04f361-040b-4d69-8d63-69d6820bad7d",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 5,
+        "section_title": "",
+        "content": "3.",
+        "token_count": 2,
+        "context": "Requirements",
+        "content_hash": "267c23695b6e8fc29bd88b9f5d1962d3d208fa9c2fafd974614e6ab3b84fa55c",
+        "metadata": {
+          "sequence_number": 6,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199307+00:00"
+      },
+      {
+        "chunk_id": "9566f108-0c8e-45b9-ae21-ea5e438d07dc",
+        "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+        "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2",
+        "chunk_index": 6,
+        "section_title": "",
+        "content": "Non-Functional Requirements NFR-1: Security Passwords shall be encrypted before storing them in the database.",
+        "token_count": 16,
+        "context": "Security",
+        "content_hash": "e16050023f973e223574a7e6054f0c48e918e68b1a9132b0b53de49514296137",
+        "metadata": {
+          "sequence_number": 7,
+          "source": "sample_brd.txt",
+          "source_metadata": {
+            "file_path": "sample_brd.txt",
+            "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+            "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+          }
+        },
+        "created_at": "2026-07-10T05:05:04.199348+00:00"
+      }
+    ],
+    "requirement_analysis": {
+      "actors": [
+        "users"
+      ],
+      "functional_requirements": [
+        "User Registration: The system shall allow users to register using their email address, password, and full name",
+        "User Login: The system shall allow users to log in with their email address and password"
+      ],
+      "non_functional_requirements": [
+        "Security: Passwords shall be encrypted before storing them in the database"
+      ],
+      "dependencies": [],
+      "business_goals": [
+        "Provide a secure user authentication mechanism"
+      ],
+      "edge_cases": [
+        "Invalid email address",
+        "Weak password",
+        "Duplicate email address",
+        "Failed login attempts"
+      ],
+      "constraints": [
+        "Passwords must be encrypted before storing them in the database"
+      ]
+    },
+    "agent1_output": {
+      "chunks": [
+        {
+          "id": "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+          "content": "Business Requirement Document: User Management System",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 1,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+          "content": "1.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 2,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "494507aa-aab8-4de6-8f31-96de6721e582",
+          "content": "Introduction The system shall provide a secure user authentication mechanism.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 3,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "a080a258-410a-4cc2-a114-c58eef6051e2",
+          "content": "2.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 4,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+          "content": "Functional Requirements FR-1: User Registration The system shall allow users to register using their email address, password, and full name. FR-2: User Login The system shall allow users to log in with their email address and password.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 5,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "ac04f361-040b-4d69-8d63-69d6820bad7d",
+          "content": "3.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 6,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "9566f108-0c8e-45b9-ae21-ea5e438d07dc",
+          "content": "Non-Functional Requirements NFR-1: Security Passwords shall be encrypted before storing them in the database.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 7,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        }
+      ],
+      "actors": [
+        "users"
+      ],
+      "functional_requirements": [
+        {
+          "id": "FR-001",
+          "name": "User Registration: The system shall allow users to register using their email address, password, and full name",
+          "description": null,
+          "metadata": {
+
+          }
+        },
+        {
+          "id": "FR-002",
+          "name": "User Login: The system shall allow users to log in with their email address and password",
+          "description": null,
+          "metadata": {
+
+          }
+        }
+      ],
+      "non_functional_requirements": [
+        {
+          "id": "NFR-001",
+          "name": "Security: Passwords shall be encrypted before storing them in the database",
+          "description": null,
+          "metadata": {
+
+          }
+        }
+      ],
+      "business_rules": [
+        "Passwords must be encrypted before storing them in the database"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "Invalid email address",
+        "Weak password",
+        "Duplicate email address",
+        "Failed login attempts"
+      ],
+      "traceability_metadata": {
+        "source": "requirement_analysis_agent",
+        "business_goals": [
+          "Provide a secure user authentication mechanism"
+        ]
+      }
+    },
+    "epic_generation": {
+      "epics": [
+        {
+          "epic_id": "AUTH-1",
+          "title": "User Authentication",
+          "features": [
+            "User Registration",
+            "User Login"
+          ],
+          "one_line_story": "As a user, I want to register and log in securely so that I can access the system.",
+          "dependencies": [],
+          "priority": "Critical"
+        }
+      ]
+    },
+    "epics": [
+      {
+        "id": "AUTH-1",
+        "name": "User Authentication",
+        "description": null,
+        "metadata": {
+          "priority": "Critical",
+          "dependencies": [],
+          "features": [
+            "User Registration",
+            "User Login"
+          ],
+          "one_line_story": "As a user, I want to register and log in securely so that I can access the system."
+        }
+      }
+    ],
+    "features": [
+      {
+        "id": "AUTH-1-FEAT-001",
+        "name": "User Registration",
+        "description": null,
+        "metadata": {
+          "epic_id": "AUTH-1",
+          "source": "epic_generation.features"
+        }
+      },
+      {
+        "id": "AUTH-1-FEAT-002",
+        "name": "User Login",
+        "description": null,
+        "metadata": {
+          "epic_id": "AUTH-1",
+          "source": "epic_generation.features"
+        }
+      }
+    ],
+    "one_line_stories": [
+      {
+        "id": "AUTH-1-FEAT-001-STORY-001",
+        "feature_id": "AUTH-1-FEAT-001",
+        "epic_id": "AUTH-1",
+        "summary": "As a user, I want to register and log in securely so that I can access the system.",
+        "actor": "users",
+        "business_value": "I can access the system",
+        "priority": "MEDIUM",
+        "requirement_refs": [
+          "FR-001",
+          "FR-002"
+        ],
+        "chunk_refs": [
+          "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+          "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+          "494507aa-aab8-4de6-8f31-96de6721e582",
+          "a080a258-410a-4cc2-a114-c58eef6051e2",
+          "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+          "ac04f361-040b-4d69-8d63-69d6820bad7d",
+          "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+        ],
+        "dependency_refs": []
+      },
+      {
+        "id": "AUTH-1-FEAT-002-STORY-001",
+        "feature_id": "AUTH-1-FEAT-002",
+        "epic_id": "AUTH-1",
+        "summary": "As a user, I want to register and log in securely so that I can access the system.",
+        "actor": "users",
+        "business_value": "I can access the system",
+        "priority": "MEDIUM",
+        "requirement_refs": [
+          "FR-001",
+          "FR-002"
+        ],
+        "chunk_refs": [
+          "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+          "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+          "494507aa-aab8-4de6-8f31-96de6721e582",
+          "a080a258-410a-4cc2-a114-c58eef6051e2",
+          "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+          "ac04f361-040b-4d69-8d63-69d6820bad7d",
+          "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+        ],
+        "dependency_refs": []
+      }
+    ],
+    "traceability": {
+      "traceability_matrix": [
+        {
+          "feature_id": "AUTH-1-FEAT-001",
+          "one_line_story_id": "AUTH-1-FEAT-001-STORY-001",
+          "epic_id": "AUTH-1",
+          "chunk_ids": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "requirement_ids": [
+            "FR-001",
+            "FR-002"
+          ]
+        },
+        {
+          "feature_id": "AUTH-1-FEAT-002",
+          "one_line_story_id": "AUTH-1-FEAT-002-STORY-001",
+          "epic_id": "AUTH-1",
+          "chunk_ids": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "requirement_ids": [
+            "FR-001",
+            "FR-002"
+          ]
+        }
+      ],
+      "rag_context": {
+        "AUTH-1-FEAT-001-STORY-001": {
+          "epic": "User Authentication",
+          "feature": "User Registration",
+          "source_chunks": [],
+          "supporting_requirements": [
+            {
+              "id": "FR-001",
+              "description": "FR-001",
+              "source": null
+            },
+            {
+              "id": "FR-002",
+              "description": "FR-002",
+              "source": null
+            }
+          ],
+          "dependencies": [],
+          "business_rules": [],
+          "retrieval_metadata": {
+            "bm25_latency_ms": 4342.11440000217,
+            "dense_latency_ms": 12066.7686000234,
+            "pipeline_latency_ms": 12370.2811000403,
+            "bm25_count": 0,
+            "dense_count": 0,
+            "fused_count": 0,
+            "reranked_count": 0,
+            "context_builder_latency_ms": 0.0525000505149365,
+            "chunk_ids": [],
+            "document_ids": []
+          }
+        },
+        "AUTH-1-FEAT-001": {
+          "epic": "User Authentication",
+          "feature": "User Registration",
+          "source_chunks": [],
+          "supporting_requirements": [
+            {
+              "id": "FR-001",
+              "description": "FR-001",
+              "source": null
+            },
+            {
+              "id": "FR-002",
+              "description": "FR-002",
+              "source": null
+            }
+          ],
+          "dependencies": [],
+          "business_rules": [],
+          "retrieval_metadata": {
+            "bm25_latency_ms": 4342.11440000217,
+            "dense_latency_ms": 12066.7686000234,
+            "pipeline_latency_ms": 12370.2811000403,
+            "bm25_count": 0,
+            "dense_count": 0,
+            "fused_count": 0,
+            "reranked_count": 0,
+            "context_builder_latency_ms": 0.0525000505149365,
+            "chunk_ids": [],
+            "document_ids": []
+          }
+        },
+        "AUTH-1-FEAT-002-STORY-001": {
+          "epic": "User Authentication",
+          "feature": "User Login",
+          "source_chunks": [],
+          "supporting_requirements": [
+            {
+              "id": "FR-001",
+              "description": "FR-001",
+              "source": null
+            },
+            {
+              "id": "FR-002",
+              "description": "FR-002",
+              "source": null
+            }
+          ],
+          "dependencies": [],
+          "business_rules": [],
+          "retrieval_metadata": {
+            "bm25_latency_ms": 4063.47650010139,
+            "dense_latency_ms": 258.269199985079,
+            "pipeline_latency_ms": 4074.06240003184,
+            "bm25_count": 0,
+            "dense_count": 0,
+            "fused_count": 0,
+            "reranked_count": 0,
+            "context_builder_latency_ms": 0.135799986310303,
+            "chunk_ids": [],
+            "document_ids": []
+          }
+        },
+        "AUTH-1-FEAT-002": {
+          "epic": "User Authentication",
+          "feature": "User Login",
+          "source_chunks": [],
+          "supporting_requirements": [
+            {
+              "id": "FR-001",
+              "description": "FR-001",
+              "source": null
+            },
+            {
+              "id": "FR-002",
+              "description": "FR-002",
+              "source": null
+            }
+          ],
+          "dependencies": [],
+          "business_rules": [],
+          "retrieval_metadata": {
+            "bm25_latency_ms": 4063.47650010139,
+            "dense_latency_ms": 258.269199985079,
+            "pipeline_latency_ms": 4074.06240003184,
+            "bm25_count": 0,
+            "dense_count": 0,
+            "fused_count": 0,
+            "reranked_count": 0,
+            "context_builder_latency_ms": 0.135799986310303,
+            "chunk_ids": [],
+            "document_ids": []
+          }
+        }
+      }
+    },
+    "agent2_output": {
+      "epics": [
+        {
+          "id": "AUTH-1",
+          "name": "User Authentication",
+          "description": null,
+          "metadata": {
+            "priority": "Critical",
+            "dependencies": [],
+            "features": [
+              "User Registration",
+              "User Login"
+            ],
+            "one_line_story": "As a user, I want to register and log in securely so that I can access the system."
+          }
+        }
+      ],
+      "features": [
+        {
+          "id": "AUTH-1-FEAT-001",
+          "name": "User Registration",
+          "description": null,
+          "metadata": {
+            "epic_id": "AUTH-1",
+            "source": "epic_generation.features"
+          }
+        },
+        {
+          "id": "AUTH-1-FEAT-002",
+          "name": "User Login",
+          "description": null,
+          "metadata": {
+            "epic_id": "AUTH-1",
+            "source": "epic_generation.features"
+          }
+        }
+      ],
+      "one_line_stories": [
+        {
+          "id": "AUTH-1-FEAT-001-STORY-001",
+          "feature_id": "AUTH-1-FEAT-001",
+          "epic_id": "AUTH-1",
+          "summary": "As a user, I want to register and log in securely so that I can access the system.",
+          "actor": "users",
+          "business_value": "I can access the system",
+          "priority": "MEDIUM",
+          "requirement_refs": [
+            "FR-001",
+            "FR-002"
+          ],
+          "chunk_refs": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "dependency_refs": []
+        },
+        {
+          "id": "AUTH-1-FEAT-002-STORY-001",
+          "feature_id": "AUTH-1-FEAT-002",
+          "epic_id": "AUTH-1",
+          "summary": "As a user, I want to register and log in securely so that I can access the system.",
+          "actor": "users",
+          "business_value": "I can access the system",
+          "priority": "MEDIUM",
+          "requirement_refs": [
+            "FR-001",
+            "FR-002"
+          ],
+          "chunk_refs": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "dependency_refs": []
+        }
+      ],
+      "traceability_matrix": [
+        {
+          "feature_id": "AUTH-1-FEAT-001",
+          "one_line_story_id": "AUTH-1-FEAT-001-STORY-001",
+          "epic_id": "AUTH-1",
+          "chunk_ids": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "requirement_ids": [
+            "FR-001",
+            "FR-002"
+          ]
+        },
+        {
+          "feature_id": "AUTH-1-FEAT-002",
+          "one_line_story_id": "AUTH-1-FEAT-002-STORY-001",
+          "epic_id": "AUTH-1",
+          "chunk_ids": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "requirement_ids": [
+            "FR-001",
+            "FR-002"
+          ]
+        }
+      ],
+      "planning_metadata": {
+        "source": "langgraph_orchestration",
+        "epic_generation_adapter": true
+      }
+    },
+    "generation_request": {
+      "requirements": [
+        {
+          "id": "FR-001",
+          "name": "User Registration: The system shall allow users to register using their email address, password, and full name",
+          "description": null,
+          "metadata": {
+
+          }
+        },
+        {
+          "id": "FR-002",
+          "name": "User Login: The system shall allow users to log in with their email address and password",
+          "description": null,
+          "metadata": {
+
+          }
+        }
+      ],
+      "actors": [
+        "users"
+      ],
+      "functional_requirements": [
+        {
+          "id": "FR-001",
+          "name": "User Registration: The system shall allow users to register using their email address, password, and full name",
+          "description": null,
+          "metadata": {
+
+          }
+        },
+        {
+          "id": "FR-002",
+          "name": "User Login: The system shall allow users to log in with their email address and password",
+          "description": null,
+          "metadata": {
+
+          }
+        }
+      ],
+      "non_functional_requirements": [
+        {
+          "id": "NFR-001",
+          "name": "Security: Passwords shall be encrypted before storing them in the database",
+          "description": null,
+          "metadata": {
+
+          }
+        }
+      ],
+      "business_rules": [
+        "Passwords must be encrypted before storing them in the database"
+      ],
+      "business_goals": [],
+      "edge_cases": [],
+      "constraints": [],
+      "acceptance_criteria": [
+        "Invalid email address",
+        "Weak password",
+        "Duplicate email address",
+        "Failed login attempts"
+      ],
+      "dependencies": [],
+      "epics": [
+        {
+          "id": "AUTH-1",
+          "name": "User Authentication",
+          "description": null,
+          "metadata": {
+            "priority": "Critical",
+            "dependencies": [],
+            "features": [
+              "User Registration",
+              "User Login"
+            ],
+            "one_line_story": "As a user, I want to register and log in securely so that I can access the system."
+          }
+        }
+      ],
+      "features": [
+        {
+          "id": "AUTH-1-FEAT-001",
+          "name": "User Registration",
+          "description": null,
+          "metadata": {
+            "epic_id": "AUTH-1",
+            "source": "epic_generation.features"
+          }
+        },
+        {
+          "id": "AUTH-1-FEAT-002",
+          "name": "User Login",
+          "description": null,
+          "metadata": {
+            "epic_id": "AUTH-1",
+            "source": "epic_generation.features"
+          }
+        }
+      ],
+      "one_line_stories": [
+        {
+          "id": "AUTH-1-FEAT-001-STORY-001",
+          "feature_id": "AUTH-1-FEAT-001",
+          "epic_id": "AUTH-1",
+          "summary": "As a user, I want to register and log in securely so that I can access the system.",
+          "actor": "users",
+          "business_value": "I can access the system",
+          "priority": "MEDIUM",
+          "requirement_refs": [
+            "FR-001",
+            "FR-002"
+          ],
+          "chunk_refs": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "dependency_refs": []
+        },
+        {
+          "id": "AUTH-1-FEAT-002-STORY-001",
+          "feature_id": "AUTH-1-FEAT-002",
+          "epic_id": "AUTH-1",
+          "summary": "As a user, I want to register and log in securely so that I can access the system.",
+          "actor": "users",
+          "business_value": "I can access the system",
+          "priority": "MEDIUM",
+          "requirement_refs": [
+            "FR-001",
+            "FR-002"
+          ],
+          "chunk_refs": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "dependency_refs": []
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "id": "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+          "content": "Business Requirement Document: User Management System",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 1,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+          "content": "1.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 2,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "494507aa-aab8-4de6-8f31-96de6721e582",
+          "content": "Introduction The system shall provide a secure user authentication mechanism.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 3,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "a080a258-410a-4cc2-a114-c58eef6051e2",
+          "content": "2.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 4,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+          "content": "Functional Requirements FR-1: User Registration The system shall allow users to register using their email address, password, and full name. FR-2: User Login The system shall allow users to log in with their email address and password.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 5,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "ac04f361-040b-4d69-8d63-69d6820bad7d",
+          "content": "3.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 6,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        },
+        {
+          "id": "9566f108-0c8e-45b9-ae21-ea5e438d07dc",
+          "content": "Non-Functional Requirements NFR-1: Security Passwords shall be encrypted before storing them in the database.",
+          "source": "sample_brd.txt",
+          "metadata": {
+            "sequence_number": 7,
+            "source": "sample_brd.txt",
+            "source_metadata": {
+              "file_path": "sample_brd.txt",
+              "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+              "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+            }
+          }
+        }
+      ],
+      "traceability": {
+        "source": "requirement_analysis_agent",
+        "business_goals": [
+          "Provide a secure user authentication mechanism"
+        ],
+        "traceability_matrix": [
+          {
+            "feature_id": "AUTH-1-FEAT-001",
+            "one_line_story_id": "AUTH-1-FEAT-001-STORY-001",
+            "epic_id": "AUTH-1",
+            "chunk_ids": [
+              "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+              "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+              "494507aa-aab8-4de6-8f31-96de6721e582",
+              "a080a258-410a-4cc2-a114-c58eef6051e2",
+              "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+              "ac04f361-040b-4d69-8d63-69d6820bad7d",
+              "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+            ],
+            "requirement_ids": [
+              "FR-001",
+              "FR-002"
+            ]
+          },
+          {
+            "feature_id": "AUTH-1-FEAT-002",
+            "one_line_story_id": "AUTH-1-FEAT-002-STORY-001",
+            "epic_id": "AUTH-1",
+            "chunk_ids": [
+              "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+              "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+              "494507aa-aab8-4de6-8f31-96de6721e582",
+              "a080a258-410a-4cc2-a114-c58eef6051e2",
+              "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+              "ac04f361-040b-4d69-8d63-69d6820bad7d",
+              "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+            ],
+            "requirement_ids": [
+              "FR-001",
+              "FR-002"
+            ]
+          }
+        ],
+        "rag_context": {
+          "AUTH-1-FEAT-001-STORY-001": {
+            "epic": "User Authentication",
+            "feature": "User Registration",
+            "source_chunks": [],
+            "supporting_requirements": [
+              {
+                "id": "FR-001",
+                "description": "FR-001",
+                "source": null
+              },
+              {
+                "id": "FR-002",
+                "description": "FR-002",
+                "source": null
+              }
+            ],
+            "dependencies": [],
+            "business_rules": [],
+            "retrieval_metadata": {
+              "bm25_latency_ms": 4342.11440000217,
+              "dense_latency_ms": 12066.7686000234,
+              "pipeline_latency_ms": 12370.2811000403,
+              "bm25_count": 0,
+              "dense_count": 0,
+              "fused_count": 0,
+              "reranked_count": 0,
+              "context_builder_latency_ms": 0.0525000505149365,
+              "chunk_ids": [],
+              "document_ids": []
+            }
+          },
+          "AUTH-1-FEAT-001": {
+            "epic": "User Authentication",
+            "feature": "User Registration",
+            "source_chunks": [],
+            "supporting_requirements": [
+              {
+                "id": "FR-001",
+                "description": "FR-001",
+                "source": null
+              },
+              {
+                "id": "FR-002",
+                "description": "FR-002",
+                "source": null
+              }
+            ],
+            "dependencies": [],
+            "business_rules": [],
+            "retrieval_metadata": {
+              "bm25_latency_ms": 4342.11440000217,
+              "dense_latency_ms": 12066.7686000234,
+              "pipeline_latency_ms": 12370.2811000403,
+              "bm25_count": 0,
+              "dense_count": 0,
+              "fused_count": 0,
+              "reranked_count": 0,
+              "context_builder_latency_ms": 0.0525000505149365,
+              "chunk_ids": [],
+              "document_ids": []
+            }
+          },
+          "AUTH-1-FEAT-002-STORY-001": {
+            "epic": "User Authentication",
+            "feature": "User Login",
+            "source_chunks": [],
+            "supporting_requirements": [
+              {
+                "id": "FR-001",
+                "description": "FR-001",
+                "source": null
+              },
+              {
+                "id": "FR-002",
+                "description": "FR-002",
+                "source": null
+              }
+            ],
+            "dependencies": [],
+            "business_rules": [],
+            "retrieval_metadata": {
+              "bm25_latency_ms": 4063.47650010139,
+              "dense_latency_ms": 258.269199985079,
+              "pipeline_latency_ms": 4074.06240003184,
+              "bm25_count": 0,
+              "dense_count": 0,
+              "fused_count": 0,
+              "reranked_count": 0,
+              "context_builder_latency_ms": 0.135799986310303,
+              "chunk_ids": [],
+              "document_ids": []
+            }
+          },
+          "AUTH-1-FEAT-002": {
+            "epic": "User Authentication",
+            "feature": "User Login",
+            "source_chunks": [],
+            "supporting_requirements": [
+              {
+                "id": "FR-001",
+                "description": "FR-001",
+                "source": null
+              },
+              {
+                "id": "FR-002",
+                "description": "FR-002",
+                "source": null
+              }
+            ],
+            "dependencies": [],
+            "business_rules": [],
+            "retrieval_metadata": {
+              "bm25_latency_ms": 4063.47650010139,
+              "dense_latency_ms": 258.269199985079,
+              "pipeline_latency_ms": 4074.06240003184,
+              "bm25_count": 0,
+              "dense_count": 0,
+              "fused_count": 0,
+              "reranked_count": 0,
+              "context_builder_latency_ms": 0.135799986310303,
+              "chunk_ids": [],
+              "document_ids": []
+            }
+          }
+        },
+        "planning_metadata": {
+          "source": "langgraph_orchestration",
+          "epic_generation_adapter": true
+        }
+      },
+      "agent1_output": {
+        "chunks": [
+          {
+            "id": "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "content": "Business Requirement Document: User Management System",
+            "source": "sample_brd.txt",
+            "metadata": {
+              "sequence_number": 1,
+              "source": "sample_brd.txt",
+              "source_metadata": {
+                "file_path": "sample_brd.txt",
+                "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+                "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+              }
+            }
+          },
+          {
+            "id": "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "content": "1.",
+            "source": "sample_brd.txt",
+            "metadata": {
+              "sequence_number": 2,
+              "source": "sample_brd.txt",
+              "source_metadata": {
+                "file_path": "sample_brd.txt",
+                "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+                "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+              }
+            }
+          },
+          {
+            "id": "494507aa-aab8-4de6-8f31-96de6721e582",
+            "content": "Introduction The system shall provide a secure user authentication mechanism.",
+            "source": "sample_brd.txt",
+            "metadata": {
+              "sequence_number": 3,
+              "source": "sample_brd.txt",
+              "source_metadata": {
+                "file_path": "sample_brd.txt",
+                "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+                "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+              }
+            }
+          },
+          {
+            "id": "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "content": "2.",
+            "source": "sample_brd.txt",
+            "metadata": {
+              "sequence_number": 4,
+              "source": "sample_brd.txt",
+              "source_metadata": {
+                "file_path": "sample_brd.txt",
+                "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+                "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+              }
+            }
+          },
+          {
+            "id": "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "content": "Functional Requirements FR-1: User Registration The system shall allow users to register using their email address, password, and full name. FR-2: User Login The system shall allow users to log in with their email address and password.",
+            "source": "sample_brd.txt",
+            "metadata": {
+              "sequence_number": 5,
+              "source": "sample_brd.txt",
+              "source_metadata": {
+                "file_path": "sample_brd.txt",
+                "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+                "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+              }
+            }
+          },
+          {
+            "id": "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "content": "3.",
+            "source": "sample_brd.txt",
+            "metadata": {
+              "sequence_number": 6,
+              "source": "sample_brd.txt",
+              "source_metadata": {
+                "file_path": "sample_brd.txt",
+                "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+                "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+              }
+            }
+          },
+          {
+            "id": "9566f108-0c8e-45b9-ae21-ea5e438d07dc",
+            "content": "Non-Functional Requirements NFR-1: Security Passwords shall be encrypted before storing them in the database.",
+            "source": "sample_brd.txt",
+            "metadata": {
+              "sequence_number": 7,
+              "source": "sample_brd.txt",
+              "source_metadata": {
+                "file_path": "sample_brd.txt",
+                "document_id": "3f0d69c7-3e28-4808-85fa-b209b0060563",
+                "project_id": "12769c3f-28aa-42fa-8691-341de8cc15e2"
+              }
+            }
+          }
+        ],
+        "actors": [
+          "users"
+        ],
+        "functional_requirements": [
+          {
+            "id": "FR-001",
+            "name": "User Registration: The system shall allow users to register using their email address, password, and full name",
+            "description": null,
+            "metadata": {
+
+            }
+          },
+          {
+            "id": "FR-002",
+            "name": "User Login: The system shall allow users to log in with their email address and password",
+            "description": null,
+            "metadata": {
+
+            }
+          }
+        ],
+        "non_functional_requirements": [
+          {
+            "id": "NFR-001",
+            "name": "Security: Passwords shall be encrypted before storing them in the database",
+            "description": null,
+            "metadata": {
+
+            }
+          }
+        ],
+        "business_rules": [
+          "Passwords must be encrypted before storing them in the database"
+        ],
+        "dependencies": [],
+        "acceptance_criteria": [
+          "Invalid email address",
+          "Weak password",
+          "Duplicate email address",
+          "Failed login attempts"
+        ],
+        "traceability_metadata": {
+          "source": "requirement_analysis_agent",
+          "business_goals": [
+            "Provide a secure user authentication mechanism"
+          ]
+        }
+      },
+      "agent2_output": {
+        "epics": [
+          {
+            "id": "AUTH-1",
+            "name": "User Authentication",
+            "description": null,
+            "metadata": {
+              "priority": "Critical",
+              "dependencies": [],
+              "features": [
+                "User Registration",
+                "User Login"
+              ],
+              "one_line_story": "As a user, I want to register and log in securely so that I can access the system."
+            }
+          }
+        ],
+        "features": [
+          {
+            "id": "AUTH-1-FEAT-001",
+            "name": "User Registration",
+            "description": null,
+            "metadata": {
+              "epic_id": "AUTH-1",
+              "source": "epic_generation.features"
+            }
+          },
+          {
+            "id": "AUTH-1-FEAT-002",
+            "name": "User Login",
+            "description": null,
+            "metadata": {
+              "epic_id": "AUTH-1",
+              "source": "epic_generation.features"
+            }
+          }
+        ],
+        "one_line_stories": [
+          {
+            "id": "AUTH-1-FEAT-001-STORY-001",
+            "feature_id": "AUTH-1-FEAT-001",
+            "epic_id": "AUTH-1",
+            "summary": "As a user, I want to register and log in securely so that I can access the system.",
+            "actor": "users",
+            "business_value": "I can access the system",
+            "priority": "MEDIUM",
+            "requirement_refs": [
+              "FR-001",
+              "FR-002"
+            ],
+            "chunk_refs": [
+              "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+              "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+              "494507aa-aab8-4de6-8f31-96de6721e582",
+              "a080a258-410a-4cc2-a114-c58eef6051e2",
+              "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+              "ac04f361-040b-4d69-8d63-69d6820bad7d",
+              "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+            ],
+            "dependency_refs": []
+          },
+          {
+            "id": "AUTH-1-FEAT-002-STORY-001",
+            "feature_id": "AUTH-1-FEAT-002",
+            "epic_id": "AUTH-1",
+            "summary": "As a user, I want to register and log in securely so that I can access the system.",
+            "actor": "users",
+            "business_value": "I can access the system",
+            "priority": "MEDIUM",
+            "requirement_refs": [
+              "FR-001",
+              "FR-002"
+            ],
+            "chunk_refs": [
+              "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+              "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+              "494507aa-aab8-4de6-8f31-96de6721e582",
+              "a080a258-410a-4cc2-a114-c58eef6051e2",
+              "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+              "ac04f361-040b-4d69-8d63-69d6820bad7d",
+              "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+            ],
+            "dependency_refs": []
+          }
+        ],
+        "traceability_matrix": [
+          {
+            "feature_id": "AUTH-1-FEAT-001",
+            "one_line_story_id": "AUTH-1-FEAT-001-STORY-001",
+            "epic_id": "AUTH-1",
+            "chunk_ids": [
+              "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+              "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+              "494507aa-aab8-4de6-8f31-96de6721e582",
+              "a080a258-410a-4cc2-a114-c58eef6051e2",
+              "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+              "ac04f361-040b-4d69-8d63-69d6820bad7d",
+              "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+            ],
+            "requirement_ids": [
+              "FR-001",
+              "FR-002"
+            ]
+          },
+          {
+            "feature_id": "AUTH-1-FEAT-002",
+            "one_line_story_id": "AUTH-1-FEAT-002-STORY-001",
+            "epic_id": "AUTH-1",
+            "chunk_ids": [
+              "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+              "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+              "494507aa-aab8-4de6-8f31-96de6721e582",
+              "a080a258-410a-4cc2-a114-c58eef6051e2",
+              "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+              "ac04f361-040b-4d69-8d63-69d6820bad7d",
+              "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+            ],
+            "requirement_ids": [
+              "FR-001",
+              "FR-002"
+            ]
+          }
+        ],
+        "planning_metadata": {
+          "source": "langgraph_orchestration",
+          "epic_generation_adapter": true
+        }
+      },
+      "workflow_id": "WF-TEST-RUN",
+      "confidence_threshold": 0.8,
+      "max_retry_attempts": 3
+    },
+    "user_stories": [
+      {
+        "id": "US-001",
+        "feature_id": "AUTH-1-FEAT-001",
+        "epic_id": "AUTH-1",
+        "one_line_story_id": "AUTH-1-FEAT-001-STORY-001",
+        "chunk_ids_used": [
+          "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+          "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+          "494507aa-aab8-4de6-8f31-96de6721e582",
+          "a080a258-410a-4cc2-a114-c58eef6051e2",
+          "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+          "ac04f361-040b-4d69-8d63-69d6820bad7d",
+          "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+        ],
+        "title": "User Registration and Login",
+        "user_story": "As a user, I want to register and log in securely so that I can access the system.",
+        "description": "The system shall provide a secure user authentication mechanism. The user shall be able to register using their email address, password, and full name. The user shall be able to log in with their email address and password.",
+        "persona": "users",
+        "goal": "register and log in securely",
+        "business_value": "access the system",
+        "acceptance_criteria": [
+          {
+            "id": "AC-001",
+            "description": "The system shall allow users to register using their email address, password, and full name.",
+            "source_refs": [
+              "FR-001",
+              "0bbb0260-f229-4ed1-b9a3-3346ba385b6d"
+            ]
+          },
+          {
+            "id": "AC-002",
+            "description": "The system shall allow users to log in with their email address and password.",
+            "source_refs": [
+              "FR-002",
+              "603a2f8d-e710-4055-9e14-b10dbb1e20ca"
+            ]
+          },
+          {
+            "id": "AC-003",
+            "description": "The system shall validate email addresses.",
+            "source_refs": [
+              "Invalid email address"
+            ]
+          },
+          {
+            "id": "AC-004",
+            "description": "The system shall validate passwords.",
+            "source_refs": [
+              "Weak password"
+            ]
+          },
+          {
+            "id": "AC-005",
+            "description": "The system shall prevent duplicate email addresses.",
+            "source_refs": [
+              "Duplicate email address"
+            ]
+          },
+          {
+            "id": "AC-006",
+            "description": "The system shall handle failed login attempts.",
+            "source_refs": [
+              "Failed login attempts"
+            ]
+          }
+        ],
+        "business_rules": [
+          "Passwords must be encrypted before storing them in the database"
+        ],
+        "dependencies": [],
+        "definition_of_done": [
+          "The system allows users to register and log in securely.",
+          "The system validates email addresses and passwords.",
+          "The system prevents duplicate email addresses and handles failed login attempts."
+        ],
+        "assumptions": [
+          "The system has a secure password encryption mechanism."
+        ],
+        "risks": [
+          "The system may be vulnerable to password cracking attacks."
+        ],
+        "requirement_mapping": [
+          {
+            "id": "FR-001",
+            "name": "User Registration",
+            "source": "Agent 1"
+          },
+          {
+            "id": "FR-002",
+            "name": "User Login",
+            "source": "Agent 1"
+          }
+        ],
+        "epic_mapping": [
+          {
+            "id": "AUTH-1",
+            "name": "User Authentication",
+            "source": "Agent 2"
+          }
+        ],
+        "feature_mapping": [
+          {
+            "id": "AUTH-1-FEAT-001",
+            "name": "User Registration",
+            "source": "Agent 2"
+          }
+        ],
+        "source_chunk_references": [
+          {
+            "id": "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "name": "Business Requirement Document: User Management System",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "name": "1.",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "494507aa-aab8-4de6-8f31-96de6721e582",
+            "name": "Introduction The system shall provide a secure user authentication mechanism.",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "name": "2.",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "name": "Functional Requirements FR-1: User Registration The system shall allow users to register using their email address, password, and full name. FR-2: User Login The system shall allow users to log in with their email address and password.",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "name": "3.",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "9566f108-0c8e-45b9-ae21-ea5e438d07dc",
+            "name": "Non-Functional Requirements NFR-1: Security Passwords shall be encrypted before storing them in the database.",
+            "source": "sample_brd.txt"
+          }
+        ],
+        "priority": "MEDIUM",
+        "story_points": 5,
+        "confidence_score": 0,
+        "retry_attempts": 0,
+        "invest_compliance": {
+          "independent": true,
+          "negotiable": true,
+          "valuable": true,
+          "estimable": true,
+          "small": true,
+          "testable": true,
+          "notes": []
+        },
+        "traceability": {
+          "workflow_id": "WF-TEST-RUN",
+          "requirement_refs": [
+            "FR-001",
+            "FR-002"
+          ],
+          "chunk_refs": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "epic_refs": [
+            "AUTH-1"
+          ],
+          "feature_refs": [
+            "AUTH-1-FEAT-001"
+          ],
+          "one_line_story_refs": [
+            "AUTH-1-FEAT-001-STORY-001"
+          ],
+          "dependency_refs": [],
+          "generated_by": "Agent 3",
+          "validated_by": "agent-4-story-validator",
+          "approved_by": "",
+          "metadata": {
+            "generation_hierarchy": "Epic -\u003E Feature -\u003E One-Line Story -\u003E Evidence Pack -\u003E User Story",
+            "evidence_pack_id": "EPACK-AUTH-1-AUTH-1-FEAT-001-AUTH-1-FEAT-001-STORY-001"
+          }
+        },
+        "traceability_links": {
+
+        },
+        "generation_timestamp": "2024-09-16T14:30:00Z",
+        "metadata": {
+          "source": "agent3_user_story_generation",
+          "generation_metadata": {
+
+          },
+          "evidence_pack": {
+            "id": "EPACK-AUTH-1-AUTH-1-FEAT-001-AUTH-1-FEAT-001-STORY-001",
+            "workflow_id": "WF-TEST-RUN",
+            "epic_id": "AUTH-1",
+            "feature_id": "AUTH-1-FEAT-001",
+            "one_line_story_id": "AUTH-1-FEAT-001-STORY-001",
+            "chunk_refs": [
+              "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+              "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+              "494507aa-aab8-4de6-8f31-96de6721e582",
+              "a080a258-410a-4cc2-a114-c58eef6051e2",
+              "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+              "ac04f361-040b-4d69-8d63-69d6820bad7d",
+              "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+            ],
+            "requirement_refs": [
+              "FR-001",
+              "FR-002"
+            ],
+            "business_rules": [
+              "Passwords must be encrypted before storing them in the database"
+            ],
+            "acceptance_criteria": [
+              "Invalid email address",
+              "Weak password",
+              "Duplicate email address",
+              "Failed login attempts"
+            ],
+            "dependencies": [],
+            "actors": [
+              "users"
+            ],
+            "business_goals": [
+              "Provide a secure user authentication mechanism"
+            ],
+            "planner_metadata": {
+              "source": "langgraph_orchestration",
+              "epic_generation_adapter": true
+            },
+            "master_context": {
+
+            },
+            "story_context": {
+
+            },
+            "rag_context": {
+              "epic": "User Authentication",
+              "feature": "User Registration",
+              "source_chunks": [],
+              "supporting_requirements": [
+                {
+                  "id": "FR-001",
+                  "description": "FR-001",
+                  "source": null
+                },
+                {
+                  "id": "FR-002",
+                  "description": "FR-002",
+                  "source": null
+                }
+              ],
+              "dependencies": [],
+              "business_rules": [],
+              "retrieval_metadata": {
+                "bm25_latency_ms": 4342.11440000217,
+                "dense_latency_ms": 12066.7686000234,
+                "pipeline_latency_ms": 12370.2811000403,
+                "bm25_count": 0,
+                "dense_count": 0,
+                "fused_count": 0,
+                "reranked_count": 0,
+                "context_builder_latency_ms": 0.0525000505149365,
+                "chunk_ids": [],
+                "document_ids": []
+              }
+            },
+            "metadata": {
+              "workflow_id": "WF-TEST-RUN",
+              "epic_metadata": {
+                "priority": "Critical",
+                "dependencies": [],
+                "features": [
+                  "User Registration",
+                  "User Login"
+                ],
+                "one_line_story": "As a user, I want to register and log in securely so that I can access the system."
+              },
+              "feature_metadata": {
+                "epic_id": "AUTH-1",
+                "source": "epic_generation.features"
+              },
+              "one_line_story_priority": "MEDIUM",
+              "payload_metadata": {
+
+              }
+            }
+          },
+          "quality_gates": {
+            "hierarchy_present": true,
+            "has_chunk_evidence": true,
+            "all_chunk_refs_resolved": true,
+            "has_requirement_mapping": true,
+            "has_business_rules": true,
+            "has_acceptance_criteria": true,
+            "acceptance_criteria_with_chunk_refs": [
+              "AC-001",
+              "AC-002"
+            ],
+            "has_dependencies": false,
+            "has_actor": true,
+            "has_business_goals": true,
+            "planner_metadata_present": true,
+            "story_context_present": false,
+            "master_context_present": false,
+            "rag_context_present": true
+          },
+          "confidence": {
+            "score": 1,
+            "components": {
+              "hierarchy": 0.2,
+              "chunk_evidence": 0.2,
+              "requirement_mapping": 0.15,
+              "agent1_context": 0.15,
+              "agent2_context": 0.15,
+              "field_completeness": 0.1,
+              "optional_context": 0.05
+            },
+            "rationale": [
+              "Hierarchy validated through Epic, Feature, and One-Line Story.",
+              "Chunk and requirement evidence are scored only when supplied references resolve.",
+              "Optional RAG context is consumed only when already present in the request."
+            ],
+            "input_confidence": {
+
+            },
+            "llm_reported_confidence": 1
+          }
+        }
+      },
+      {
+        "id": "US-002",
+        "feature_id": "AUTH-1-FEAT-002",
+        "epic_id": "AUTH-1",
+        "one_line_story_id": "AUTH-1-FEAT-002-STORY-001",
+        "chunk_ids_used": [
+          "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+          "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+          "494507aa-aab8-4de6-8f31-96de6721e582",
+          "a080a258-410a-4cc2-a114-c58eef6051e2",
+          "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+          "ac04f361-040b-4d69-8d63-69d6820bad7d",
+          "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+        ],
+        "title": "User Login",
+        "user_story": "As a user, I want to log in securely so that I can access the system.",
+        "description": "The system shall provide a secure user authentication mechanism. The user shall be able to log in with their email address and password.",
+        "persona": "users",
+        "goal": "log in securely",
+        "business_value": "access the system",
+        "acceptance_criteria": [
+          {
+            "id": "AC-007",
+            "description": "The system shall allow users to log in with their email address and password.",
+            "source_refs": [
+              "FR-002",
+              "603a2f8d-e710-4055-9e14-b10dbb1e20ca"
+            ]
+          },
+          {
+            "id": "AC-008",
+            "description": "The system shall validate email addresses.",
+            "source_refs": [
+              "Invalid email address"
+            ]
+          },
+          {
+            "id": "AC-009",
+            "description": "The system shall validate passwords.",
+            "source_refs": [
+              "Weak password"
+            ]
+          },
+          {
+            "id": "AC-010",
+            "description": "The system shall prevent duplicate email addresses.",
+            "source_refs": [
+              "Duplicate email address"
+            ]
+          },
+          {
+            "id": "AC-011",
+            "description": "The system shall handle failed login attempts.",
+            "source_refs": [
+              "Failed login attempts"
+            ]
+          }
+        ],
+        "business_rules": [
+          "Passwords must be encrypted before storing them in the database"
+        ],
+        "dependencies": [],
+        "definition_of_done": [
+          "The system allows users to log in securely.",
+          "The system validates email addresses and passwords.",
+          "The system prevents duplicate email addresses and handles failed login attempts."
+        ],
+        "assumptions": [
+          "The system has a secure password encryption mechanism."
+        ],
+        "risks": [
+          "The system may be vulnerable to password cracking attacks."
+        ],
+        "requirement_mapping": [
+          {
+            "id": "FR-002",
+            "name": "User Login",
+            "source": "Agent 1"
+          }
+        ],
+        "epic_mapping": [
+          {
+            "id": "AUTH-1",
+            "name": "User Authentication",
+            "source": "Agent 2"
+          }
+        ],
+        "feature_mapping": [
+          {
+            "id": "AUTH-1-FEAT-002",
+            "name": "User Login",
+            "source": "Agent 2"
+          }
+        ],
+        "source_chunk_references": [
+          {
+            "id": "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "name": "Business Requirement Document: User Management System",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "name": "1.",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "494507aa-aab8-4de6-8f31-96de6721e582",
+            "name": "Introduction The system shall provide a secure user authentication mechanism.",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "name": "2.",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "name": "Functional Requirements FR-1: User Registration The system shall allow users to register using their email address, password, and full name. FR-2: User Login The system shall allow users to log in with their email address and password.",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "name": "3.",
+            "source": "sample_brd.txt"
+          },
+          {
+            "id": "9566f108-0c8e-45b9-ae21-ea5e438d07dc",
+            "name": "Non-Functional Requirements NFR-1: Security Passwords shall be encrypted before storing them in the database.",
+            "source": "sample_brd.txt"
+          }
+        ],
+        "priority": "MEDIUM",
+        "story_points": 5,
+        "confidence_score": 0,
+        "retry_attempts": 0,
+        "invest_compliance": {
+          "independent": true,
+          "negotiable": true,
+          "valuable": true,
+          "estimable": true,
+          "small": true,
+          "testable": true,
+          "notes": []
+        },
+        "traceability": {
+          "workflow_id": "WF-TEST-RUN",
+          "requirement_refs": [
+            "FR-002"
+          ],
+          "chunk_refs": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "epic_refs": [
+            "AUTH-1"
+          ],
+          "feature_refs": [
+            "AUTH-1-FEAT-002"
+          ],
+          "one_line_story_refs": [
+            "AUTH-1-FEAT-002-STORY-001"
+          ],
+          "dependency_refs": [],
+          "generated_by": "Agent 3",
+          "validated_by": "agent-4-story-validator",
+          "approved_by": "",
+          "metadata": {
+            "generation_hierarchy": "Epic -\u003E Feature -\u003E One-Line Story -\u003E Evidence Pack -\u003E User Story",
+            "evidence_pack_id": "EPACK-AUTH-1-AUTH-1-FEAT-002-AUTH-1-FEAT-002-STORY-001"
+          }
+        },
+        "traceability_links": {
+
+        },
+        "generation_timestamp": "2024-09-16T14:30:00Z",
+        "metadata": {
+          "source": "agent3_user_story_generation",
+          "generation_metadata": {
+
+          },
+          "evidence_pack": {
+            "id": "EPACK-AUTH-1-AUTH-1-FEAT-002-AUTH-1-FEAT-002-STORY-001",
+            "workflow_id": "WF-TEST-RUN",
+            "epic_id": "AUTH-1",
+            "feature_id": "AUTH-1-FEAT-002",
+            "one_line_story_id": "AUTH-1-FEAT-002-STORY-001",
+            "chunk_refs": [
+              "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+              "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+              "494507aa-aab8-4de6-8f31-96de6721e582",
+              "a080a258-410a-4cc2-a114-c58eef6051e2",
+              "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+              "ac04f361-040b-4d69-8d63-69d6820bad7d",
+              "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+            ],
+            "requirement_refs": [
+              "FR-001",
+              "FR-002"
+            ],
+            "business_rules": [
+              "Passwords must be encrypted before storing them in the database"
+            ],
+            "acceptance_criteria": [
+              "Invalid email address",
+              "Weak password",
+              "Duplicate email address",
+              "Failed login attempts"
+            ],
+            "dependencies": [],
+            "actors": [
+              "users"
+            ],
+            "business_goals": [
+              "Provide a secure user authentication mechanism"
+            ],
+            "planner_metadata": {
+              "source": "langgraph_orchestration",
+              "epic_generation_adapter": true
+            },
+            "master_context": {
+
+            },
+            "story_context": {
+
+            },
+            "rag_context": {
+              "epic": "User Authentication",
+              "feature": "User Login",
+              "source_chunks": [],
+              "supporting_requirements": [
+                {
+                  "id": "FR-001",
+                  "description": "FR-001",
+                  "source": null
+                },
+                {
+                  "id": "FR-002",
+                  "description": "FR-002",
+                  "source": null
+                }
+              ],
+              "dependencies": [],
+              "business_rules": [],
+              "retrieval_metadata": {
+                "bm25_latency_ms": 4063.47650010139,
+                "dense_latency_ms": 258.269199985079,
+                "pipeline_latency_ms": 4074.06240003184,
+                "bm25_count": 0,
+                "dense_count": 0,
+                "fused_count": 0,
+                "reranked_count": 0,
+                "context_builder_latency_ms": 0.135799986310303,
+                "chunk_ids": [],
+                "document_ids": []
+              }
+            },
+            "metadata": {
+              "workflow_id": "WF-TEST-RUN",
+              "epic_metadata": {
+                "priority": "Critical",
+                "dependencies": [],
+                "features": [
+                  "User Registration",
+                  "User Login"
+                ],
+                "one_line_story": "As a user, I want to register and log in securely so that I can access the system."
+              },
+              "feature_metadata": {
+                "epic_id": "AUTH-1",
+                "source": "epic_generation.features"
+              },
+              "one_line_story_priority": "MEDIUM",
+              "payload_metadata": {
+
+              }
+            }
+          },
+          "quality_gates": {
+            "hierarchy_present": true,
+            "has_chunk_evidence": true,
+            "all_chunk_refs_resolved": true,
+            "has_requirement_mapping": true,
+            "has_business_rules": true,
+            "has_acceptance_criteria": true,
+            "acceptance_criteria_with_chunk_refs": [
+              "AC-007"
+            ],
+            "has_dependencies": false,
+            "has_actor": true,
+            "has_business_goals": true,
+            "planner_metadata_present": true,
+            "story_context_present": false,
+            "master_context_present": false,
+            "rag_context_present": true
+          },
+          "confidence": {
+            "score": 1,
+            "components": {
+              "hierarchy": 0.2,
+              "chunk_evidence": 0.2,
+              "requirement_mapping": 0.15,
+              "agent1_context": 0.15,
+              "agent2_context": 0.15,
+              "field_completeness": 0.1,
+              "optional_context": 0.05
+            },
+            "rationale": [
+              "Hierarchy validated through Epic, Feature, and One-Line Story.",
+              "Chunk and requirement evidence are scored only when supplied references resolve.",
+              "Optional RAG context is consumed only when already present in the request."
+            ],
+            "input_confidence": {
+
+            },
+            "llm_reported_confidence": 1
+          }
+        }
+      }
+    ],
+    "validation_result": {
+      "validation_status": "VALIDATION_FAILED",
+      "passed": false,
+      "confidence_score": 0.85,
+      "threshold": 0.8,
+      "issues": [
+        {
+          "issue_id": "ISSUE-001",
+          "severity": "WARNING",
+          "category": "Evidence Validation",
+          "story_id": "US-001",
+          "field": "chunk_ids_used",
+          "message": "Chunk IDs used do not match the source chunk references",
+          "source_reference": "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+          "suggested_action": "Verify the chunk IDs used and update the source chunk references accordingly"
+        },
+        {
+          "issue_id": "ISSUE-002",
+          "severity": "INFO",
+          "category": "Unsupported Information Detection",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "Acceptance criteria 'Invalid email address' is not supported by the chunks or RAG context",
+          "source_reference": "AI Semantic Analysis",
+          "suggested_action": "Update the acceptance criteria to match the supported information"
+        },
+        {
+          "issue_id": "ISSUE-003",
+          "severity": "ERROR",
+          "category": "Business Rules Validation",
+          "story_id": "US-002",
+          "field": "business_rules",
+          "message": "Business rule 'Passwords must be encrypted before storing them in the database' is not supported by the Agent 1 business rules",
+          "source_reference": "9566f108-0c8e-45b9-ae21-ea5e438d07dc",
+          "suggested_action": "Update the business rules to match the supported information"
+        },
+        {
+          "issue_id": "ISSUE-004",
+          "severity": "WARNING",
+          "category": "Dependency Validation",
+          "story_id": "US-001",
+          "field": "dependencies",
+          "message": "Dependencies are empty, but the story has a dependency on another story",
+          "source_reference": "AI Semantic Analysis",
+          "suggested_action": "Update the dependencies to match the story's requirements"
+        },
+        {
+          "issue_id": "ISSUE-005",
+          "severity": "INFO",
+          "category": "Format Verification",
+          "story_id": "US-002",
+          "field": "user_story",
+          "message": "User story text does not exactly match the 'As a \u003Cpersona\u003E, I want \u003Cgoal\u003E, so that \u003Cbusiness value\u003E' format",
+          "source_reference": "AI Semantic Analysis",
+          "suggested_action": "Update the user story text to match the required format"
+        },
+        {
+          "issue_id": "ISSUE-006",
+          "severity": "WARNING",
+          "category": "INVEST Compliance check",
+          "story_id": "US-001",
+          "field": "invest_compliance",
+          "message": "Story is not estimable, as the story points are not provided",
+          "source_reference": "AI Semantic Analysis",
+          "suggested_action": "Update the story points to make the story estimable"
+        },
+        {
+          "issue_id": "ISSUE-29DF9DDD",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-001 must use Given/When/Then format.",
+          "source_reference": "Semantic Validation",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-A030E010",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-002 must use Given/When/Then format.",
+          "source_reference": "Semantic Validation",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-E17995FA",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-003 must use Given/When/Then format.",
+          "source_reference": "Semantic Validation",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-12939DB7",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-004 must use Given/When/Then format.",
+          "source_reference": "Semantic Validation",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-F556A35A",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-005 must use Given/When/Then format.",
+          "source_reference": "Semantic Validation",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-13BB5B74",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-006 must use Given/When/Then format.",
+          "source_reference": "Semantic Validation",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-9F1832F8",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-007 must use Given/When/Then format.",
+          "source_reference": "Semantic Validation",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-CCEA1D77",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-008 must use Given/When/Then format.",
+          "source_reference": "Semantic Validation",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-A8072C8B",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-009 must use Given/When/Then format.",
+          "source_reference": "Semantic Validation",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-19A32E9A",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-010 must use Given/When/Then format.",
+          "source_reference": "Semantic Validation",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-162C2CA0",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-011 must use Given/When/Then format.",
+          "source_reference": "Semantic Validation",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-5BA71847",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-001 must use Given/When/Then format.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-98621357",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-002 must use Given/When/Then format.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-1E97954E",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-003 must use Given/When/Then format.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-D323D089",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-004 must use Given/When/Then format.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-44B02C02",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-005 must use Given/When/Then format.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-10952DB3",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-006 must use Given/When/Then format.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-5E79F737",
+          "severity": "ERROR",
+          "category": "Retrieved Chunk Evidence",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-003 must reference at least one Agent 1 chunk.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-67B2DCC7",
+          "severity": "ERROR",
+          "category": "Retrieved Chunk Evidence",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-004 must reference at least one Agent 1 chunk.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-49703773",
+          "severity": "ERROR",
+          "category": "Retrieved Chunk Evidence",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-005 must reference at least one Agent 1 chunk.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-DD099497",
+          "severity": "ERROR",
+          "category": "Retrieved Chunk Evidence",
+          "story_id": "US-001",
+          "field": "acceptance_criteria",
+          "message": "AC-006 must reference at least one Agent 1 chunk.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-FABBA44E",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-007 must use Given/When/Then format.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-808CC9E6",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-008 must use Given/When/Then format.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-69947678",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-009 must use Given/When/Then format.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-8EAC72F6",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-010 must use Given/When/Then format.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-018C1F7C",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-011 must use Given/When/Then format.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-4D664637",
+          "severity": "ERROR",
+          "category": "Retrieved Chunk Evidence",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-008 must reference at least one Agent 1 chunk.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-B95C60C4",
+          "severity": "ERROR",
+          "category": "Retrieved Chunk Evidence",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-009 must reference at least one Agent 1 chunk.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-CF809AC7",
+          "severity": "ERROR",
+          "category": "Retrieved Chunk Evidence",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-010 must reference at least one Agent 1 chunk.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-9199C471",
+          "severity": "ERROR",
+          "category": "Retrieved Chunk Evidence",
+          "story_id": "US-002",
+          "field": "acceptance_criteria",
+          "message": "AC-011 must reference at least one Agent 1 chunk.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        },
+        {
+          "issue_id": "ISSUE-B5AF05B5",
+          "severity": "ERROR",
+          "category": "Acceptance Criteria",
+          "story_id": null,
+          "field": "acceptance_criteria",
+          "message": "Required acceptance criteria are not fully covered.",
+          "source_reference": null,
+          "suggested_action": "Retry generation or send to human review."
+        }
+      ],
+      "recommendations": [
+        "Retry workflow from AGENT_3_USER_STORY using validation issues and traceability gaps as feedback.",
+        "Independent validation used optional RAG context; no document retrieval was performed.",
+        "Evidence Match Score: 0.67.",
+        "Traceability Confidence: 1.00.",
+        "Validated evidence set: 7 chunks, 2 requirements, 1 business rules, 0 dependencies."
+      ],
+      "retry_required": true,
+      "review_required": false,
+      "regeneration_target": "AGENT_3_USER_STORY",
+      "failed_story_ids": [
+        "US-001",
+        "US-002"
+      ],
+      "upstream_issue_categories": [
+        "Retrieved Chunk Evidence"
+      ],
+      "story_results": [
+        {
+          "story_id": "US-001",
+          "confidence_score": 0,
+          "passed": false,
+          "retry_required": true,
+          "review_required": false,
+          "retry_attempts": 0,
+          "issues": [
+            {
+              "issue_id": "ISSUE-001",
+              "severity": "WARNING",
+              "category": "Evidence Validation",
+              "story_id": "US-001",
+              "field": "chunk_ids_used",
+              "message": "Chunk IDs used do not match the source chunk references",
+              "source_reference": "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+              "suggested_action": "Verify the chunk IDs used and update the source chunk references accordingly"
+            },
+            {
+              "issue_id": "ISSUE-002",
+              "severity": "INFO",
+              "category": "Unsupported Information Detection",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "Acceptance criteria 'Invalid email address' is not supported by the chunks or RAG context",
+              "source_reference": "AI Semantic Analysis",
+              "suggested_action": "Update the acceptance criteria to match the supported information"
+            },
+            {
+              "issue_id": "ISSUE-004",
+              "severity": "WARNING",
+              "category": "Dependency Validation",
+              "story_id": "US-001",
+              "field": "dependencies",
+              "message": "Dependencies are empty, but the story has a dependency on another story",
+              "source_reference": "AI Semantic Analysis",
+              "suggested_action": "Update the dependencies to match the story's requirements"
+            },
+            {
+              "issue_id": "ISSUE-006",
+              "severity": "WARNING",
+              "category": "INVEST Compliance check",
+              "story_id": "US-001",
+              "field": "invest_compliance",
+              "message": "Story is not estimable, as the story points are not provided",
+              "source_reference": "AI Semantic Analysis",
+              "suggested_action": "Update the story points to make the story estimable"
+            },
+            {
+              "issue_id": "ISSUE-29DF9DDD",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-001 must use Given/When/Then format.",
+              "source_reference": "Semantic Validation",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-A030E010",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-002 must use Given/When/Then format.",
+              "source_reference": "Semantic Validation",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-E17995FA",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-003 must use Given/When/Then format.",
+              "source_reference": "Semantic Validation",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-12939DB7",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-004 must use Given/When/Then format.",
+              "source_reference": "Semantic Validation",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-F556A35A",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-005 must use Given/When/Then format.",
+              "source_reference": "Semantic Validation",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-13BB5B74",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-006 must use Given/When/Then format.",
+              "source_reference": "Semantic Validation",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-5BA71847",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-001 must use Given/When/Then format.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-98621357",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-002 must use Given/When/Then format.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-1E97954E",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-003 must use Given/When/Then format.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-D323D089",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-004 must use Given/When/Then format.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-44B02C02",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-005 must use Given/When/Then format.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-10952DB3",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-006 must use Given/When/Then format.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-5E79F737",
+              "severity": "ERROR",
+              "category": "Retrieved Chunk Evidence",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-003 must reference at least one Agent 1 chunk.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-67B2DCC7",
+              "severity": "ERROR",
+              "category": "Retrieved Chunk Evidence",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-004 must reference at least one Agent 1 chunk.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-49703773",
+              "severity": "ERROR",
+              "category": "Retrieved Chunk Evidence",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-005 must reference at least one Agent 1 chunk.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-DD099497",
+              "severity": "ERROR",
+              "category": "Retrieved Chunk Evidence",
+              "story_id": "US-001",
+              "field": "acceptance_criteria",
+              "message": "AC-006 must reference at least one Agent 1 chunk.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            }
+          ],
+          "criteria_scores": [
+            {
+              "category": "Completeness",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Consistency",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Coverage",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Business Rules",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Acceptance Criteria",
+              "score": 0,
+              "max_score": 10,
+              "passed": false,
+              "issue_count": 12,
+              "details": [
+                "AC-001 must use Given/When/Then format.",
+                "AC-002 must use Given/When/Then format.",
+                "AC-003 must use Given/When/Then format.",
+                "AC-004 must use Given/When/Then format.",
+                "AC-005 must use Given/When/Then format.",
+                "AC-006 must use Given/When/Then format.",
+                "AC-001 must use Given/When/Then format.",
+                "AC-002 must use Given/When/Then format.",
+                "AC-003 must use Given/When/Then format.",
+                "AC-004 must use Given/When/Then format.",
+                "AC-005 must use Given/When/Then format.",
+                "AC-006 must use Given/When/Then format."
+              ]
+            },
+            {
+              "category": "Duplicate Stories",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Missing Stories",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Traceability",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "INVEST Compliance",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Relationship Integrity",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Formatting",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Hallucination Detection",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Retrieved Chunk Evidence",
+              "score": 0,
+              "max_score": 10,
+              "passed": false,
+              "issue_count": 4,
+              "details": [
+                "AC-003 must reference at least one Agent 1 chunk.",
+                "AC-004 must reference at least one Agent 1 chunk.",
+                "AC-005 must reference at least one Agent 1 chunk.",
+                "AC-006 must reference at least one Agent 1 chunk."
+              ]
+            }
+          ]
+        },
+        {
+          "story_id": "US-002",
+          "confidence_score": 0,
+          "passed": false,
+          "retry_required": true,
+          "review_required": false,
+          "retry_attempts": 0,
+          "issues": [
+            {
+              "issue_id": "ISSUE-003",
+              "severity": "ERROR",
+              "category": "Business Rules Validation",
+              "story_id": "US-002",
+              "field": "business_rules",
+              "message": "Business rule 'Passwords must be encrypted before storing them in the database' is not supported by the Agent 1 business rules",
+              "source_reference": "9566f108-0c8e-45b9-ae21-ea5e438d07dc",
+              "suggested_action": "Update the business rules to match the supported information"
+            },
+            {
+              "issue_id": "ISSUE-005",
+              "severity": "INFO",
+              "category": "Format Verification",
+              "story_id": "US-002",
+              "field": "user_story",
+              "message": "User story text does not exactly match the 'As a \u003Cpersona\u003E, I want \u003Cgoal\u003E, so that \u003Cbusiness value\u003E' format",
+              "source_reference": "AI Semantic Analysis",
+              "suggested_action": "Update the user story text to match the required format"
+            },
+            {
+              "issue_id": "ISSUE-9F1832F8",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-007 must use Given/When/Then format.",
+              "source_reference": "Semantic Validation",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-CCEA1D77",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-008 must use Given/When/Then format.",
+              "source_reference": "Semantic Validation",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-A8072C8B",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-009 must use Given/When/Then format.",
+              "source_reference": "Semantic Validation",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-19A32E9A",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-010 must use Given/When/Then format.",
+              "source_reference": "Semantic Validation",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-162C2CA0",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-011 must use Given/When/Then format.",
+              "source_reference": "Semantic Validation",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-FABBA44E",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-007 must use Given/When/Then format.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-808CC9E6",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-008 must use Given/When/Then format.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-69947678",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-009 must use Given/When/Then format.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-8EAC72F6",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-010 must use Given/When/Then format.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-018C1F7C",
+              "severity": "ERROR",
+              "category": "Acceptance Criteria",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-011 must use Given/When/Then format.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-4D664637",
+              "severity": "ERROR",
+              "category": "Retrieved Chunk Evidence",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-008 must reference at least one Agent 1 chunk.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-B95C60C4",
+              "severity": "ERROR",
+              "category": "Retrieved Chunk Evidence",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-009 must reference at least one Agent 1 chunk.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-CF809AC7",
+              "severity": "ERROR",
+              "category": "Retrieved Chunk Evidence",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-010 must reference at least one Agent 1 chunk.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            },
+            {
+              "issue_id": "ISSUE-9199C471",
+              "severity": "ERROR",
+              "category": "Retrieved Chunk Evidence",
+              "story_id": "US-002",
+              "field": "acceptance_criteria",
+              "message": "AC-011 must reference at least one Agent 1 chunk.",
+              "source_reference": null,
+              "suggested_action": "Retry generation or send to human review."
+            }
+          ],
+          "criteria_scores": [
+            {
+              "category": "Completeness",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Consistency",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Coverage",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Business Rules",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Acceptance Criteria",
+              "score": 0,
+              "max_score": 10,
+              "passed": false,
+              "issue_count": 10,
+              "details": [
+                "AC-007 must use Given/When/Then format.",
+                "AC-008 must use Given/When/Then format.",
+                "AC-009 must use Given/When/Then format.",
+                "AC-010 must use Given/When/Then format.",
+                "AC-011 must use Given/When/Then format.",
+                "AC-007 must use Given/When/Then format.",
+                "AC-008 must use Given/When/Then format.",
+                "AC-009 must use Given/When/Then format.",
+                "AC-010 must use Given/When/Then format.",
+                "AC-011 must use Given/When/Then format."
+              ]
+            },
+            {
+              "category": "Duplicate Stories",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Missing Stories",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Traceability",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "INVEST Compliance",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Relationship Integrity",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Formatting",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Hallucination Detection",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Retrieved Chunk Evidence",
+              "score": 0,
+              "max_score": 10,
+              "passed": false,
+              "issue_count": 4,
+              "details": [
+                "AC-008 must reference at least one Agent 1 chunk.",
+                "AC-009 must reference at least one Agent 1 chunk.",
+                "AC-010 must reference at least one Agent 1 chunk.",
+                "AC-011 must reference at least one Agent 1 chunk."
+              ]
+            }
+          ]
+        }
+      ],
+      "traceability_matrix": [
+        {
+          "story_id": "US-001",
+          "requirement_refs": [
+            "FR-001",
+            "FR-002"
+          ],
+          "chunk_refs": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "epic_refs": [
+            "AUTH-1"
+          ],
+          "feature_refs": [
+            "AUTH-1-FEAT-001"
+          ],
+          "one_line_story_refs": [
+            "AUTH-1-FEAT-001-STORY-001"
+          ],
+          "dependency_refs": [],
+          "missing_links": []
+        },
+        {
+          "story_id": "US-002",
+          "requirement_refs": [
+            "FR-002"
+          ],
+          "chunk_refs": [
+            "0bbb0260-f229-4ed1-b9a3-3346ba385b6d",
+            "603a2f8d-e710-4055-9e14-b10dbb1e20ca",
+            "494507aa-aab8-4de6-8f31-96de6721e582",
+            "a080a258-410a-4cc2-a114-c58eef6051e2",
+            "604d8bd3-e19a-4ed7-9ba1-cf9fc8446f7e",
+            "ac04f361-040b-4d69-8d63-69d6820bad7d",
+            "9566f108-0c8e-45b9-ae21-ea5e438d07dc"
+          ],
+          "epic_refs": [
+            "AUTH-1"
+          ],
+          "feature_refs": [
+            "AUTH-1-FEAT-002"
+          ],
+          "one_line_story_refs": [
+            "AUTH-1-FEAT-002-STORY-001"
+          ],
+          "dependency_refs": [],
+          "missing_links": []
+        }
+      ],
+      "criteria_scores": [
+        {
+          "category": "Completeness",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Consistency",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Coverage",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Business Rules",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Acceptance Criteria",
+          "score": 0,
+          "max_score": 10,
+          "passed": false,
+          "issue_count": 23,
+          "details": [
+            "AC-001 must use Given/When/Then format.",
+            "AC-002 must use Given/When/Then format.",
+            "AC-003 must use Given/When/Then format.",
+            "AC-004 must use Given/When/Then format.",
+            "AC-005 must use Given/When/Then format.",
+            "AC-006 must use Given/When/Then format.",
+            "AC-007 must use Given/When/Then format.",
+            "AC-008 must use Given/When/Then format.",
+            "AC-009 must use Given/When/Then format.",
+            "AC-010 must use Given/When/Then format.",
+            "AC-011 must use Given/When/Then format.",
+            "AC-001 must use Given/When/Then format.",
+            "AC-002 must use Given/When/Then format.",
+            "AC-003 must use Given/When/Then format.",
+            "AC-004 must use Given/When/Then format.",
+            "AC-005 must use Given/When/Then format.",
+            "AC-006 must use Given/When/Then format.",
+            "AC-007 must use Given/When/Then format.",
+            "AC-008 must use Given/When/Then format.",
+            "AC-009 must use Given/When/Then format.",
+            "AC-010 must use Given/When/Then format.",
+            "AC-011 must use Given/When/Then format.",
+            "Required acceptance criteria are not fully covered."
+          ]
+        },
+        {
+          "category": "Duplicate Stories",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Missing Stories",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Traceability",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "INVEST Compliance",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Relationship Integrity",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Formatting",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Hallucination Detection",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Retrieved Chunk Evidence",
+          "score": 0,
+          "max_score": 10,
+          "passed": false,
+          "issue_count": 8,
+          "details": [
+            "AC-003 must reference at least one Agent 1 chunk.",
+            "AC-004 must reference at least one Agent 1 chunk.",
+            "AC-005 must reference at least one Agent 1 chunk.",
+            "AC-006 must reference at least one Agent 1 chunk.",
+            "AC-008 must reference at least one Agent 1 chunk.",
+            "AC-009 must reference at least one Agent 1 chunk.",
+            "AC-010 must reference at least one Agent 1 chunk.",
+            "AC-011 must reference at least one Agent 1 chunk."
+          ]
+        },
+        {
+          "category": "Independent Evidence Match",
+          "score": 6.7,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Average evidence match score: 0.67"
+          ]
+        },
+        {
+          "category": "Traceability Confidence",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Average traceability confidence: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Field-level validation",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Relationship Integrity",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Contradiction detection",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Traceability",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Hallucination detection",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Semantic validation",
+          "score": 0,
+          "max_score": 10,
+          "passed": false,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 0.00"
+          ]
+        },
+        {
+          "category": "Independent Coverage Matrix",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Evidence validation",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        }
+      ],
+      "coverage": {
+        "requirements": true,
+        "business_rules": true,
+        "acceptance_criteria": false,
+        "traceability": true,
+        "retrieved_chunks": true,
+        "independent_evidence_match": true,
+        "independent_traceability_confidence": true,
+        "rag_context_used": true,
+        "retrieval_metadata_present": false,
+        "coverage_matrix_complete": true
+      }
+    },
+    "rag_context": {
+      "AUTH-1-FEAT-001-STORY-001": {
+        "epic": "User Authentication",
+        "feature": "User Registration",
+        "source_chunks": [],
+        "supporting_requirements": [
+          {
+            "id": "FR-001",
+            "description": "FR-001",
+            "source": null
+          },
+          {
+            "id": "FR-002",
+            "description": "FR-002",
+            "source": null
+          }
+        ],
+        "dependencies": [],
+        "business_rules": [],
+        "retrieval_metadata": {
+          "bm25_latency_ms": 4342.11440000217,
+          "dense_latency_ms": 12066.7686000234,
+          "pipeline_latency_ms": 12370.2811000403,
+          "bm25_count": 0,
+          "dense_count": 0,
+          "fused_count": 0,
+          "reranked_count": 0,
+          "context_builder_latency_ms": 0.0525000505149365,
+          "chunk_ids": [],
+          "document_ids": []
+        }
+      },
+      "AUTH-1-FEAT-001": {
+        "epic": "User Authentication",
+        "feature": "User Registration",
+        "source_chunks": [],
+        "supporting_requirements": [
+          {
+            "id": "FR-001",
+            "description": "FR-001",
+            "source": null
+          },
+          {
+            "id": "FR-002",
+            "description": "FR-002",
+            "source": null
+          }
+        ],
+        "dependencies": [],
+        "business_rules": [],
+        "retrieval_metadata": {
+          "bm25_latency_ms": 4342.11440000217,
+          "dense_latency_ms": 12066.7686000234,
+          "pipeline_latency_ms": 12370.2811000403,
+          "bm25_count": 0,
+          "dense_count": 0,
+          "fused_count": 0,
+          "reranked_count": 0,
+          "context_builder_latency_ms": 0.0525000505149365,
+          "chunk_ids": [],
+          "document_ids": []
+        }
+      },
+      "AUTH-1-FEAT-002-STORY-001": {
+        "epic": "User Authentication",
+        "feature": "User Login",
+        "source_chunks": [],
+        "supporting_requirements": [
+          {
+            "id": "FR-001",
+            "description": "FR-001",
+            "source": null
+          },
+          {
+            "id": "FR-002",
+            "description": "FR-002",
+            "source": null
+          }
+        ],
+        "dependencies": [],
+        "business_rules": [],
+        "retrieval_metadata": {
+          "bm25_latency_ms": 4063.47650010139,
+          "dense_latency_ms": 258.269199985079,
+          "pipeline_latency_ms": 4074.06240003184,
+          "bm25_count": 0,
+          "dense_count": 0,
+          "fused_count": 0,
+          "reranked_count": 0,
+          "context_builder_latency_ms": 0.135799986310303,
+          "chunk_ids": [],
+          "document_ids": []
+        }
+      },
+      "AUTH-1-FEAT-002": {
+        "epic": "User Authentication",
+        "feature": "User Login",
+        "source_chunks": [],
+        "supporting_requirements": [
+          {
+            "id": "FR-001",
+            "description": "FR-001",
+            "source": null
+          },
+          {
+            "id": "FR-002",
+            "description": "FR-002",
+            "source": null
+          }
+        ],
+        "dependencies": [],
+        "business_rules": [],
+        "retrieval_metadata": {
+          "bm25_latency_ms": 4063.47650010139,
+          "dense_latency_ms": 258.269199985079,
+          "pipeline_latency_ms": 4074.06240003184,
+          "bm25_count": 0,
+          "dense_count": 0,
+          "fused_count": 0,
+          "reranked_count": 0,
+          "context_builder_latency_ms": 0.135799986310303,
+          "chunk_ids": [],
+          "document_ids": []
+        }
+      }
+    },
+    "metadata": {
+      "ai_execution_metadata": [
+        {
+          "model_name": "claude-3-5-sonnet-20241022",
+          "provider": "groq",
+          "tokens": 1668,
+          "latency": 9478.44,
+          "prompt_version": "v1",
+          "execution_time": "2026-07-10T05:05:13.692131+00:00",
+          "retry_count": 0,
+          "success": true,
+          "error": null
+        },
+        {
+          "model_name": "llama-3.3-70b-versatile",
+          "provider": "groq",
+          "tokens": 2620,
+          "latency": 5570.67,
+          "prompt_version": "v1",
+          "execution_time": "2026-07-10T05:05:19.284731+00:00",
+          "retry_count": 0,
+          "success": true,
+          "error": null
+        },
+        {
+          "model_name": "llama-3.3-70b-versatile",
+          "provider": "groq",
+          "tokens": 635,
+          "latency": 5309.81,
+          "prompt_version": "v1",
+          "execution_time": "2026-07-10T05:05:24.604074+00:00",
+          "retry_count": 0,
+          "success": true,
+          "error": null
+        },
+        {
+          "model_name": "llama-3.3-70b-versatile",
+          "provider": "groq",
+          "tokens": 11710,
+          "latency": 30430.73,
+          "prompt_version": "v1",
+          "execution_time": "2026-07-10T05:06:11.513904+00:00",
+          "retry_count": 0,
+          "success": true,
+          "error": null
+        },
+        {
+          "model_name": "llama-3.3-70b-versatile",
+          "provider": "groq",
+          "tokens": 9913,
+          "latency": 49544,
+          "prompt_version": "v1",
+          "execution_time": "2026-07-10T05:07:01.066575+00:00",
+          "retry_count": 0,
+          "success": true,
+          "error": null
+        },
+        {
+          "model_name": "llama-3.3-70b-versatile",
+          "provider": "groq",
+          "tokens": 11710,
+          "latency": 1.14,
+          "prompt_version": "v1",
+          "execution_time": "2026-07-10T05:07:01.086140+00:00",
+          "retry_count": 0,
+          "success": true,
+          "error": null,
+          "cached": true
+        },
+        {
+          "model_name": "llama-3.3-70b-versatile",
+          "provider": "groq",
+          "tokens": 9913,
+          "latency": 0.83,
+          "prompt_version": "v1",
+          "execution_time": "2026-07-10T05:07:01.101232+00:00",
+          "retry_count": 0,
+          "success": true,
+          "error": null,
+          "cached": true
+        },
+        {
+          "model_name": "llama-3.3-70b-versatile",
+          "provider": "groq",
+          "tokens": 11710,
+          "latency": 0.76,
+          "prompt_version": "v1",
+          "execution_time": "2026-07-10T05:07:01.112319+00:00",
+          "retry_count": 0,
+          "success": true,
+          "error": null,
+          "cached": true
+        },
+        {
+          "model_name": "llama-3.3-70b-versatile",
+          "provider": "groq",
+          "tokens": 9913,
+          "latency": 0.57,
+          "prompt_version": "v1",
+          "execution_time": "2026-07-10T05:07:01.117721+00:00",
+          "retry_count": 0,
+          "success": true,
+          "error": null,
+          "cached": true
+        }
+      ]
+    }
+  }
+}

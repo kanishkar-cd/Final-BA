@@ -1,0 +1,28 @@
+.git
+.gitignore
+.codex
+.agents
+__pycache__/
+*.py[cod]
+
+# Local environment files
+.env
+backend/.env
+backend/.env.example
+backend/mcp_server/.env
+
+# Backend-only local artifacts that should not go into the runtime image
+backend/tests/
+backend/logs/
+backend/docs/
+backend/test.db
+backend/test_db.py
+backend/sample.txt
+backend/sample_brd.txt
+
+# Local/generated Python caches
+backend/**/__pycache__/
+framework/**/__pycache__/
+
+# Keep credentials out of the image; mount them at runtime if ever needed
+backend/mcp_server/credentials/

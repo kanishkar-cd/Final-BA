@@ -1,0 +1,34 @@
+{
+  "success": true,
+  "message": "Context package built with 0 source chunks in 4090 ms.",
+  "data": {
+    "retrieved_context": {
+      "epic": "User Authentication",
+      "feature": "User Registration",
+      "source_chunks": [],
+      "supporting_requirements": [
+        {
+          "id": "FR-001",
+          "description": "FR-001",
+          "source": null
+        }
+      ],
+      "dependencies": [],
+      "business_rules": [],
+      "retrieval_metadata": {
+        "bm25_latency_ms": 4080.4415000602603,
+        "dense_latency_ms": 351.8084998941049,
+        "pipeline_latency_ms": 4089.870100026019,
+        "bm25_count": 0,
+        "dense_count": 0,
+        "fused_count": 0,
+        "reranked_count": 0,
+        "context_builder_latency_ms": 0.05659996531903744,
+        "chunk_ids": [],
+        "document_ids": []
+      }
+    },
+    "pipeline_latency_ms": 4089.870100026019
+  },
+  "errors": []
+}

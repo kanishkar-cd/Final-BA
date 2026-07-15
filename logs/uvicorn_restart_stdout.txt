@@ -1,0 +1,54 @@
+2026-07-13 14:45:16 [INFO] export.utils — Output directory ensured: C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\export\outputs\word
+2026-07-13 14:45:16 [INFO] export.utils — Output directory ensured: C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\export\outputs\pdf
+2026-07-13 14:45:16 [INFO] app.api.router — MCP enterprise connector routes registered at /api/mcp/*
+INFO:     127.0.0.1:61355 - "GET /openapi.json HTTP/1.1" 200 OK
+2026-07-13 14:45:20 [INFO] mcp_server.tools.jira — Jira connector environment configuration:
+2026-07-13 14:45:20 [INFO] mcp_server.tools.jira — - JIRA_BASE_URL loaded: Yes
+2026-07-13 14:45:20 [INFO] mcp_server.tools.jira — - JIRA_EMAIL loaded: Yes
+2026-07-13 14:45:20 [INFO] mcp_server.tools.jira — - JIRA_API_TOKEN loaded: Yes
+2026-07-13 14:45:21 [INFO] mcp_server.tools.jira — JiraConnector initialised for https://sri-geethani.atlassian.net
+2026-07-13 14:45:21 [INFO] mcp_server.services.connector_factory — Initialised connector for source: jira
+2026-07-13 14:45:21 [INFO] mcp_server.tools.jira — Fetching Jira issue: KAN-2
+2026-07-13 14:45:21 [INFO] mcp_server.metadata_store — Metadata saved: C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\mcp_server\storage\metadata\KAN-2.json
+INFO:     127.0.0.1:61355 - "POST /api/mcp/jira/fetch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58677 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58677 - "GET /openapi.json HTTP/1.1" 200 OK
+2026-07-13 14:47:52 [INFO] mcp_server.tools.jira — Fetching Jira issue: KAN-2
+2026-07-13 14:47:52 [INFO] mcp_server.metadata_store — Metadata saved: C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\mcp_server\storage\metadata\KAN-2.json
+INFO:     127.0.0.1:57296 - "POST /api/mcp/jira/fetch HTTP/1.1" 200 OK
+2026-07-13 14:48:18 [INFO] mcp_server.tools.confluence — ConfluenceConnector initialised for https://sri-geethani.atlassian.net/wiki
+2026-07-13 14:48:18 [INFO] mcp_server.services.connector_factory — Initialised connector for source: confluence
+2026-07-13 14:48:18 [INFO] mcp_server.tools.confluence — Fetching Confluence page: 524289
+2026-07-13 14:48:19 [ERROR] mcp_server.app — Confluence fetch failed for page_id=524289
+Traceback (most recent call last):
+  File "C:\Users\KanishkaKR\Desktop\BA_Acc\.venv\Lib\site-packages\atlassian\confluence\__init__.py", line 385, in get_page_by_id
+    response = self.get(url, params=params)
+  File "C:\Users\KanishkaKR\Desktop\BA_Acc\.venv\Lib\site-packages\atlassian\rest_client.py", line 561, in get
+    response = self.request(
+        "GET",
+    ...<7 lines>...
+        advanced_mode=advanced_mode,
+    )
+  File "C:\Users\KanishkaKR\Desktop\BA_Acc\.venv\Lib\site-packages\atlassian\rest_client.py", line 450, in request
+    self.raise_for_status(response)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\KanishkaKR\Desktop\BA_Acc\.venv\Lib\site-packages\atlassian\confluence\__init__.py", line 4115, in raise_for_status
+    raise HTTPError(error_msg, response=response)
+requests.exceptions.HTTPError: com.atlassian.confluence.api.service.exceptions.api.NotFoundException: No content found with id : 524289
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\mcp_server\app.py", line 115, in confluence_fetch
+    raw_text = connector.fetch_page(request.page_id)
+  File "C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\mcp_server\tools\confluence.py", line 71, in fetch_page
+    page = self._client.get_page_by_id(
+        page_id,
+        expand="body.storage,version,space,history",
+    )
+  File "C:\Users\KanishkaKR\Desktop\BA_Acc\.venv\Lib\site-packages\atlassian\confluence\__init__.py", line 389, in get_page_by_id
+    raise ApiError(
+    ...<3 lines>...
+    )
+atlassian.errors.ApiError: There is no content with the given id, or the calling user does not have permission to view the content
+INFO:     127.0.0.1:55015 - "POST /api/mcp/confluence/fetch HTTP/1.1" 500 Internal Server Error

@@ -1,0 +1,12 @@
+{
+  "issue_key": "PROJ-123",
+  "project": "PROJ",
+  "reporter": "John Doe",
+  "assignee": "Jane Smith",
+  "created": "2026-07-08T10:00:00",
+  "updated": "2026-07-08T11:00:00",
+  "labels": [
+    "test",
+    "mcp"
+  ]
+}

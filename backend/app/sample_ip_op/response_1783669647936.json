@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "message": "Hybrid search returned 0 fused results.",
+  "data": {
+    "query": "How should passwords be encrypted during user registration?",
+    "bm25_results": [],
+    "dense_results": [],
+    "fused_results": [],
+    "bm25_latency_ms": 4373.052900074981,
+    "dense_latency_ms": 469.5452000014484,
+    "fusion_latency_ms": 4400.645900052041
+  },
+  "errors": []
+}

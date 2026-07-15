@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "message": "Traceability package built for story US-001 with 0 source chunks in 4111 ms.",
+  "data": {
+    "story_id": "US-001",
+    "source_chunks": [],
+    "source_requirements": [
+      {
+        "id": "FR-001",
+        "description": "FR-001",
+        "source": null
+      }
+    ],
+    "dependencies": [],
+    "business_rules": [],
+    "retrieval_latency_ms": 4110.647500026971
+  },
+  "errors": []
+}

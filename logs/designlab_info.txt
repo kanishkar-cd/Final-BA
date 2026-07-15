@@ -1,0 +1,754 @@
+2026-07-08 12:21:16 [INFO] [12140:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-08 12:21:16 [INFO] [12140:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-08 12:21:16 [INFO] [12140:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-08 12:21:16 [INFO] [12140:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-08 12:39:40 [INFO] [15272:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-08 12:39:40 [INFO] [15272:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-08 12:39:40 [INFO] [15272:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-08 12:39:40 [INFO] [15272:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-08 12:40:30 [INFO] [27228:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-08 12:40:30 [INFO] [27228:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-08 12:40:30 [INFO] [27228:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-08 12:40:30 [INFO] [27228:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-08 12:41:19 [INFO] [17672:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-08 12:41:19 [INFO] [17672:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-08 12:41:19 [INFO] [17672:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-08 12:41:19 [INFO] [17672:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-08 12:42:14 [INFO] [32596:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-08 12:42:14 [INFO] [32596:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-08 12:42:14 [INFO] [32596:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-08 12:42:14 [INFO] [32596:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-10 11:15:42 [INFO] [38540:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://127.0.0.1:8000/api/user-stories/validate "HTTP/1.1 500 Internal Server Error"
+2026-07-10 16:48:12 [WARNING] [27528:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:244) — BM25 arm failed: Failed to create asyncpg pool: password authentication failed for user "postgres"
+2026-07-10 16:50:21 [INFO] [27528:asyncio_1] rag.embedding (embedding_service.py:205) — Loading embedding model: BAAI/bge-base-en-v1.5
+2026-07-10 16:50:21 [INFO] [27528:asyncio_1] sentence_transformers.base.model (model.py:190) — No device provided, using cpu
+2026-07-10 16:50:22 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-07-10 16:50:22 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:22 [WARNING] [27528:asyncio_1] huggingface_hub.utils._http (_http.py:951) — Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-10 16:50:22 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/modules.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:22 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/modules.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:22 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:22 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:22 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:22 [INFO] [27528:asyncio_1] sentence_transformers.base.model (model.py:1001) — Loading SentenceTransformer model from BAAI/bge-base-en-v1.5.
+2026-07-10 16:50:23 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:23 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:23 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:23 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/README.md "HTTP/1.1 200 OK"
+2026-07-10 16:50:23 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/README.md "HTTP/1.1 200 OK"
+2026-07-10 16:50:23 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:23 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/modules.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:24 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:24 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:24 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:24 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 16:50:24 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:24 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:24 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:25 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-07-10 16:50:48 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 16:50:48 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 16:50:48 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 16:50:49 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 16:50:49 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:49 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:49 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:49 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:49 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:49 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:50 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:50 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:50 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:50 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-10 16:50:50 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-10 16:50:51 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:51 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/vocab.txt "HTTP/1.1 200 OK"
+2026-07-10 16:50:51 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/vocab.txt "HTTP/1.1 200 OK"
+2026-07-10 16:50:51 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:51 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/tokenizer.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:51 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/tokenizer.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:51 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-07-10 16:50:52 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:52 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:52 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:52 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-07-10 16:50:52 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 16:50:52 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:52 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-07-10 16:50:53 [INFO] [27528:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5 "HTTP/1.1 200 OK"
+2026-07-10 16:50:53 [INFO] [27528:asyncio_1] rag.embedding (embedding_service.py:207) — Embedding model loaded (vector_size=768).
+2026-07-10 16:50:53 [INFO] [27528:MainThread] rag.embedding (embedding_service.py:144) — Embedded 1 texts in 160999.8 ms (attempt 1)
+2026-07-10 16:50:54 [INFO] [27528:MainThread] rag.vector_store (vector_store_service.py:341) — Qdrant client initialised → localhost:6333 (grpc=False).
+2026-07-10 16:50:54 [WARNING] [27528:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:266) — Dense arm failed: Dense retrieval failed: Qdrant search failed: 'AsyncQdrantClient' object has no attribute 'search'
+2026-07-10 16:50:54 [INFO] [27528:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:123) — Hybrid retrieval for epic='User Registration' feature='Password Encryption': bm25=0 results (251.1ms), dense=0 results (161957.3ms), total=162030.1ms.
+2026-07-10 16:50:54 [INFO] [27528:MainThread] rag.rrf (rrf_service.py:129) — RRF fused 0 BM25 + 0 dense → 0 results (k=60) in 0.01 ms.
+2026-07-10 16:50:54 [INFO] [27528:MainThread] rag.context_builder (context_builder.py:117) — ContextBuilder assembled package for epic='User Registration' feature='Password Encryption': 0 chunks, 1 requirements, 0 deps, 0 rules (0.04 ms).
+2026-07-10 17:46:51 [WARNING] [29108:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:47:03 [WARNING] [29108:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:47:03 [INFO] [29108:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 42, "latency": 4189.0, "prompt_version": "v1", "execution_time": "2026-07-10T12:17:03.536730+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:47:07 [WARNING] [29108:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:47:07 [INFO] [29108:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "claude-3-5-sonnet", "provider": "anthropic", "tokens": 25, "latency": 4088.86, "prompt_version": "v1", "execution_time": "2026-07-10T12:17:07.634057+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:47:11 [WARNING] [29108:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:47:11 [INFO] [29108:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 100, "latency": 4101.67, "prompt_version": "v1", "execution_time": "2026-07-10T12:17:11.743812+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:47:15 [WARNING] [29108:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:47:17 [INFO] [29108:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 12, "latency": 6152.1, "prompt_version": "v1", "execution_time": "2026-07-10T12:17:17.905140+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:47:18 [INFO] [29108:MainThread] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:47:18 [INFO] [29108:MainThread] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-123
+2026-07-10 17:47:18 [INFO] [29108:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-123.json
+2026-07-10 17:47:19 [INFO] [29108:MainThread] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:47:19 [INFO] [29108:MainThread] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 123
+2026-07-10 17:47:19 [INFO] [29108:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\123.json
+2026-07-10 17:47:20 [INFO] [29108:MainThread] mcp_server.tools.gdrive (gdrive.py:48) — GoogleDriveConnector initialised.
+2026-07-10 17:47:20 [INFO] [29108:MainThread] mcp_server.tools.gdrive (gdrive.py:65) — Fetching Google Drive file: file123
+2026-07-10 17:47:20 [INFO] [29108:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\Project Requirements Doc.json
+2026-07-10 17:47:20 [INFO] [29108:asyncio_0] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:47:20 [INFO] [29108:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: jira
+2026-07-10 17:47:20 [INFO] [29108:asyncio_0] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-999
+2026-07-10 17:47:20 [INFO] [29108:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-999.json
+2026-07-10 17:47:20 [INFO] [29108:asyncio_0] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:47:20 [INFO] [29108:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: confluence
+2026-07-10 17:47:20 [INFO] [29108:asyncio_0] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 888
+2026-07-10 17:47:20 [INFO] [29108:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\888.json
+2026-07-10 17:47:20 [INFO] [29108:MainThread] app.agents.token_budget (token_budget.py:67) — Context size (153 tokens) exceeds safe ceiling (100). Applying map-reduce.
+2026-07-10 17:47:20 [WARNING] [29108:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/meta-llama/llama-4-scout-17b-16e-instruct in cooldown for 5.0s.
+2026-07-10 17:47:20 [WARNING] [29108:MainThread] app.config.model_routing (model_routing.py:112) — Proactive Throttle: groq/llama-3.1-8b-instant only has 2000 tokens remaining. Next request est 3000. Applying circuit breaker for 4.5s.
+2026-07-10 17:47:20 [WARNING] [29108:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/llama-3.1-8b-instant in cooldown for 4.5s.
+2026-07-10 17:47:24 [WARNING] [29108:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:47:28 [WARNING] [29108:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:47:32 [WARNING] [29108:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:47:36 [WARNING] [29108:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:47:40 [WARNING] [29108:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:47:41 [INFO] [29108:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-10 17:47:41 [INFO] [29108:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-10 17:47:41 [INFO] [29108:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-10 17:47:41 [INFO] [29108:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-10 17:50:38 [WARNING] [21956:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:50:45 [WARNING] [21956:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:50:46 [INFO] [21956:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 42, "latency": 4257.91, "prompt_version": "v1", "execution_time": "2026-07-10T12:20:46.032745+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:50:50 [WARNING] [21956:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:50:50 [INFO] [21956:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "claude-3-5-sonnet", "provider": "anthropic", "tokens": 25, "latency": 4100.93, "prompt_version": "v1", "execution_time": "2026-07-10T12:20:50.139921+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:50:54 [WARNING] [21956:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:50:54 [INFO] [21956:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 100, "latency": 4132.18, "prompt_version": "v1", "execution_time": "2026-07-10T12:20:54.279242+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:50:58 [WARNING] [21956:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:51:00 [INFO] [21956:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 12, "latency": 6190.19, "prompt_version": "v1", "execution_time": "2026-07-10T12:21:00.480370+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:51:00 [INFO] [21956:MainThread] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:51:00 [INFO] [21956:MainThread] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-123
+2026-07-10 17:51:00 [INFO] [21956:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-123.json
+2026-07-10 17:51:01 [INFO] [21956:MainThread] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:51:01 [INFO] [21956:MainThread] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 123
+2026-07-10 17:51:01 [INFO] [21956:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\123.json
+2026-07-10 17:51:01 [INFO] [21956:MainThread] mcp_server.tools.gdrive (gdrive.py:48) — GoogleDriveConnector initialised.
+2026-07-10 17:51:01 [INFO] [21956:MainThread] mcp_server.tools.gdrive (gdrive.py:65) — Fetching Google Drive file: file123
+2026-07-10 17:51:01 [INFO] [21956:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\Project Requirements Doc.json
+2026-07-10 17:51:01 [INFO] [21956:asyncio_0] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:51:01 [INFO] [21956:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: jira
+2026-07-10 17:51:01 [INFO] [21956:asyncio_0] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-999
+2026-07-10 17:51:01 [INFO] [21956:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-999.json
+2026-07-10 17:51:01 [INFO] [21956:asyncio_0] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:51:01 [INFO] [21956:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: confluence
+2026-07-10 17:51:01 [INFO] [21956:asyncio_0] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 888
+2026-07-10 17:51:01 [INFO] [21956:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\888.json
+2026-07-10 17:51:01 [INFO] [21956:MainThread] app.agents.token_budget (token_budget.py:67) — Context size (153 tokens) exceeds safe ceiling (100). Applying map-reduce.
+2026-07-10 17:51:01 [WARNING] [21956:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/meta-llama/llama-4-scout-17b-16e-instruct in cooldown for 5.0s.
+2026-07-10 17:51:01 [WARNING] [21956:MainThread] app.config.model_routing (model_routing.py:112) — Proactive Throttle: groq/llama-3.1-8b-instant only has 2000 tokens remaining. Next request est 3000. Applying circuit breaker for 4.5s.
+2026-07-10 17:51:01 [WARNING] [21956:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/llama-3.1-8b-instant in cooldown for 4.5s.
+2026-07-10 17:51:05 [WARNING] [21956:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:51:09 [WARNING] [21956:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:51:13 [WARNING] [21956:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:51:17 [WARNING] [21956:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:51:22 [WARNING] [21956:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:51:23 [INFO] [21956:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-10 17:51:23 [INFO] [21956:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-10 17:51:23 [INFO] [21956:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-10 17:51:23 [INFO] [21956:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-10 17:53:36 [WARNING] [13184:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:53:42 [WARNING] [13184:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:53:42 [INFO] [13184:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 42, "latency": 4293.57, "prompt_version": "v1", "execution_time": "2026-07-10T12:23:42.957468+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:53:47 [WARNING] [13184:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:53:47 [INFO] [13184:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "claude-3-5-sonnet", "provider": "anthropic", "tokens": 25, "latency": 4126.23, "prompt_version": "v1", "execution_time": "2026-07-10T12:23:47.091933+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:53:51 [WARNING] [13184:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:53:51 [INFO] [13184:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 100, "latency": 4106.37, "prompt_version": "v1", "execution_time": "2026-07-10T12:23:51.206497+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:53:55 [WARNING] [13184:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:53:57 [INFO] [13184:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 12, "latency": 6140.18, "prompt_version": "v1", "execution_time": "2026-07-10T12:23:57.355790+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:53:58 [INFO] [13184:MainThread] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:53:58 [INFO] [13184:MainThread] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-123
+2026-07-10 17:53:58 [INFO] [13184:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-123.json
+2026-07-10 17:53:58 [INFO] [13184:MainThread] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:53:58 [INFO] [13184:MainThread] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 123
+2026-07-10 17:53:58 [INFO] [13184:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\123.json
+2026-07-10 17:53:58 [INFO] [13184:MainThread] mcp_server.tools.gdrive (gdrive.py:48) — GoogleDriveConnector initialised.
+2026-07-10 17:53:58 [INFO] [13184:MainThread] mcp_server.tools.gdrive (gdrive.py:65) — Fetching Google Drive file: file123
+2026-07-10 17:53:58 [INFO] [13184:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\Project Requirements Doc.json
+2026-07-10 17:53:59 [INFO] [13184:asyncio_0] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:53:59 [INFO] [13184:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: jira
+2026-07-10 17:53:59 [INFO] [13184:asyncio_0] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-999
+2026-07-10 17:53:59 [INFO] [13184:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-999.json
+2026-07-10 17:53:59 [INFO] [13184:asyncio_0] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:53:59 [INFO] [13184:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: confluence
+2026-07-10 17:53:59 [INFO] [13184:asyncio_0] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 888
+2026-07-10 17:53:59 [INFO] [13184:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\888.json
+2026-07-10 17:53:59 [INFO] [13184:MainThread] app.agents.token_budget (token_budget.py:67) — Context size (153 tokens) exceeds safe ceiling (100). Applying map-reduce.
+2026-07-10 17:53:59 [WARNING] [13184:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/meta-llama/llama-4-scout-17b-16e-instruct in cooldown for 5.0s.
+2026-07-10 17:53:59 [WARNING] [13184:MainThread] app.config.model_routing (model_routing.py:112) — Proactive Throttle: groq/llama-3.1-8b-instant only has 2000 tokens remaining. Next request est 3000. Applying circuit breaker for 4.5s.
+2026-07-10 17:53:59 [WARNING] [13184:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/llama-3.1-8b-instant in cooldown for 4.5s.
+2026-07-10 17:54:03 [WARNING] [13184:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:54:07 [WARNING] [13184:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:54:11 [WARNING] [13184:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:54:15 [WARNING] [13184:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:54:19 [WARNING] [13184:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:54:20 [INFO] [13184:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-10 17:54:20 [INFO] [13184:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-10 17:54:20 [INFO] [13184:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-10 17:54:20 [INFO] [13184:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-10 17:55:33 [WARNING] [23616:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:55:39 [WARNING] [23616:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:55:40 [INFO] [23616:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 42, "latency": 4312.17, "prompt_version": "v1", "execution_time": "2026-07-10T12:25:40.180278+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:55:44 [WARNING] [23616:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:55:44 [INFO] [23616:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "claude-3-5-sonnet", "provider": "anthropic", "tokens": 25, "latency": 4075.95, "prompt_version": "v1", "execution_time": "2026-07-10T12:25:44.273807+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:55:48 [WARNING] [23616:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:55:48 [INFO] [23616:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 100, "latency": 4146.78, "prompt_version": "v1", "execution_time": "2026-07-10T12:25:48.439508+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:55:52 [WARNING] [23616:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:55:54 [INFO] [23616:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 12, "latency": 6172.35, "prompt_version": "v1", "execution_time": "2026-07-10T12:25:54.636117+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:55:55 [INFO] [23616:MainThread] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:55:55 [INFO] [23616:MainThread] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-123
+2026-07-10 17:55:55 [INFO] [23616:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-123.json
+2026-07-10 17:55:56 [INFO] [23616:MainThread] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:55:56 [INFO] [23616:MainThread] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 123
+2026-07-10 17:55:56 [INFO] [23616:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\123.json
+2026-07-10 17:55:56 [INFO] [23616:MainThread] mcp_server.tools.gdrive (gdrive.py:48) — GoogleDriveConnector initialised.
+2026-07-10 17:55:56 [INFO] [23616:MainThread] mcp_server.tools.gdrive (gdrive.py:65) — Fetching Google Drive file: file123
+2026-07-10 17:55:56 [INFO] [23616:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\Project Requirements Doc.json
+2026-07-10 17:55:56 [INFO] [23616:asyncio_0] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:55:56 [INFO] [23616:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: jira
+2026-07-10 17:55:56 [INFO] [23616:asyncio_0] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-999
+2026-07-10 17:55:56 [INFO] [23616:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-999.json
+2026-07-10 17:55:56 [INFO] [23616:asyncio_0] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:55:56 [INFO] [23616:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: confluence
+2026-07-10 17:55:56 [INFO] [23616:asyncio_0] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 888
+2026-07-10 17:55:56 [INFO] [23616:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\888.json
+2026-07-10 17:55:56 [INFO] [23616:MainThread] app.agents.token_budget (token_budget.py:67) — Context size (153 tokens) exceeds safe ceiling (100). Applying map-reduce.
+2026-07-10 17:55:56 [WARNING] [23616:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/meta-llama/llama-4-scout-17b-16e-instruct in cooldown for 5.0s.
+2026-07-10 17:55:56 [WARNING] [23616:MainThread] app.config.model_routing (model_routing.py:112) — Proactive Throttle: groq/llama-3.1-8b-instant only has 2000 tokens remaining. Next request est 3000. Applying circuit breaker for 4.5s.
+2026-07-10 17:55:56 [WARNING] [23616:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/llama-3.1-8b-instant in cooldown for 4.5s.
+2026-07-10 17:56:00 [WARNING] [23616:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:56:04 [WARNING] [23616:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:56:08 [WARNING] [23616:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:56:12 [WARNING] [23616:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:56:17 [WARNING] [23616:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:56:17 [INFO] [23616:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-10 17:56:17 [INFO] [23616:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-10 17:56:17 [INFO] [23616:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-10 17:56:17 [INFO] [23616:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-10 17:57:41 [WARNING] [28600:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:57:47 [WARNING] [28600:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:57:47 [INFO] [28600:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 42, "latency": 4270.41, "prompt_version": "v1", "execution_time": "2026-07-10T12:27:47.997723+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:57:52 [WARNING] [28600:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:57:52 [INFO] [28600:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "claude-3-5-sonnet", "provider": "anthropic", "tokens": 25, "latency": 4095.12, "prompt_version": "v1", "execution_time": "2026-07-10T12:27:52.100257+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:57:56 [WARNING] [28600:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:57:56 [INFO] [28600:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 100, "latency": 4098.73, "prompt_version": "v1", "execution_time": "2026-07-10T12:27:56.206162+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:58:00 [WARNING] [28600:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:58:02 [INFO] [28600:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 12, "latency": 6175.54, "prompt_version": "v1", "execution_time": "2026-07-10T12:28:02.392377+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:58:02 [INFO] [28600:MainThread] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:58:02 [INFO] [28600:MainThread] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-123
+2026-07-10 17:58:02 [INFO] [28600:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-123.json
+2026-07-10 17:58:02 [INFO] [28600:MainThread] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:58:02 [INFO] [28600:MainThread] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 123
+2026-07-10 17:58:02 [INFO] [28600:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\123.json
+2026-07-10 17:58:03 [INFO] [28600:MainThread] mcp_server.tools.gdrive (gdrive.py:48) — GoogleDriveConnector initialised.
+2026-07-10 17:58:03 [INFO] [28600:MainThread] mcp_server.tools.gdrive (gdrive.py:65) — Fetching Google Drive file: file123
+2026-07-10 17:58:03 [INFO] [28600:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\Project Requirements Doc.json
+2026-07-10 17:58:03 [INFO] [28600:asyncio_0] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:58:03 [INFO] [28600:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: jira
+2026-07-10 17:58:03 [INFO] [28600:asyncio_0] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-999
+2026-07-10 17:58:03 [INFO] [28600:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-999.json
+2026-07-10 17:58:03 [INFO] [28600:asyncio_0] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:58:03 [INFO] [28600:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: confluence
+2026-07-10 17:58:03 [INFO] [28600:asyncio_0] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 888
+2026-07-10 17:58:03 [INFO] [28600:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\888.json
+2026-07-10 17:58:03 [INFO] [28600:MainThread] app.agents.token_budget (token_budget.py:67) — Context size (153 tokens) exceeds safe ceiling (100). Applying map-reduce.
+2026-07-10 17:58:03 [WARNING] [28600:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/meta-llama/llama-4-scout-17b-16e-instruct in cooldown for 5.0s.
+2026-07-10 17:58:03 [WARNING] [28600:MainThread] app.config.model_routing (model_routing.py:112) — Proactive Throttle: groq/llama-3.1-8b-instant only has 2000 tokens remaining. Next request est 3000. Applying circuit breaker for 4.5s.
+2026-07-10 17:58:03 [WARNING] [28600:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/llama-3.1-8b-instant in cooldown for 4.5s.
+2026-07-10 17:58:07 [WARNING] [28600:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:58:11 [WARNING] [28600:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:58:15 [WARNING] [28600:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:58:19 [WARNING] [28600:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:58:24 [WARNING] [28600:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:58:25 [INFO] [28600:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-10 17:58:25 [INFO] [28600:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-10 17:58:25 [INFO] [28600:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-10 17:58:25 [INFO] [28600:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-10 17:59:04 [WARNING] [23900:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:59:11 [WARNING] [23900:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:59:11 [INFO] [23900:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 42, "latency": 4324.91, "prompt_version": "v1", "execution_time": "2026-07-10T12:29:11.544942+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:59:15 [WARNING] [23900:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:59:15 [INFO] [23900:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "claude-3-5-sonnet", "provider": "anthropic", "tokens": 25, "latency": 4116.17, "prompt_version": "v1", "execution_time": "2026-07-10T12:29:15.668266+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:59:19 [WARNING] [23900:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:59:19 [INFO] [23900:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 100, "latency": 4098.93, "prompt_version": "v1", "execution_time": "2026-07-10T12:29:19.774640+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:59:23 [WARNING] [23900:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:59:25 [INFO] [23900:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 12, "latency": 6176.1, "prompt_version": "v1", "execution_time": "2026-07-10T12:29:25.959207+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 17:59:26 [INFO] [23900:MainThread] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:59:26 [INFO] [23900:MainThread] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-123
+2026-07-10 17:59:26 [INFO] [23900:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-123.json
+2026-07-10 17:59:26 [INFO] [23900:MainThread] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:59:26 [INFO] [23900:MainThread] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 123
+2026-07-10 17:59:26 [INFO] [23900:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\123.json
+2026-07-10 17:59:26 [INFO] [23900:MainThread] mcp_server.tools.gdrive (gdrive.py:48) — GoogleDriveConnector initialised.
+2026-07-10 17:59:26 [INFO] [23900:MainThread] mcp_server.tools.gdrive (gdrive.py:65) — Fetching Google Drive file: file123
+2026-07-10 17:59:26 [INFO] [23900:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\Project Requirements Doc.json
+2026-07-10 17:59:26 [INFO] [23900:asyncio_0] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 17:59:26 [INFO] [23900:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: jira
+2026-07-10 17:59:26 [INFO] [23900:asyncio_0] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-999
+2026-07-10 17:59:26 [INFO] [23900:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-999.json
+2026-07-10 17:59:26 [INFO] [23900:asyncio_0] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 17:59:26 [INFO] [23900:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: confluence
+2026-07-10 17:59:26 [INFO] [23900:asyncio_0] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 888
+2026-07-10 17:59:26 [INFO] [23900:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\888.json
+2026-07-10 17:59:27 [INFO] [23900:MainThread] app.agents.token_budget (token_budget.py:67) — Context size (153 tokens) exceeds safe ceiling (100). Applying map-reduce.
+2026-07-10 17:59:27 [WARNING] [23900:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/meta-llama/llama-4-scout-17b-16e-instruct in cooldown for 5.0s.
+2026-07-10 17:59:27 [WARNING] [23900:MainThread] app.config.model_routing (model_routing.py:112) — Proactive Throttle: groq/llama-3.1-8b-instant only has 2000 tokens remaining. Next request est 3000. Applying circuit breaker for 4.5s.
+2026-07-10 17:59:27 [WARNING] [23900:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/llama-3.1-8b-instant in cooldown for 4.5s.
+2026-07-10 17:59:31 [WARNING] [23900:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:59:35 [WARNING] [23900:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:59:39 [WARNING] [23900:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:59:43 [WARNING] [23900:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:59:47 [WARNING] [23900:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 17:59:48 [INFO] [23900:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-10 17:59:48 [INFO] [23900:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-10 17:59:48 [INFO] [23900:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-10 17:59:48 [INFO] [23900:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-10 18:00:21 [WARNING] [11544:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:00:27 [WARNING] [11544:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:00:28 [INFO] [11544:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 42, "latency": 4234.52, "prompt_version": "v1", "execution_time": "2026-07-10T12:30:28.050378+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 18:00:32 [WARNING] [11544:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:00:32 [INFO] [11544:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "claude-3-5-sonnet", "provider": "anthropic", "tokens": 25, "latency": 4078.29, "prompt_version": "v1", "execution_time": "2026-07-10T12:30:32.134816+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 18:00:36 [WARNING] [11544:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:00:36 [INFO] [11544:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 100, "latency": 4097.84, "prompt_version": "v1", "execution_time": "2026-07-10T12:30:36.239632+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 18:00:40 [WARNING] [11544:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:00:42 [INFO] [11544:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 12, "latency": 6144.26, "prompt_version": "v1", "execution_time": "2026-07-10T12:30:42.391023+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 18:00:42 [INFO] [11544:MainThread] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 18:00:42 [INFO] [11544:MainThread] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-123
+2026-07-10 18:00:42 [INFO] [11544:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-123.json
+2026-07-10 18:00:42 [INFO] [11544:MainThread] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 18:00:42 [INFO] [11544:MainThread] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 123
+2026-07-10 18:00:42 [INFO] [11544:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\123.json
+2026-07-10 18:00:43 [INFO] [11544:MainThread] mcp_server.tools.gdrive (gdrive.py:48) — GoogleDriveConnector initialised.
+2026-07-10 18:00:43 [INFO] [11544:MainThread] mcp_server.tools.gdrive (gdrive.py:65) — Fetching Google Drive file: file123
+2026-07-10 18:00:43 [INFO] [11544:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\Project Requirements Doc.json
+2026-07-10 18:00:43 [INFO] [11544:asyncio_0] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 18:00:43 [INFO] [11544:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: jira
+2026-07-10 18:00:43 [INFO] [11544:asyncio_0] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-999
+2026-07-10 18:00:43 [INFO] [11544:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-999.json
+2026-07-10 18:00:43 [INFO] [11544:asyncio_0] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 18:00:43 [INFO] [11544:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: confluence
+2026-07-10 18:00:43 [INFO] [11544:asyncio_0] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 888
+2026-07-10 18:00:43 [INFO] [11544:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\888.json
+2026-07-10 18:00:43 [INFO] [11544:MainThread] app.agents.token_budget (token_budget.py:67) — Context size (153 tokens) exceeds safe ceiling (100). Applying map-reduce.
+2026-07-10 18:00:43 [WARNING] [11544:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/meta-llama/llama-4-scout-17b-16e-instruct in cooldown for 5.0s.
+2026-07-10 18:00:43 [WARNING] [11544:MainThread] app.config.model_routing (model_routing.py:112) — Proactive Throttle: groq/llama-3.1-8b-instant only has 2000 tokens remaining. Next request est 3000. Applying circuit breaker for 4.5s.
+2026-07-10 18:00:43 [WARNING] [11544:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/llama-3.1-8b-instant in cooldown for 4.5s.
+2026-07-10 18:00:47 [WARNING] [11544:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:00:51 [WARNING] [11544:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:00:55 [WARNING] [11544:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:00:59 [WARNING] [11544:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:01:03 [WARNING] [11544:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:01:03 [WARNING] [11544:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:244) — BM25 arm failed: Failed to create asyncpg pool: password authentication failed for user "postgres"
+2026-07-10 18:01:20 [INFO] [11544:asyncio_1] rag.embedding (embedding_service.py:205) — Loading embedding model: BAAI/bge-base-en-v1.5
+2026-07-10 18:01:20 [INFO] [11544:asyncio_1] sentence_transformers.base.model (model.py:190) — No device provided, using cpu
+2026-07-10 18:01:21 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:21 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/modules.json "HTTP/1.1 200 OK"
+2026-07-10 18:01:21 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:21 [WARNING] [11544:asyncio_1] huggingface_hub.utils._http (_http.py:951) — Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-10 18:01:21 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-10 18:01:21 [INFO] [11544:asyncio_1] sentence_transformers.base.model (model.py:1001) — Loading SentenceTransformer model from BAAI/bge-base-en-v1.5.
+2026-07-10 18:01:21 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:21 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-10 18:01:22 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:22 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/README.md "HTTP/1.1 200 OK"
+2026-07-10 18:01:22 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:22 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/modules.json "HTTP/1.1 200 OK"
+2026-07-10 18:01:22 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:22 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-07-10 18:01:23 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:01:23 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:23 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 18:01:23 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:01:24 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:01:24 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:01:24 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:01:24 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:24 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-10 18:01:25 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:25 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 18:01:25 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:25 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 18:01:25 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:25 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-10 18:01:26 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-10 18:01:26 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-10 18:01:26 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:01:26 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-07-10 18:01:26 [INFO] [11544:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5 "HTTP/1.1 200 OK"
+2026-07-10 18:01:26 [INFO] [11544:asyncio_1] rag.embedding (embedding_service.py:207) — Embedding model loaded (vector_size=768).
+2026-07-10 18:01:27 [INFO] [11544:MainThread] rag.embedding (embedding_service.py:144) — Embedded 1 texts in 23244.7 ms (attempt 1)
+2026-07-10 18:01:28 [INFO] [11544:MainThread] rag.vector_store (vector_store_service.py:344) — Qdrant client initialised → localhost:6333 (grpc=False).
+2026-07-10 18:01:30 [WARNING] [11544:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:266) — Dense arm failed: Dense retrieval failed: Qdrant search failed: All connection attempts failed
+2026-07-10 18:01:30 [INFO] [11544:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:123) — Hybrid retrieval for epic='Epic 1' feature='Feature 1': bm25=0 results (209.9ms), dense=0 results (26521.6ms), total=26577.4ms.
+2026-07-10 18:01:30 [INFO] [11544:MainThread] rag.rrf (rrf_service.py:129) — RRF fused 0 BM25 + 0 dense → 0 results (k=60) in 0.01 ms.
+2026-07-10 18:01:30 [INFO] [11544:MainThread] rag.context_builder (context_builder.py:117) — ContextBuilder assembled package for epic='Epic 1' feature='Feature 1': 0 chunks, 0 requirements, 0 deps, 0 rules (0.01 ms).
+2026-07-10 18:01:30 [INFO] [11544:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-10 18:01:30 [INFO] [11544:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-10 18:01:30 [INFO] [11544:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-10 18:01:30 [INFO] [11544:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-10 18:02:26 [WARNING] [8388:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:02:32 [WARNING] [8388:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:02:33 [INFO] [8388:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 42, "latency": 4326.9, "prompt_version": "v1", "execution_time": "2026-07-10T12:32:33.070957+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 18:02:37 [WARNING] [8388:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:02:37 [INFO] [8388:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "claude-3-5-sonnet", "provider": "anthropic", "tokens": 25, "latency": 4144.91, "prompt_version": "v1", "execution_time": "2026-07-10T12:32:37.223001+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 18:02:41 [WARNING] [8388:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:02:41 [INFO] [8388:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 100, "latency": 4128.45, "prompt_version": "v1", "execution_time": "2026-07-10T12:32:41.360655+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 18:02:45 [WARNING] [8388:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:02:47 [INFO] [8388:MainThread] app.shared.llm_client.audit (llm_client.py:364) — {"model_name": "gpt-4o", "provider": "openai", "tokens": 12, "latency": 6173.84, "prompt_version": "v1", "execution_time": "2026-07-10T12:32:47.542782+00:00", "retry_count": 0, "success": true, "error": null}
+2026-07-10 18:02:47 [INFO] [8388:MainThread] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 18:02:47 [INFO] [8388:MainThread] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-123
+2026-07-10 18:02:47 [INFO] [8388:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-123.json
+2026-07-10 18:02:47 [INFO] [8388:MainThread] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 18:02:47 [INFO] [8388:MainThread] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 123
+2026-07-10 18:02:47 [INFO] [8388:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\123.json
+2026-07-10 18:02:48 [INFO] [8388:MainThread] mcp_server.tools.gdrive (gdrive.py:48) — GoogleDriveConnector initialised.
+2026-07-10 18:02:48 [INFO] [8388:MainThread] mcp_server.tools.gdrive (gdrive.py:65) — Fetching Google Drive file: file123
+2026-07-10 18:02:48 [INFO] [8388:MainThread] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\Project Requirements Doc.json
+2026-07-10 18:02:48 [INFO] [8388:asyncio_0] mcp_server.tools.jira (jira.py:48) — JiraConnector initialised for https://test-jira.atlassian.net
+2026-07-10 18:02:48 [INFO] [8388:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: jira
+2026-07-10 18:02:48 [INFO] [8388:asyncio_0] mcp_server.tools.jira (jira.py:67) — Fetching Jira issue: PROJ-999
+2026-07-10 18:02:48 [INFO] [8388:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\PROJ-999.json
+2026-07-10 18:02:48 [INFO] [8388:asyncio_0] mcp_server.tools.confluence (confluence.py:52) — ConfluenceConnector initialised for https://test-confluence.atlassian.net/wiki
+2026-07-10 18:02:48 [INFO] [8388:asyncio_0] mcp_server.services.connector_factory (connector_factory.py:59) — Initialised connector for source: confluence
+2026-07-10 18:02:48 [INFO] [8388:asyncio_0] mcp_server.tools.confluence (confluence.py:69) — Fetching Confluence page: 888
+2026-07-10 18:02:48 [INFO] [8388:asyncio_0] mcp_server.metadata_store (metadata_store.py:43) — Metadata saved: E:\github\nlprag\cd-se-accelerators\backend\mcp_server\storage\metadata\888.json
+2026-07-10 18:02:48 [INFO] [8388:MainThread] app.agents.token_budget (token_budget.py:67) — Context size (153 tokens) exceeds safe ceiling (100). Applying map-reduce.
+2026-07-10 18:02:48 [WARNING] [8388:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/meta-llama/llama-4-scout-17b-16e-instruct in cooldown for 5.0s.
+2026-07-10 18:02:48 [WARNING] [8388:MainThread] app.config.model_routing (model_routing.py:112) — Proactive Throttle: groq/llama-3.1-8b-instant only has 2000 tokens remaining. Next request est 3000. Applying circuit breaker for 4.5s.
+2026-07-10 18:02:48 [WARNING] [8388:MainThread] app.config.model_routing (model_routing.py:21) — Circuit breaker: Marked groq/llama-3.1-8b-instant in cooldown for 4.5s.
+2026-07-10 18:02:52 [WARNING] [8388:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:02:56 [WARNING] [8388:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:03:00 [WARNING] [8388:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:03:04 [WARNING] [8388:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:03:08 [WARNING] [8388:MainThread] app.cache.cache_manager (cache_manager.py:31) — Redis is unavailable, falling back to memory cache: Error 22 connecting to localhost:6379. The remote computer refused the network connection.
+2026-07-10 18:03:09 [WARNING] [8388:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:244) — BM25 arm failed: Failed to create asyncpg pool: password authentication failed for user "postgres"
+2026-07-10 18:03:30 [INFO] [8388:asyncio_1] rag.embedding (embedding_service.py:205) — Loading embedding model: BAAI/bge-base-en-v1.5
+2026-07-10 18:03:30 [INFO] [8388:asyncio_1] sentence_transformers.base.model (model.py:190) — No device provided, using cpu
+2026-07-10 18:03:31 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:31 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/modules.json "HTTP/1.1 200 OK"
+2026-07-10 18:03:31 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:31 [WARNING] [8388:asyncio_1] huggingface_hub.utils._http (_http.py:951) — Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-10 18:03:31 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-10 18:03:31 [INFO] [8388:asyncio_1] sentence_transformers.base.model (model.py:1001) — Loading SentenceTransformer model from BAAI/bge-base-en-v1.5.
+2026-07-10 18:03:32 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:32 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-10 18:03:32 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:32 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/README.md "HTTP/1.1 200 OK"
+2026-07-10 18:03:32 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:32 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/modules.json "HTTP/1.1 200 OK"
+2026-07-10 18:03:33 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:33 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-07-10 18:03:33 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:03:33 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:33 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 18:03:34 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:03:34 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:03:34 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:03:35 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:03:35 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:35 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-10 18:03:35 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:35 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 18:03:36 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:36 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 18:03:36 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:36 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-10 18:03:37 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-10 18:03:37 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-10 18:03:37 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:03:37 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-07-10 18:03:37 [INFO] [8388:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5 "HTTP/1.1 200 OK"
+2026-07-10 18:03:38 [INFO] [8388:asyncio_1] rag.embedding (embedding_service.py:207) — Embedding model loaded (vector_size=768).
+2026-07-10 18:03:38 [INFO] [8388:MainThread] rag.embedding (embedding_service.py:144) — Embedded 1 texts in 29018.7 ms (attempt 1)
+2026-07-10 18:03:39 [INFO] [8388:MainThread] rag.vector_store (vector_store_service.py:344) — Qdrant client initialised → localhost:6333 (grpc=False).
+2026-07-10 18:03:41 [WARNING] [8388:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:266) — Dense arm failed: Dense retrieval failed: Qdrant search failed: All connection attempts failed
+2026-07-10 18:03:41 [INFO] [8388:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:123) — Hybrid retrieval for epic='Epic 1' feature='Feature 1': bm25=0 results (249.6ms), dense=0 results (32260.0ms), total=32340.5ms.
+2026-07-10 18:03:41 [INFO] [8388:MainThread] rag.rrf (rrf_service.py:129) — RRF fused 0 BM25 + 0 dense → 0 results (k=60) in 0.02 ms.
+2026-07-10 18:03:41 [INFO] [8388:MainThread] rag.context_builder (context_builder.py:117) — ContextBuilder assembled package for epic='Epic 1' feature='Feature 1': 0 chunks, 0 requirements, 0 deps, 0 rules (0.01 ms).
+2026-07-10 18:03:41 [WARNING] [8388:MainThread] agents.story_validation (story_validation_agent.py:86) — AI semantic validation failed or timed out: 2 validation errors for AIValidationOutput
+validation_status
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+confidence_score
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing. Continuing with independent evidence validation.
+Traceback (most recent call last):
+  File "E:\github\nlprag\cd-se-accelerators\backend\app\agents\story_validation_agent.py", line 72, in _run_ai_validation
+    ai_output = await self.llm_service.execute(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "C:\Users\ShriRamMG\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\unittest\mock.py", line 2344, in _execute_mock_call
+    result = await effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\nlprag\cd-se-accelerators\backend\tests\test_story_api_langgraph_unification.py", line 109, in mock_execute_side_effect
+    return response_schema()
+  File "E:\github\nlprag\cd-se-accelerators\.venv\Lib\site-packages\pydantic\main.py", line 263, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 2 validation errors for AIValidationOutput
+validation_status
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+confidence_score
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+2026-07-10 18:03:41 [WARNING] [8388:MainThread] agents.story_validation (story_validation_agent.py:86) — AI semantic validation failed or timed out: 2 validation errors for AIValidationOutput
+validation_status
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+confidence_score
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing. Continuing with independent evidence validation.
+Traceback (most recent call last):
+  File "E:\github\nlprag\cd-se-accelerators\backend\app\agents\story_validation_agent.py", line 72, in _run_ai_validation
+    ai_output = await self.llm_service.execute(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "C:\Users\ShriRamMG\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\unittest\mock.py", line 2344, in _execute_mock_call
+    result = await effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\nlprag\cd-se-accelerators\backend\tests\test_story_api_langgraph_unification.py", line 109, in mock_execute_side_effect
+    return response_schema()
+  File "E:\github\nlprag\cd-se-accelerators\.venv\Lib\site-packages\pydantic\main.py", line 263, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 2 validation errors for AIValidationOutput
+validation_status
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+confidence_score
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+2026-07-10 18:03:41 [WARNING] [8388:MainThread] agents.story_validation (story_validation_agent.py:86) — AI semantic validation failed or timed out: 2 validation errors for AIValidationOutput
+validation_status
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+confidence_score
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing. Continuing with independent evidence validation.
+Traceback (most recent call last):
+  File "E:\github\nlprag\cd-se-accelerators\backend\app\agents\story_validation_agent.py", line 72, in _run_ai_validation
+    ai_output = await self.llm_service.execute(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "C:\Users\ShriRamMG\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\unittest\mock.py", line 2344, in _execute_mock_call
+    result = await effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\nlprag\cd-se-accelerators\backend\tests\test_story_api_langgraph_unification.py", line 109, in mock_execute_side_effect
+    return response_schema()
+  File "E:\github\nlprag\cd-se-accelerators\.venv\Lib\site-packages\pydantic\main.py", line 263, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 2 validation errors for AIValidationOutput
+validation_status
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+confidence_score
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+2026-07-10 18:03:41 [INFO] [8388:MainThread] httpx (_client.py:1025) — HTTP Request: POST http://testserver/workflow/start "HTTP/1.1 200 OK"
+2026-07-10 18:03:41 [INFO] [8388:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API "HTTP/1.1 200 OK"
+2026-07-10 18:03:41 [INFO] [8388:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/WF-API/status "HTTP/1.1 200 OK"
+2026-07-10 18:03:41 [INFO] [8388:MainThread] httpx (_client.py:1025) — HTTP Request: GET http://testserver/workflow/missing/status "HTTP/1.1 404 Not Found"
+2026-07-10 18:04:45 [WARNING] [24076:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:244) — BM25 arm failed: Failed to create asyncpg pool: password authentication failed for user "postgres"
+2026-07-10 18:05:05 [INFO] [24076:asyncio_1] rag.embedding (embedding_service.py:205) — Loading embedding model: BAAI/bge-base-en-v1.5
+2026-07-10 18:05:05 [INFO] [24076:asyncio_1] sentence_transformers.base.model (model.py:190) — No device provided, using cpu
+2026-07-10 18:05:05 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:05 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/modules.json "HTTP/1.1 200 OK"
+2026-07-10 18:05:06 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:06 [WARNING] [24076:asyncio_1] huggingface_hub.utils._http (_http.py:951) — Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-10 18:05:06 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-10 18:05:06 [INFO] [24076:asyncio_1] sentence_transformers.base.model (model.py:1001) — Loading SentenceTransformer model from BAAI/bge-base-en-v1.5.
+2026-07-10 18:05:06 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:06 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-10 18:05:06 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:06 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/README.md "HTTP/1.1 200 OK"
+2026-07-10 18:05:07 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:07 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/modules.json "HTTP/1.1 200 OK"
+2026-07-10 18:05:07 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:07 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-07-10 18:05:07 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:05:08 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:08 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 18:05:08 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:05:08 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:05:09 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:05:09 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 18:05:09 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:09 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-10 18:05:10 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:10 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 18:05:10 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:10 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/config.json "HTTP/1.1 200 OK"
+2026-07-10 18:05:10 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:10 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-10 18:05:11 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-10 18:05:11 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-10 18:05:11 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-base-en-v1.5/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 18:05:11 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-base-en-v1.5/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-07-10 18:05:12 [INFO] [24076:asyncio_1] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-base-en-v1.5 "HTTP/1.1 200 OK"
+2026-07-10 18:05:12 [INFO] [24076:asyncio_1] rag.embedding (embedding_service.py:207) — Embedding model loaded (vector_size=768).
+2026-07-10 18:05:12 [INFO] [24076:MainThread] rag.embedding (embedding_service.py:144) — Embedded 1 texts in 26870.7 ms (attempt 1)
+2026-07-10 18:05:13 [INFO] [24076:MainThread] rag.vector_store (vector_store_service.py:344) — Qdrant client initialised → localhost:6333 (grpc=False).
+2026-07-10 18:05:15 [WARNING] [24076:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:266) — Dense arm failed: Dense retrieval failed: Qdrant search failed: All connection attempts failed
+2026-07-10 18:05:15 [INFO] [24076:MainThread] rag.hybrid_retrieval (hybrid_retrieval_service.py:123) — Hybrid retrieval for epic='Account onboarding' feature='Registration form': bm25=0 results (317.3ms), dense=0 results (30313.7ms), total=30413.2ms.
+2026-07-10 18:05:15 [INFO] [24076:MainThread] rag.rrf (rrf_service.py:129) — RRF fused 0 BM25 + 0 dense → 0 results (k=60) in 0.02 ms.
+2026-07-10 18:05:15 [INFO] [24076:MainThread] rag.context_builder (context_builder.py:117) — ContextBuilder assembled package for epic='Account onboarding' feature='Registration form': 0 chunks, 1 requirements, 0 deps, 0 rules (0.04 ms).
+2026-07-13 12:05:26 [INFO] [21944:MainThread] export.utils (utils.py:54) — Output directory ensured: C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\export\outputs\word
+2026-07-13 12:05:26 [INFO] [21944:MainThread] export.utils (utils.py:54) — Output directory ensured: C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\export\outputs\pdf
+2026-07-13 12:05:26 [INFO] [21944:MainThread] app.api.router (router.py:32) — MCP enterprise connector routes registered at /api/mcp/*
+2026-07-13 12:05:53 [INFO] [21944:MainThread] rag.vector_store (vector_store_service.py:359) — Qdrant client initialised → :memory::6333 (grpc=False).
+2026-07-13 12:05:54 [INFO] [21944:MainThread] rag.vector_store (vector_store_service.py:91) — Created Qdrant collection 'brd_chunks' (size=768, distance=COSINE).
+2026-07-13 12:06:28 [INFO] [21944:asyncio_0] rag.embedding (embedding_service.py:205) — Loading embedding model: BAAI/bge-large-en-v1.5
+2026-07-13 12:06:28 [INFO] [21944:asyncio_0] sentence_transformers.base.model (model.py:190) — No device provided, using cpu
+2026-07-13 12:06:28 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:28 [WARNING] [21944:asyncio_0] huggingface_hub.utils._http (_http.py:951) — Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-13 12:06:28 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/modules.json "HTTP/1.1 200 OK"
+2026-07-13 12:06:29 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:29 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-13 12:06:29 [INFO] [21944:asyncio_0] sentence_transformers.base.model (model.py:1001) — Loading SentenceTransformer model from BAAI/bge-large-en-v1.5.
+2026-07-13 12:06:29 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:29 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-13 12:06:29 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:29 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/README.md "HTTP/1.1 200 OK"
+2026-07-13 12:06:30 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:30 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/modules.json "HTTP/1.1 200 OK"
+2026-07-13 12:06:30 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:30 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-07-13 12:06:31 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:06:31 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:31 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config.json "HTTP/1.1 200 OK"
+2026-07-13 12:06:32 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:06:33 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:06:33 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:06:33 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:06:34 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:34 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-13 12:06:34 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:34 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config.json "HTTP/1.1 200 OK"
+2026-07-13 12:06:35 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:35 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config.json "HTTP/1.1 200 OK"
+2026-07-13 12:06:35 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:35 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-13 12:06:35 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-large-en-v1.5/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-13 12:06:36 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-large-en-v1.5/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-13 12:06:36 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:06:36 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-07-13 12:06:37 [INFO] [21944:asyncio_0] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-large-en-v1.5 "HTTP/1.1 200 OK"
+2026-07-13 12:06:37 [INFO] [21944:asyncio_0] rag.embedding (embedding_service.py:207) — Embedding model loaded (vector_size=768).
+2026-07-13 12:06:38 [INFO] [21944:MainThread] rag.embedding (embedding_service.py:144) — Embedded 1 texts in 44026.0 ms (attempt 1)
+2026-07-13 12:06:38 [INFO] [21944:MainThread] rag.indexing (indexing_service.py:171) — Embedded 1 chunks in 44027.0 ms.
+2026-07-13 12:06:38 [INFO] [21944:MainThread] rag.indexing (indexing_service.py:131) — Indexing complete: indexed=0 skipped=0 failed=1 in 47052.2 ms.
+2026-07-13 12:08:42 [INFO] [21180:MainThread] export.utils (utils.py:54) — Output directory ensured: C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\export\outputs\word
+2026-07-13 12:08:43 [INFO] [21180:MainThread] export.utils (utils.py:54) — Output directory ensured: C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\export\outputs\pdf
+2026-07-13 12:08:43 [INFO] [21180:MainThread] app.api.router (router.py:32) — MCP enterprise connector routes registered at /api/mcp/*
+2026-07-13 12:08:47 [INFO] [21180:MainThread] rag.vector_store (vector_store_service.py:359) — Qdrant client initialised → :memory::6333 (grpc=False).
+2026-07-13 12:08:47 [INFO] [21180:MainThread] rag.vector_store (vector_store_service.py:91) — Created Qdrant collection 'brd_chunks' (size=1024, distance=COSINE).
+2026-07-13 12:09:26 [INFO] [21180:asyncio_0] rag.embedding (embedding_service.py:205) — Loading embedding model: BAAI/bge-large-en-v1.5
+2026-07-13 12:09:26 [INFO] [21180:asyncio_0] sentence_transformers.base.model (model.py:190) — No device provided, using cpu
+2026-07-13 12:09:26 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:26 [WARNING] [21180:asyncio_0] huggingface_hub.utils._http (_http.py:951) — Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-13 12:09:26 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/modules.json "HTTP/1.1 200 OK"
+2026-07-13 12:09:26 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:26 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-13 12:09:26 [INFO] [21180:asyncio_0] sentence_transformers.base.model (model.py:1001) — Loading SentenceTransformer model from BAAI/bge-large-en-v1.5.
+2026-07-13 12:09:27 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:27 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-13 12:09:27 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:27 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/README.md "HTTP/1.1 200 OK"
+2026-07-13 12:09:27 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:27 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/modules.json "HTTP/1.1 200 OK"
+2026-07-13 12:09:28 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:28 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-07-13 12:09:28 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:09:29 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:29 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config.json "HTTP/1.1 200 OK"
+2026-07-13 12:09:30 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:09:30 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:09:31 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:09:31 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:09:31 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:31 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-13 12:09:32 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:32 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config.json "HTTP/1.1 200 OK"
+2026-07-13 12:09:32 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:32 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config.json "HTTP/1.1 200 OK"
+2026-07-13 12:09:33 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:33 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-13 12:09:33 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-large-en-v1.5/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-13 12:09:34 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-large-en-v1.5/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-13 12:09:34 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:09:34 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-07-13 12:09:35 [INFO] [21180:asyncio_0] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-large-en-v1.5 "HTTP/1.1 200 OK"
+2026-07-13 12:09:35 [INFO] [21180:asyncio_0] rag.embedding (embedding_service.py:207) — Embedding model loaded (vector_size=1024).
+2026-07-13 12:09:36 [INFO] [21180:MainThread] rag.embedding (embedding_service.py:144) — Embedded 1 texts in 48307.0 ms (attempt 1)
+2026-07-13 12:09:36 [INFO] [21180:MainThread] rag.indexing (indexing_service.py:171) — Embedded 1 chunks in 48325.1 ms.
+2026-07-13 12:09:36 [INFO] [21180:MainThread] rag.vector_store (vector_store_service.py:183) — Upserted 1 vectors to Qdrant in 1.6 ms.
+2026-07-13 12:09:36 [INFO] [21180:MainThread] rag.indexing (indexing_service.py:206) — Upserted 1 vectors to Qdrant in 2.7 ms.
+2026-07-13 12:09:36 [INFO] [21180:MainThread] rag.indexing (indexing_service.py:217) — Updated PG embedding_indexed_at for 1 chunks in 10.7 ms.
+2026-07-13 12:09:36 [INFO] [21180:MainThread] rag.indexing (indexing_service.py:131) — Indexing complete: indexed=0 skipped=0 failed=1 in 51442.4 ms.
+2026-07-13 12:11:11 [INFO] [25452:MainThread] export.utils (utils.py:54) — Output directory ensured: C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\export\outputs\word
+2026-07-13 12:11:11 [INFO] [25452:MainThread] export.utils (utils.py:54) — Output directory ensured: C:\Users\KanishkaKR\Desktop\BA_Acc\cd-se-accelerators\backend\export\outputs\pdf
+2026-07-13 12:11:11 [INFO] [25452:MainThread] app.api.router (router.py:32) — MCP enterprise connector routes registered at /api/mcp/*
+2026-07-13 12:11:16 [INFO] [25452:MainThread] rag.vector_store (vector_store_service.py:359) — Qdrant client initialised: in-memory Qdrant.
+2026-07-13 12:11:16 [INFO] [25452:MainThread] rag.vector_store (vector_store_service.py:91) — Created Qdrant collection 'brd_chunks' (size=1024, distance=COSINE).
+2026-07-13 12:11:58 [INFO] [25452:asyncio_0] rag.embedding (embedding_service.py:205) — Loading embedding model: BAAI/bge-large-en-v1.5
+2026-07-13 12:11:58 [INFO] [25452:asyncio_0] sentence_transformers.base.model (model.py:190) — No device provided, using cpu
+2026-07-13 12:11:58 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:11:58 [WARNING] [25452:asyncio_0] huggingface_hub.utils._http (_http.py:951) — Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-13 12:11:58 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/modules.json "HTTP/1.1 200 OK"
+2026-07-13 12:11:59 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:11:59 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-13 12:11:59 [INFO] [25452:asyncio_0] sentence_transformers.base.model (model.py:1001) — Loading SentenceTransformer model from BAAI/bge-large-en-v1.5.
+2026-07-13 12:11:59 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:11:59 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-13 12:11:59 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:12:00 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/README.md "HTTP/1.1 200 OK"
+2026-07-13 12:12:00 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:12:00 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/modules.json "HTTP/1.1 200 OK"
+2026-07-13 12:12:00 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:12:00 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-07-13 12:12:01 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:12:01 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:12:01 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config.json "HTTP/1.1 200 OK"
+2026-07-13 12:12:02 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:12:02 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:12:03 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:12:03 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-13 12:12:04 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:12:04 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-13 12:12:04 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:12:04 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config.json "HTTP/1.1 200 OK"
+2026-07-13 12:12:04 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:12:04 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config.json "HTTP/1.1 200 OK"
+2026-07-13 12:12:05 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:12:05 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-13 12:12:05 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-large-en-v1.5/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-13 12:12:05 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-large-en-v1.5/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-13 12:12:06 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/BAAI/bge-large-en-v1.5/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-13 12:12:06 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/BAAI/bge-large-en-v1.5/d4aa6901d3a41ba39fb536a557fa166f842b0e09/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-07-13 12:12:06 [INFO] [25452:asyncio_0] httpx (_client.py:1025) — HTTP Request: GET https://huggingface.co/api/models/BAAI/bge-large-en-v1.5 "HTTP/1.1 200 OK"
+2026-07-13 12:12:07 [INFO] [25452:asyncio_0] rag.embedding (embedding_service.py:207) — Embedding model loaded (vector_size=1024).
+2026-07-13 12:12:08 [INFO] [25452:MainThread] rag.embedding (embedding_service.py:144) — Embedded 1 texts in 51883.5 ms (attempt 1)
+2026-07-13 12:12:08 [INFO] [25452:MainThread] rag.indexing (indexing_service.py:171) — Embedded 1 chunks in 51884.7 ms.
+2026-07-13 12:12:08 [INFO] [25452:MainThread] rag.vector_store (vector_store_service.py:183) — Upserted 1 vectors to Qdrant in 2.7 ms.
+2026-07-13 12:12:08 [INFO] [25452:MainThread] rag.indexing (indexing_service.py:206) — Upserted 1 vectors to Qdrant in 3.7 ms.
+2026-07-13 12:12:14 [INFO] [25452:MainThread] rag.indexing (indexing_service.py:217) — Updated PG embedding_indexed_at for 1 chunks in 6362.2 ms.
+2026-07-13 12:12:14 [INFO] [25452:MainThread] rag.indexing (indexing_service.py:131) — Indexing complete: indexed=1 skipped=0 failed=0 in 61504.4 ms.

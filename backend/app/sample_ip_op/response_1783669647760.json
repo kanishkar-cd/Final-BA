@@ -1,0 +1,434 @@
+{
+  "success": true,
+  "message": "User story validation completed.",
+  "data": {
+    "validation_status": "VALIDATION_FAILED",
+    "passed": false,
+    "confidence_score": 0.89,
+    "threshold": 0.8,
+    "issues": [
+      {
+        "issue_id": "ISSUE-420EFC74",
+        "severity": "ERROR",
+        "category": "Retrieved Chunk Evidence",
+        "story_id": "US-001",
+        "field": "description",
+        "message": "Story text has low semantic overlap with available evidence.",
+        "source_reference": "rag_context",
+        "suggested_action": "Retry generation with evidence grounding or send to human review."
+      },
+      {
+        "issue_id": "ISSUE-B5D90699",
+        "severity": "ERROR",
+        "category": "Retrieved Chunk Evidence",
+        "story_id": "US-001",
+        "field": "acceptance_criteria",
+        "message": "AC-001 must reference at least one Agent 1 chunk.",
+        "source_reference": null,
+        "suggested_action": "Retry generation or send to human review."
+      }
+    ],
+    "recommendations": [
+      "Retry workflow from AGENT_3_USER_STORY using validation issues and traceability gaps as feedback.",
+      "Independent validation used optional RAG context; no document retrieval was performed.",
+      "Evidence Match Score: 0.04.",
+      "Traceability Confidence: 1.00.",
+      "Validated evidence set: 1 chunks, 1 requirements, 1 business rules, 0 dependencies.",
+      "Retry Agent 3 using the mapped chunks and require every generated field to cite evidence."
+    ],
+    "retry_required": true,
+    "review_required": false,
+    "regeneration_target": "AGENT_3_USER_STORY",
+    "failed_story_ids": [
+      "US-001"
+    ],
+    "upstream_issue_categories": [
+      "Retrieved Chunk Evidence"
+    ],
+    "story_results": [
+      {
+        "story_id": "US-001",
+        "confidence_score": 0.68,
+        "passed": false,
+        "retry_required": true,
+        "review_required": false,
+        "retry_attempts": 0,
+        "issues": [
+          {
+            "issue_id": "ISSUE-420EFC74",
+            "severity": "ERROR",
+            "category": "Retrieved Chunk Evidence",
+            "story_id": "US-001",
+            "field": "description",
+            "message": "Story text has low semantic overlap with available evidence.",
+            "source_reference": "rag_context",
+            "suggested_action": "Retry generation with evidence grounding or send to human review."
+          },
+          {
+            "issue_id": "ISSUE-B5D90699",
+            "severity": "ERROR",
+            "category": "Retrieved Chunk Evidence",
+            "story_id": "US-001",
+            "field": "acceptance_criteria",
+            "message": "AC-001 must reference at least one Agent 1 chunk.",
+            "source_reference": null,
+            "suggested_action": "Retry generation or send to human review."
+          }
+        ],
+        "criteria_scores": [
+          {
+            "category": "Completeness",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "Consistency",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "Coverage",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "Business Rules",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "Acceptance Criteria",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "Duplicate Stories",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "Missing Stories",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "Traceability",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "INVEST Compliance",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "Relationship Integrity",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "Formatting",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "Hallucination Detection",
+            "score": 10,
+            "max_score": 10,
+            "passed": true,
+            "issue_count": 0,
+            "details": []
+          },
+          {
+            "category": "Retrieved Chunk Evidence",
+            "score": 2,
+            "max_score": 10,
+            "passed": false,
+            "issue_count": 2,
+            "details": [
+              "Story text has low semantic overlap with available evidence.",
+              "AC-001 must reference at least one Agent 1 chunk."
+            ]
+          }
+        ]
+      }
+    ],
+    "traceability_matrix": [
+      {
+        "story_id": "US-001",
+        "requirement_refs": [
+          "FR-001"
+        ],
+        "chunk_refs": [
+          "c29f9e22-82cc-4a46-808a-362751d23500"
+        ],
+        "epic_refs": [
+          "E001"
+        ],
+        "feature_refs": [
+          "E001-FEAT-001"
+        ],
+        "one_line_story_refs": [
+          "E001-FEAT-001-STORY-001"
+        ],
+        "dependency_refs": [],
+        "missing_links": []
+      }
+    ],
+    "criteria_scores": [
+      {
+        "category": "Completeness",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "Consistency",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "Coverage",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "Business Rules",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "Acceptance Criteria",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "Duplicate Stories",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "Missing Stories",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "Traceability",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "INVEST Compliance",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "Relationship Integrity",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "Formatting",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "Hallucination Detection",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": []
+      },
+      {
+        "category": "Retrieved Chunk Evidence",
+        "score": 2,
+        "max_score": 10,
+        "passed": false,
+        "issue_count": 2,
+        "details": [
+          "Story text has low semantic overlap with available evidence.",
+          "AC-001 must reference at least one Agent 1 chunk."
+        ]
+      },
+      {
+        "category": "Independent Evidence Match",
+        "score": 0.4,
+        "max_score": 10,
+        "passed": false,
+        "issue_count": 0,
+        "details": [
+          "Average evidence match score: 0.04"
+        ]
+      },
+      {
+        "category": "Traceability Confidence",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": [
+          "Average traceability confidence: 1.00"
+        ]
+      },
+      {
+        "category": "Independent Field-level validation",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": [
+          "Independent category score: 1.00"
+        ]
+      },
+      {
+        "category": "Independent Coverage Matrix",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": [
+          "Independent category score: 1.00"
+        ]
+      },
+      {
+        "category": "Independent Relationship Integrity",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": [
+          "Independent category score: 1.00"
+        ]
+      },
+      {
+        "category": "Independent Evidence validation",
+        "score": 8.5,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": [
+          "Independent category score: 0.85"
+        ]
+      },
+      {
+        "category": "Independent Semantic validation",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": [
+          "Independent category score: 1.00"
+        ]
+      },
+      {
+        "category": "Independent Hallucination detection",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": [
+          "Independent category score: 1.00"
+        ]
+      },
+      {
+        "category": "Independent Contradiction detection",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": [
+          "Independent category score: 1.00"
+        ]
+      },
+      {
+        "category": "Independent Traceability",
+        "score": 10,
+        "max_score": 10,
+        "passed": true,
+        "issue_count": 0,
+        "details": [
+          "Independent category score: 1.00"
+        ]
+      }
+    ],
+    "coverage": {
+      "requirements": true,
+      "business_rules": true,
+      "acceptance_criteria": true,
+      "traceability": true,
+      "retrieved_chunks": true,
+      "independent_evidence_match": false,
+      "independent_traceability_confidence": true,
+      "rag_context_used": true,
+      "retrieval_metadata_present": false,
+      "coverage_matrix_complete": true
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "message": "Indexing complete: 0 indexed, 1 skipped, 0 failed.",
+  "data": {
+    "indexed_count": 0,
+    "skipped_count": 1,
+    "failed_count": 0,
+    "failed_chunk_ids": [],
+    "duration_ms": 0.4585999995470047
+  },
+  "errors": []
+}

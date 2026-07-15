@@ -1,0 +1,1575 @@
+{
+  "workflow_id": "WF-MANUAL-RUN-01",
+  "file_path": "sample_brd.txt",
+  "confidence_threshold": 0.8,
+  "max_retry_attempts": 3
+}
+
+{
+  "workflow_id": "WF-MANUAL-RUN-02",
+  "file_path": "sample_brd.txt",
+  "document_id": "341105ad-a0df-4237-bb2f-0cb89b35cfe9",
+  "project_id": "818a928e-e824-4f69-9286-542d973697c0",
+  "confidence_threshold": 0.8,
+  "max_retry_attempts": 3,
+  "metadata": {
+    "custom_source": "manual_postman_test",
+    "environment": "local"
+  }
+}
+{
+  "workflow_id": "WF-TEST-RUN",
+  "confidence_threshold": 0.8,
+  "max_retry_attempts": 3,
+  "requirements": [
+    {
+      "id": "FR-001",
+      "name": "User Registration",
+      "description": "Allow users to register with email and password."
+    },
+    {
+      "id": "FR-002",
+      "name": "User Login",
+      "description": "Allow users to authenticate securely."
+    }
+  ],
+  "actors": [
+    "User"
+  ],
+  "functional_requirements": [
+    {
+      "id": "FR-001",
+      "name": "User Registration",
+      "description": "Allow users to register with email and password."
+    },
+    {
+      "id": "FR-002",
+      "name": "User Login",
+      "description": "Allow users to authenticate securely."
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR-001",
+      "name": "Password Encryption",
+      "description": "Passwords must be encrypted before storage."
+    }
+  ],
+  "business_rules": [
+    "Passwords must be at least 8 characters long."
+  ],
+  "business_goals": [
+    "Ensure secure user access."
+  ],
+  "edge_cases": [
+    "Registration with duplicate email address."
+  ],
+  "constraints": [
+    "User emails must be unique."
+  ],
+  "acceptance_criteria": [
+    "Given a guest user, when they register with valid details, then their account should be created."
+  ],
+  "dependencies": [],
+  "epics": [
+    {
+      "id": "E001",
+      "name": "User Authentication",
+      "description": "Epic managing all user entry credentials."
+    }
+  ],
+  "features": [
+    {
+      "id": "E001-FEAT-001",
+      "name": "User Registration",
+      "description": "Registering a new account."
+    }
+  ],
+  "one_line_stories": [
+    {
+      "id": "E001-FEAT-001-STORY-001",
+      "feature_id": "E001-FEAT-001",
+      "epic_id": "E001",
+      "summary": "As a User, I want to register and log in securely so that I can access the system.",
+      "actor": "User",
+      "business_value": "I can access the system",
+      "priority": "MEDIUM",
+      "requirement_refs": [
+        "FR-001",
+        "FR-002"
+      ],
+      "chunk_refs": [
+        "c29f9e22-82cc-4a46-808a-362751d23500"
+      ],
+      "dependency_refs": []
+    }
+  ],
+  "retrieved_chunks": [
+    {
+      "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+      "content": "Functional Requirements FR-1: User Registration",
+      "source": "sample_brd.txt"
+    }
+  ],
+  "traceability": {},
+  "generated_user_stories": [
+    {
+      "id": "US-001",
+      "feature_id": "E001-FEAT-001",
+      "epic_id": "E001",
+      "one_line_story_id": "E001-FEAT-001-STORY-001",
+      "chunk_ids_used": [
+        "c29f9e22-82cc-4a46-808a-362751d23500"
+      ],
+      "title": "User Registration Scenario",
+      "user_story": "As a User, I want to register with my email and password so that I can access the system.",
+      "description": "Permit guest user to submit registration credentials.",
+      "persona": "User",
+      "goal": "Register a new profile",
+      "business_value": "User onboarding enablement",
+      "acceptance_criteria": [
+        {
+          "id": "AC-001",
+          "description": "Given a guest user, when they register with valid details, then their account should be created.",
+          "source_refs": [
+            "FR-001"
+          ]
+        }
+      ],
+      "business_rules": [
+        "Passwords must be at least 8 characters long."
+      ],
+      "dependencies": [],
+      "definition_of_done": [
+        "Code compiled",
+        "Unit tests pass"
+      ],
+      "assumptions": [
+        "Email verification server is working."
+      ],
+      "risks": [
+        "Spam registrations."
+      ],
+      "requirement_mapping": [
+        {
+          "id": "FR-001",
+          "name": "User Registration",
+          "source": "Agent 1 output"
+        }
+      ],
+      "epic_mapping": [
+        {
+          "id": "E001",
+          "name": "User Authentication",
+          "source": "Agent 2 output"
+        }
+      ],
+      "feature_mapping": [
+        {
+          "id": "E001-FEAT-001",
+          "name": "User Registration",
+          "source": "Agent 2 output"
+        }
+      ],
+      "source_chunk_references": [
+        {
+          "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+          "name": "Chunk 1",
+          "source": "sample_brd.txt"
+        }
+      ],
+      "priority": "MEDIUM",
+      "story_points": 3,
+      "confidence_score": 1.0,
+      "retry_attempts": 0,
+      "invest_compliance": {
+        "independent": true,
+        "negotiable": true,
+        "valuable": true,
+        "estimable": true,
+        "small": true,
+        "testable": true,
+        "notes": []
+      },
+      "traceability": {
+        "workflow_id": "WF-TEST-RUN",
+        "requirement_refs": [
+          "FR-001"
+        ],
+        "chunk_refs": [
+          "c29f9e22-82cc-4a46-808a-362751d23500"
+        ],
+        "epic_refs": [
+          "E001"
+        ],
+        "feature_refs": [
+          "E001-FEAT-001"
+        ],
+        "one_line_story_refs": [
+          "E001-FEAT-001-STORY-001"
+        ],
+        "dependency_refs": []
+      }
+    }
+  ],
+  "agent1_output": {
+    "chunks": [
+      {
+        "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+        "content": "Functional Requirements FR-1: User Registration",
+        "source": "sample_brd.txt"
+      }
+    ],
+    "actors": [
+      "User"
+    ],
+    "functional_requirements": [
+      {
+        "id": "FR-001",
+        "name": "User Registration",
+        "description": "Allow users to register with email and password."
+      }
+    ],
+    "non_functional_requirements": [
+      {
+        "id": "NFR-001",
+        "name": "Password Encryption",
+        "description": "Passwords must be encrypted before storage."
+      }
+    ],
+    "business_rules": [
+      "Passwords must be at least 8 characters long."
+    ],
+    "dependencies": [],
+    "acceptance_criteria": [
+      "Given a guest user, when they register with valid details, then their account should be created."
+    ],
+    "traceability_metadata": {}
+  },
+  "agent2_output": {
+    "epics": [
+      {
+        "id": "E001",
+        "name": "User Authentication",
+        "description": "Epic managing all user entry credentials."
+      }
+    ],
+    "features": [
+      {
+        "id": "E001-FEAT-001",
+        "name": "User Registration",
+        "description": "Registering a new account."
+      }
+    ],
+    "one_line_stories": [
+      {
+        "id": "E001-FEAT-001-STORY-001",
+        "feature_id": "E001-FEAT-001",
+        "epic_id": "E001",
+        "summary": "As a User, I want to register and log in securely so that I can access the system.",
+        "actor": "User",
+        "business_value": "I can access the system",
+        "priority": "MEDIUM",
+        "requirement_refs": [
+          "FR-001",
+          "FR-002"
+        ],
+        "chunk_refs": [
+          "c29f9e22-82cc-4a46-808a-362751d23500"
+        ],
+        "dependency_refs": []
+      }
+    ],
+    "traceability_matrix": [],
+    "planning_metadata": {}
+  }
+}
+
+---------------------------------
+
+{
+  "workflow_id": "WF-TEST-RUN",
+  "confidence_threshold": 0.8,
+  "max_retry_attempts": 3,
+  "requirements": [
+    {
+      "id": "FR-001",
+      "name": "User Registration",
+      "description": "Allow users to register with email and password."
+    },
+    {
+      "id": "FR-002",
+      "name": "User Login",
+      "description": "Allow users to authenticate securely."
+    }
+  ],
+  "actors": [
+    "User"
+  ],
+  "functional_requirements": [
+    {
+      "id": "FR-001",
+      "name": "User Registration",
+      "description": "Allow users to register with email and password."
+    },
+    {
+      "id": "FR-002",
+      "name": "User Login",
+      "description": "Allow users to authenticate securely."
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR-001",
+      "name": "Password Encryption",
+      "description": "Passwords must be encrypted before storage."
+    }
+  ],
+  "business_rules": [
+    "Passwords must be at least 8 characters long."
+  ],
+  "business_goals": [
+    "Ensure secure user access."
+  ],
+  "edge_cases": [
+    "Registration with duplicate email address."
+  ],
+  "constraints": [
+    "User emails must be unique."
+  ],
+  "acceptance_criteria": [
+    "Given a guest user, when they register with valid details, then their account should be created."
+  ],
+  "dependencies": [],
+  "epics": [
+    {
+      "id": "E001",
+      "name": "User Authentication",
+      "description": "Epic managing all user entry credentials."
+    }
+  ],
+  "features": [
+    {
+      "id": "E001-FEAT-001",
+      "name": "User Registration",
+      "description": "Registering a new account."
+    }
+  ],
+  "one_line_stories": [
+    {
+      "id": "E001-FEAT-001-STORY-001",
+      "feature_id": "E001-FEAT-001",
+      "epic_id": "E001",
+      "summary": "As a User, I want to register and log in securely so that I can access the system.",
+      "actor": "User",
+      "business_value": "I can access the system",
+      "priority": "MEDIUM",
+      "requirement_refs": [
+        "FR-001",
+        "FR-002"
+      ],
+      "chunk_refs": [
+        "c29f9e22-82cc-4a46-808a-362751d23500"
+      ],
+      "dependency_refs": []
+    }
+  ],
+  "retrieved_chunks": [
+    {
+      "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+      "content": "Functional Requirements FR-1: User Registration",
+      "source": "sample_brd.txt"
+    }
+  ],
+  "traceability": {},
+  "generated_user_stories": [
+    {
+      "id": "US-001",
+      "feature_id": "E001-FEAT-001",
+      "epic_id": "E001",
+      "one_line_story_id": "E001-FEAT-001-STORY-001",
+      "chunk_ids_used": [
+        "c29f9e22-82cc-4a46-808a-362751d23500"
+      ],
+      "title": "User Registration Scenario",
+      "user_story": "As a User, I want to register with my email and password so that I can access the system.",
+      "description": "Permit guest user to submit registration credentials.",
+      "persona": "User",
+      "goal": "Register a new profile",
+      "business_value": "User onboarding enablement",
+      "acceptance_criteria": [
+        {
+          "id": "AC-001",
+          "description": "Given a guest user, when they register with valid details, then their account should be created.",
+          "source_refs": [
+            "FR-001"
+          ]
+        }
+      ],
+      "business_rules": [
+        "Passwords must be at least 8 characters long."
+      ],
+      "dependencies": [],
+      "definition_of_done": [
+        "Code compiled",
+        "Unit tests pass"
+      ],
+      "assumptions": [
+        "Email verification server is working."
+      ],
+      "risks": [
+        "Spam registrations."
+      ],
+      "requirement_mapping": [
+        {
+          "id": "FR-001",
+          "name": "User Registration",
+          "source": "Agent 1 output"
+        }
+      ],
+      "epic_mapping": [
+        {
+          "id": "E001",
+          "name": "User Authentication",
+          "source": "Agent 2 output"
+        }
+      ],
+      "feature_mapping": [
+        {
+          "id": "E001-FEAT-001",
+          "name": "User Registration",
+          "source": "Agent 2 output"
+        }
+      ],
+      "source_chunk_references": [
+        {
+          "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+          "name": "Chunk 1",
+          "source": "sample_brd.txt"
+        }
+      ],
+      "priority": "MEDIUM",
+      "story_points": 3,
+      "confidence_score": 1.0,
+      "retry_attempts": 0,
+      "invest_compliance": {
+        "independent": true,
+        "negotiable": true,
+        "valuable": true,
+        "estimable": true,
+        "small": true,
+        "testable": true,
+        "notes": []
+      },
+      "traceability": {
+        "workflow_id": "WF-TEST-RUN",
+        "requirement_refs": [
+          "FR-001"
+        ],
+        "chunk_refs": [
+          "c29f9e22-82cc-4a46-808a-362751d23500"
+        ],
+        "epic_refs": [
+          "E001"
+        ],
+        "feature_refs": [
+          "E001-FEAT-001"
+        ],
+        "one_line_story_refs": [
+          "E001-FEAT-001-STORY-001"
+        ],
+        "dependency_refs": []
+      }
+    }
+  ],
+  "agent1_output": {
+    "chunks": [
+      {
+        "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+        "content": "Functional Requirements FR-1: User Registration",
+        "source": "sample_brd.txt"
+      }
+    ],
+    "actors": [
+      "User"
+    ],
+    "functional_requirements": [
+      {
+        "id": "FR-001",
+        "name": "User Registration",
+        "description": "Allow users to register with email and password."
+      }
+    ],
+    "non_functional_requirements": [
+      {
+        "id": "NFR-001",
+        "name": "Password Encryption",
+        "description": "Passwords must be encrypted before storage."
+      }
+    ],
+    "business_rules": [
+      "Passwords must be at least 8 characters long."
+    ],
+    "dependencies": [],
+    "acceptance_criteria": [
+      "Given a guest user, when they register with valid details, then their account should be created."
+    ],
+    "traceability_metadata": {}
+  },
+  "agent2_output": {
+    "epics": [
+      {
+        "id": "E001",
+        "name": "User Authentication",
+        "description": "Epic managing all user entry credentials."
+      }
+    ],
+    "features": [
+      {
+        "id": "E001-FEAT-001",
+        "name": "User Registration",
+        "description": "Registering a new account."
+      }
+    ],
+    "one_line_stories": [
+      {
+        "id": "E001-FEAT-001-STORY-001",
+        "feature_id": "E001-FEAT-001",
+        "epic_id": "E001",
+        "summary": "As a User, I want to register and log in securely so that I can access the system.",
+        "actor": "User",
+        "business_value": "I can access the system",
+        "priority": "MEDIUM",
+        "requirement_refs": [
+          "FR-001",
+          "FR-002"
+        ],
+        "chunk_refs": [
+          "c29f9e22-82cc-4a46-808a-362751d23500"
+        ],
+        "dependency_refs": []
+      }
+    ],
+    "traceability_matrix": [],
+    "planning_metadata": {}
+  }
+}
+
+--------------------------------------------
+{
+  "workflow_id": "WF-TEST-RUN",
+  "confidence_threshold": 0.8,
+  "max_retry_attempts": 3,
+  "requirements": [
+    {
+      "id": "FR-001",
+      "name": "User Registration",
+      "description": "Allow users to register with email and password."
+    }
+  ],
+  "actors": ["User"],
+  "functional_requirements": [
+    {
+      "id": "FR-001",
+      "name": "User Registration",
+      "description": "Allow users to register with email and password."
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR-001",
+      "name": "Password Encryption",
+      "description": "Passwords must be encrypted."
+    }
+  ],
+  "business_rules": ["Rule"],
+  "business_goals": ["Goal"],
+  "edge_cases": ["Edge"],
+  "constraints": ["Constraint"],
+  "acceptance_criteria": ["AC"],
+  "dependencies": [],
+  "epics": [
+    {
+      "id": "E001",
+      "name": "User Authentication",
+      "description": "Epic managing credentials."
+    }
+  ],
+  "features": [
+    {
+      "id": "E001-FEAT-001",
+      "name": "User Registration",
+      "description": "Registering a new account."
+    }
+  ],
+  "one_line_stories": [
+    {
+      "id": "E001-FEAT-001-STORY-001",
+      "feature_id": "E001-FEAT-001",
+      "epic_id": "E001",
+      "summary": "As a User, I want to register...",
+      "actor": "User",
+      "business_value": "I can access the system",
+      "priority": "MEDIUM",
+      "requirement_refs": ["FR-001"],
+      "chunk_refs": ["c29f9e22-82cc-4a46-808a-362751d23500"]
+    }
+  ],
+  "retrieved_chunks": [
+    {
+      "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+      "content": "Functional Requirements FR-1: User Registration",
+      "source": "sample_brd.txt",
+      "metadata": {
+        "document_id": "341105ad-a0df-4237-bb2f-0cb89b35cfe9"
+      }
+    }
+  ],
+  "traceability": {},
+  "generated_user_stories": [
+    {
+      "id": "US-001",
+      "feature_id": "E001-FEAT-001",
+      "epic_id": "E001",
+      "one_line_story_id": "E001-FEAT-001-STORY-001",
+      "chunk_ids_used": ["c29f9e22-82cc-4a46-808a-362751d23500"],
+      "title": "User Registration Scenario",
+      "user_story": "As a User, I want to register with my email and password so that I can access the system.",
+      "description": "Permit guest user to submit registration credentials.",
+      "persona": "User",
+      "goal": "Register a new profile",
+      "business_value": "User onboarding enablement",
+      "acceptance_criteria": [
+        {
+          "id": "AC-001",
+          "description": "Given a guest user, when they register with valid details, then their account should be created.",
+          "source_refs": ["FR-001"]
+        }
+      ],
+      "business_rules": ["Rule"],
+      "dependencies": [],
+      "definition_of_done": ["DoD"],
+      "assumptions": ["Assumption"],
+      "risks": ["Risk"],
+      "requirement_mapping": [
+        {
+          "id": "FR-001",
+          "name": "User Registration",
+          "source": "Agent 1 output"
+        }
+      ],
+      "epic_mapping": [
+        {
+          "id": "E001",
+          "name": "User Authentication",
+          "source": "Agent 2 output"
+        }
+      ],
+      "feature_mapping": [
+        {
+          "id": "E001-FEAT-001",
+          "name": "User Registration",
+          "source": "Agent 2 output"
+        }
+      ],
+      "source_chunk_references": [
+        {
+          "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+          "name": "Chunk 1",
+          "source": "sample_brd.txt"
+        }
+      ],
+      "priority": "MEDIUM",
+      "story_points": 3,
+      "confidence_score": 1.0,
+      "retry_attempts": 0,
+      "invest_compliance": {
+        "independent": true,
+        "negotiable": true,
+        "valuable": true,
+        "estimable": true,
+        "small": true,
+        "testable": true,
+        "notes": []
+      },
+      "traceability": {
+        "workflow_id": "WF-TEST-RUN",
+        "requirement_refs": ["FR-001"],
+        "chunk_refs": ["c29f9e22-82cc-4a46-808a-362751d23500"],
+        "epic_refs": ["E001"],
+        "feature_refs": ["E001-FEAT-001"],
+        "one_line_story_refs": ["E001-FEAT-001-STORY-001"],
+        "dependency_refs": []
+      }
+    }
+  ],
+  "agent1_output": {
+    "chunks": [
+      {
+        "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+        "content": "Functional Requirements FR-1: User Registration",
+        "source": "sample_brd.txt",
+        "metadata": {
+          "document_id": "341105ad-a0df-4237-bb2f-0cb89b35cfe9"
+        }
+      }
+    ],
+    "actors": ["User"],
+    "functional_requirements": [
+      {
+        "id": "FR-001",
+        "name": "User Registration",
+        "description": "Allow users to register with email and password."
+      }
+    ],
+    "non_functional_requirements": [
+      {
+        "id": "NFR-001",
+        "name": "Password Encryption",
+        "description": "Passwords must be encrypted."
+      }
+    ],
+    "business_rules": ["Rule"],
+    "dependencies": [],
+    "acceptance_criteria": ["AC"],
+    "traceability_metadata": {}
+  },
+  "agent2_output": {
+    "epics": [
+      {
+        "id": "E001",
+        "name": "User Authentication",
+        "description": "Epic managing credentials."
+      }
+    ],
+    "features": [
+      {
+        "id": "E001-FEAT-001",
+        "name": "User Registration",
+        "description": "Registering a new account."
+      }
+    ],
+    "one_line_stories": [
+      {
+        "id": "E001-FEAT-001-STORY-001",
+        "feature_id": "E001-FEAT-001",
+        "epic_id": "E001",
+        "summary": "As a User, I want to register...",
+        "actor": "User",
+        "business_value": "I can access the system",
+        "priority": "MEDIUM",
+        "requirement_refs": ["FR-001"],
+        "chunk_refs": ["c29f9e22-82cc-4a46-808a-362751d23500"]
+      }
+    ],
+    "traceability_matrix": [],
+    "planning_metadata": {}
+  }
+}
+
+----------------------------------------------------
+
+{
+  "requirements": [
+    {
+      "id": "FR-001",
+      "name": "User Registration",
+      "description": "Allow users to register with email and password.",
+      "metadata": {
+        "source": "manual_entry"
+      }
+    }
+  ],
+  "actors": [
+    "User"
+  ],
+  "functional_requirements": [
+    {
+      "id": "FR-001",
+      "name": "User Registration",
+      "description": "Allow users to register with email and password.",
+      "metadata": {
+        "source": "manual_entry"
+      }
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR-001",
+      "name": "Password Encryption",
+      "description": "Passwords must be encrypted.",
+      "metadata": {
+        "source": "security_standards"
+      }
+    }
+  ],
+  "business_rules": [
+    "Passwords must be at least 8 characters long."
+  ],
+  "business_goals": [
+    "Ensure secure user access."
+  ],
+  "edge_cases": [
+    "Registration with duplicate email address."
+  ],
+  "constraints": [
+    "User emails must be unique."
+  ],
+  "acceptance_criteria": [
+    "Given a guest user, when they register with valid details, then their account should be created."
+  ],
+  "dependencies": [],
+  "epics": [
+    {
+      "id": "E001",
+      "name": "User Authentication",
+      "description": "Epic managing all user entry credentials.",
+      "metadata": {
+        "component": "Auth"
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "E001-FEAT-001",
+      "name": "User Registration",
+      "description": "Registering a new account.",
+      "metadata": {
+        "priority": "HIGH"
+      }
+    }
+  ],
+  "one_line_stories": [
+    {
+      "id": "E001-FEAT-001-STORY-001",
+      "feature_id": "E001-FEAT-001",
+      "epic_id": "E001",
+      "summary": "As a User, I want to register and log in securely so that I can access the system.",
+      "actor": "User",
+      "business_value": "I can access the system",
+      "priority": "MEDIUM",
+      "requirement_refs": [
+        "FR-001"
+      ],
+      "chunk_refs": [
+        "c29f9e22-82cc-4a46-808a-362751d23500"
+      ],
+      "dependency_refs": []
+    }
+  ],
+  "retrieved_chunks": [
+    {
+      "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+      "content": "Functional Requirements FR-1: User Registration",
+      "source": "sample_brd.txt",
+      "metadata": {
+        "document_id": "341105ad-a0df-4237-bb2f-0cb89b35cfe9"
+      }
+    }
+  ],
+  "traceability": {
+    "source_system": "CD-SE-Orchestrator"
+  },
+  "agent1_output": {
+    "chunks": [
+      {
+        "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+        "content": "Functional Requirements FR-1: User Registration",
+        "source": "sample_brd.txt",
+        "metadata": {
+          "document_id": "341105ad-a0df-4237-bb2f-0cb89b35cfe9"
+        }
+      }
+    ],
+    "actors": [
+      "User"
+    ],
+    "functional_requirements": [
+      {
+        "id": "FR-001",
+        "name": "User Registration",
+        "description": "Allow users to register with email and password.",
+        "metadata": {}
+      }
+    ],
+    "non_functional_requirements": [
+      {
+        "id": "NFR-001",
+        "name": "Password Encryption",
+        "description": "Passwords must be encrypted.",
+        "metadata": {}
+      }
+    ],
+    "business_rules": [
+      "Passwords must be at least 8 characters long."
+    ],
+    "dependencies": [],
+    "acceptance_criteria": [
+      "Given a guest user, when they register with valid details, then their account should be created."
+    ],
+    "traceability_metadata": {}
+  },
+  "agent2_output": {
+    "epics": [
+      {
+        "id": "E001",
+        "name": "User Authentication",
+        "description": "Epic managing all user entry credentials.",
+        "metadata": {}
+      }
+    ],
+    "features": [
+      {
+        "id": "E001-FEAT-001",
+        "name": "User Registration",
+        "description": "Registering a new account.",
+        "metadata": {}
+      }
+    ],
+    "one_line_stories": [
+      {
+        "id": "E001-FEAT-001-STORY-001",
+        "feature_id": "E001-FEAT-001",
+        "epic_id": "E001",
+        "summary": "As a User, I want to register...",
+        "actor": "User",
+        "business_value": "I can access the system",
+        "priority": "MEDIUM",
+        "requirement_refs": [
+          "FR-001"
+        ],
+        "chunk_refs": [
+          "c29f9e22-82cc-4a46-808a-362751d23500"
+        ],
+        "dependency_refs": []
+      }
+    ],
+    "traceability_matrix": [],
+    "planning_metadata": {}
+  },
+  "workflow_id": "WF-TEST-RUN",
+  "generated_user_stories": [
+    {
+      "id": "US-001",
+      "feature_id": "E001-FEAT-001",
+      "epic_id": "E001",
+      "one_line_story_id": "E001-FEAT-001-STORY-001",
+      "chunk_ids_used": [
+        "c29f9e22-82cc-4a46-808a-362751d23500"
+      ],
+      "title": "User Registration Scenario",
+      "user_story": "As a User, I want to register with my email and password so that I can access the system.",
+      "description": "Permit guest user to submit registration credentials.",
+      "persona": "User",
+      "goal": "Register a new profile",
+      "business_value": "User onboarding enablement",
+      "acceptance_criteria": [
+        {
+          "id": "AC-001",
+          "description": "Given a guest user, when they register with valid details, then their account should be created.",
+          "source_refs": [
+            "FR-001"
+          ]
+        }
+      ],
+      "business_rules": [
+        "Passwords must be at least 8 characters long."
+      ],
+      "dependencies": [],
+      "definition_of_done": [
+        "Code compiles and tests pass."
+      ],
+      "assumptions": [
+        "Email verification server is active."
+      ],
+      "risks": [
+        "Spam registrations."
+      ],
+      "requirement_mapping": [
+        {
+          "id": "FR-001",
+          "name": "User Registration",
+          "source": "Agent 1 output"
+        }
+      ],
+      "epic_mapping": [
+        {
+          "id": "E001",
+          "name": "User Authentication",
+          "source": "Agent 2 output"
+        }
+      ],
+      "feature_mapping": [
+        {
+          "id": "E001-FEAT-001",
+          "name": "User Registration",
+          "source": "Agent 2 output"
+        }
+      ],
+      "source_chunk_references": [
+        {
+          "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+          "name": "Chunk 1",
+          "source": "sample_brd.txt"
+        }
+      ],
+      "priority": "MEDIUM",
+      "story_points": 3,
+      "confidence_score": 1,
+      "retry_attempts": 0,
+      "invest_compliance": {
+        "independent": true,
+        "negotiable": true,
+        "valuable": true,
+        "estimable": true,
+        "small": true,
+        "testable": true,
+        "notes": []
+      },
+      "traceability": {
+        "workflow_id": "WF-TEST-RUN",
+        "requirement_refs": [
+          "FR-001"
+        ],
+        "chunk_refs": [
+          "c29f9e22-82cc-4a46-808a-362751d23500"
+        ],
+        "epic_refs": [
+          "E001"
+        ],
+        "feature_refs": [
+          "E001-FEAT-001"
+        ],
+        "one_line_story_refs": [
+          "E001-FEAT-001-STORY-001"
+        ],
+        "dependency_refs": [],
+        "generated_by": "Agent-3",
+        "validated_by": "Agent-4",
+        "approved_by": "None",
+        "metadata": {}
+      },
+      "traceability_links": {},
+      "generation_timestamp": "2026-07-10T06:23:32.289Z",
+      "metadata": {}
+    }
+  ],
+  "confidence_threshold": 0.8,
+  "max_retry_attempts": 3
+}
+_______________________________________________________
+
+{
+  "requirements": [
+    {
+      "id": "FR-001",
+      "name": "User Registration",
+      "description": "Allow users to register with email and password.",
+      "metadata": {
+        "source": "manual_entry"
+      }
+    }
+  ],
+  "actors": [
+    "User"
+  ],
+  "functional_requirements": [
+    {
+      "id": "FR-001",
+      "name": "User Registration",
+      "description": "Allow users to register with email and password.",
+      "metadata": {
+        "source": "manual_entry"
+      }
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR-001",
+      "name": "Password Encryption",
+      "description": "Passwords must be encrypted.",
+      "metadata": {
+        "source": "security_standards"
+      }
+    }
+  ],
+  "business_rules": [
+    "Passwords must be at least 8 characters long."
+  ],
+  "business_goals": [
+    "Ensure secure user access."
+  ],
+  "edge_cases": [
+    "Registration with duplicate email address."
+  ],
+  "constraints": [
+    "User emails must be unique."
+  ],
+  "acceptance_criteria": [
+    "Given a guest user, when they register with valid details, then their account should be created."
+  ],
+  "dependencies": [],
+  "epics": [
+    {
+      "id": "E001",
+      "name": "User Authentication",
+      "description": "Epic managing all user entry credentials.",
+      "metadata": {
+        "component": "Auth"
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "E001-FEAT-001",
+      "name": "User Registration",
+      "description": "Registering a new account.",
+      "metadata": {
+        "priority": "HIGH"
+      }
+    }
+  ],
+  "one_line_stories": [
+    {
+      "id": "E001-FEAT-001-STORY-001",
+      "feature_id": "E001-FEAT-001",
+      "epic_id": "E001",
+      "summary": "As a User, I want to register and log in securely so that I can access the system.",
+      "actor": "User",
+      "business_value": "I can access the system",
+      "priority": "MEDIUM",
+      "requirement_refs": [
+        "FR-001"
+      ],
+      "chunk_refs": [
+        "c29f9e22-82cc-4a46-808a-362751d23500"
+      ],
+      "dependency_refs": []
+    }
+  ],
+  "retrieved_chunks": [
+    {
+      "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+      "content": "Functional Requirements FR-1: User Registration",
+      "source": "sample_brd.txt",
+      "metadata": {
+        "document_id": "341105ad-a0df-4237-bb2f-0cb89b35cfe9"
+      }
+    }
+  ],
+  "traceability": {
+    "source_system": "CD-SE-Orchestrator"
+  },
+  "agent1_output": {
+    "chunks": [
+      {
+        "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+        "content": "Functional Requirements FR-1: User Registration",
+        "source": "sample_brd.txt",
+        "metadata": {
+          "document_id": "341105ad-a0df-4237-bb2f-0cb89b35cfe9"
+        }
+      }
+    ],
+    "actors": [
+      "User"
+    ],
+    "functional_requirements": [
+      {
+        "id": "FR-001",
+        "name": "User Registration",
+        "description": "Allow users to register with email and password.",
+        "metadata": {}
+      }
+    ],
+    "non_functional_requirements": [
+      {
+        "id": "NFR-001",
+        "name": "Password Encryption",
+        "description": "Passwords must be encrypted.",
+        "metadata": {}
+      }
+    ],
+    "business_rules": [
+      "Passwords must be at least 8 characters long."
+    ],
+    "dependencies": [],
+    "acceptance_criteria": [
+      "Given a guest user, when they register with valid details, then their account should be created."
+    ],
+    "traceability_metadata": {}
+  },
+  "agent2_output": {
+    "epics": [
+      {
+        "id": "E001",
+        "name": "User Authentication",
+        "description": "Epic managing all user entry credentials.",
+        "metadata": {}
+      }
+    ],
+    "features": [
+      {
+        "id": "E001-FEAT-001",
+        "name": "User Registration",
+        "description": "Registering a new account.",
+        "metadata": {}
+      }
+    ],
+    "one_line_stories": [
+      {
+        "id": "E001-FEAT-001-STORY-001",
+        "feature_id": "E001-FEAT-001",
+        "epic_id": "E001",
+        "summary": "As a User, I want to register...",
+        "actor": "User",
+        "business_value": "I can access the system",
+        "priority": "MEDIUM",
+        "requirement_refs": [
+          "FR-001"
+        ],
+        "chunk_refs": [
+          "c29f9e22-82cc-4a46-808a-362751d23500"
+        ],
+        "dependency_refs": []
+      }
+    ],
+    "traceability_matrix": [],
+    "planning_metadata": {}
+  },
+  "workflow_id": "WF-TEST-RUN",
+  "confidence_threshold": 0.8,
+  "max_retry_attempts": 3,
+  "previous_stories": [
+    {
+      "id": "US-001",
+      "feature_id": "E001-FEAT-001",
+      "epic_id": "E001",
+      "one_line_story_id": "E001-FEAT-001-STORY-001",
+      "chunk_ids_used": [
+        "c29f9e22-82cc-4a46-808a-362751d23500"
+      ],
+      "title": "User Registration Scenario",
+      "user_story": "As a User, I want to register with my email and password so that I can access the system.",
+      "description": "Permit guest user to submit registration credentials.",
+      "persona": "User",
+      "goal": "Register a new profile",
+      "business_value": "User onboarding enablement",
+      "acceptance_criteria": [
+        {
+          "id": "AC-001",
+          "description": "Given a guest user, when they register with valid details, then their account should be created.",
+          "source_refs": [
+            "FR-001"
+          ]
+        }
+      ],
+      "business_rules": [
+        "Passwords must be at least 8 characters long."
+      ],
+      "dependencies": [],
+      "definition_of_done": [
+        "Code compiles and tests pass."
+      ],
+      "assumptions": [
+        "Email verification server is active."
+      ],
+      "risks": [
+        "Spam registrations."
+      ],
+      "requirement_mapping": [
+        {
+          "id": "FR-001",
+          "name": "User Registration",
+          "source": "Agent 1 output"
+        }
+      ],
+      "epic_mapping": [
+        {
+          "id": "E001",
+          "name": "User Authentication",
+          "source": "Agent 2 output"
+        }
+      ],
+      "feature_mapping": [
+        {
+          "id": "E001-FEAT-001",
+          "name": "User Registration",
+          "source": "Agent 2 output"
+        }
+      ],
+      "source_chunk_references": [
+        {
+          "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+          "name": "Chunk 1",
+          "source": "sample_brd.txt"
+        }
+      ],
+      "priority": "MEDIUM",
+      "story_points": 3,
+      "confidence_score": 0.75,
+      "retry_attempts": 0,
+      "invest_compliance": {
+        "independent": true,
+        "negotiable": true,
+        "valuable": true,
+        "estimable": true,
+        "small": true,
+        "testable": true,
+        "notes": []
+      },
+      "traceability": {
+        "workflow_id": "WF-TEST-RUN",
+        "requirement_refs": [
+          "FR-001"
+        ],
+        "chunk_refs": [
+          "c29f9e22-82cc-4a46-808a-362751d23500"
+        ],
+        "epic_refs": [
+          "E001"
+        ],
+        "feature_refs": [
+          "E001-FEAT-001"
+        ],
+        "one_line_story_refs": [
+          "E001-FEAT-001-STORY-001"
+        ],
+        "dependency_refs": [],
+        "generated_by": "Agent-3",
+        "validated_by": "Agent-4",
+        "approved_by": "None",
+        "metadata": {}
+      },
+      "traceability_links": {},
+      "generation_timestamp": "2026-07-10T06:33:12.876Z",
+      "metadata": {}
+    }
+  ],
+  "validation_issues": [
+    {
+      "issue_id": "ISSUE-E12F6B",
+      "severity": "ERROR",
+      "category": "Retrieved Chunk Evidence",
+      "story_id": "US-001",
+      "field": "description",
+      "message": "Story text has low semantic overlap with available evidence.",
+      "source_reference": "rag_context",
+      "suggested_action": "Retry generation with evidence grounding or send to human review."
+    }
+  ],
+  "retry_attempt": 1
+}
+
+----------------------------------------------------
+
+{
+  "workflow_id": "WF-TEST-RUN",
+  "story": {
+    "id": "US-001",
+    "feature_id": "E001-FEAT-001",
+    "epic_id": "E001",
+    "one_line_story_id": "E001-FEAT-001-STORY-001",
+    "chunk_ids_used": [
+      "c29f9e22-82cc-4a46-808a-362751d23500"
+    ],
+    "title": "User Registration Scenario",
+    "user_story": "As a Guest User, I want to sign up using my email and a strong password so that I can create a secure account.",
+    "description": "Permit guest user to submit registration credentials with email verification.",
+    "persona": "Guest User",
+    "goal": "Register a new profile",
+    "business_value": "Enable user onboarding",
+    "acceptance_criteria": [
+      {
+        "id": "AC-001",
+        "description": "Given a guest user, when they register with valid details, then their account should be created.",
+        "source_refs": [
+          "FR-001"
+        ]
+      }
+    ],
+    "business_rules": [
+      "Passwords must be at least 8 characters long."
+    ],
+    "dependencies": [],
+    "definition_of_done": [
+      "Code compiles and tests pass.",
+      "Security scanning completes with zero high issues."
+    ],
+    "assumptions": [
+      "Email verification server is active."
+    ],
+    "risks": [
+      "Spam registrations."
+    ],
+    "requirement_mapping": [
+      {
+        "id": "FR-001",
+        "name": "User Registration",
+        "source": "Agent 1 output"
+      }
+    ],
+    "epic_mapping": [
+      {
+        "id": "E001",
+        "name": "User Authentication",
+        "source": "Agent 2 output"
+      }
+    ],
+    "feature_mapping": [
+      {
+        "id": "E001-FEAT-001",
+        "name": "User Registration",
+        "source": "Agent 2 output"
+      }
+    ],
+    "source_chunk_references": [
+      {
+        "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+        "name": "Chunk 1",
+        "source": "sample_brd.txt"
+      }
+    ],
+    "priority": "MEDIUM",
+    "story_points": 3,
+    "confidence_score": 1,
+    "retry_attempts": 0,
+    "invest_compliance": {
+      "independent": true,
+      "negotiable": true,
+      "valuable": true,
+      "estimable": true,
+      "small": true,
+      "testable": true,
+      "notes": []
+    },
+    "traceability": {
+      "workflow_id": "WF-TEST-RUN",
+      "requirement_refs": [
+        "FR-001"
+      ],
+      "chunk_refs": [
+        "c29f9e22-82cc-4a46-808a-362751d23500"
+      ],
+      "epic_refs": [
+        "E001"
+      ],
+      "feature_refs": [
+        "E001-FEAT-001"
+      ],
+      "one_line_story_refs": [
+        "E001-FEAT-001-STORY-001"
+      ],
+      "dependency_refs": [],
+      "generated_by": "Agent-3",
+      "validated_by": "Agent-4",
+      "approved_by": "None",
+      "metadata": {}
+    },
+    "traceability_links": {},
+    "generation_timestamp": "2026-07-10T06:35:57.926Z",
+    "metadata": {}
+  },
+  "modified_by": "Lead-BA",
+  "comments": "Updated persona from User to Guest User and added DoD requirement."
+}
+
+----------------------------------------------------------
+
+{
+  "workflow_id": "WF-TEST-RUN",
+  "reviewed_by": "Product-Owner",
+  "approved": true,
+  "comments": "The modified user story meets all criteria and coverage requirement constraints. Approved for implementation."
+}
+
+________________________________________________________
+ Approved Scenario:
+
+{
+  "workflow_id": "WF-TEST-RUN",
+  "reviewed_by": "Product-Owner",
+  "approved": true,
+  "comments": "The modified user story meets all criteria and coverage requirement constraints. Approved for implementation."
+}
+
+___________________________________________________________
+Rejected / Requires Revision Scenario:
+
+{
+  "workflow_id": "WF-TEST-RUN",
+  "reviewed_by": "Product-Owner",
+  "approved": false,
+  "comments": "Please update the description to clarify the email validation mechanism before final sign-off."
+}
+
+________________________________________________________________
+
+{
+  "chunks": [
+    {
+      "chunk_id": "c29f9e22-82cc-4a46-808a-362751d23500",
+      "document_id": "341105ad-a0df-4237-bb2f-0cb89b35cfe9",
+      "project_id": "818a928e-e824-4f69-9286-542d973697c0",
+      "content": "Functional Requirements FR-1: User Registration. The system must allow guest users to register using an email and password. All registration requests must trigger an email verification link sent to the user's email address.",
+      "section_title": "Functional Requirements",
+      "context_label": "User Management / Auth",
+      "metadata": {
+        "author": "System-Architect",
+        "file_name": "sample_brd.txt",
+        "version": "1.0"
+      }
+    }
+  ],
+  "reindex": false
+}
+__________________________________________________________
+{
+  "chunks": [
+    {
+      "chunk_id": "c29f9e22-82cc-4a46-808a-362751d23500",
+      "document_id": "341105ad-a0df-4237-bb2f-0cb89b35cfe9",
+      "project_id": "818a928e-e824-4f69-9286-542d973697c0",
+      "content": "Functional Requirements FR-1: User Registration. The system must allow guest users to register using an email and password. All registration requests must trigger an email verification link sent to the user's email address.",
+      "section_title": "Functional Requirements",
+      "context_label": "User Management / Auth",
+      "metadata": {
+        "author": "System-Architect",
+        "file_name": "sample_brd.txt",
+        "version": "1.0"
+      }
+    }
+  ],
+  "reindex": false
+}
+-----------------------------------------------------
+
+{
+  "query": "How should passwords be encrypted during user registration?",
+  "filters": {
+    "project_id": "818a928e-e824-4f69-9286-542d973697c0",
+    "document_id": "341105ad-a0df-4237-bb2f-0cb89b35cfe9",
+    "context_label": "User Management / Auth"
+  },
+  "bm25_top_k": 20,
+  "dense_top_k": 20
+}
+-------------------------------------------------------
+
+{
+  "epic": "User Authentication",
+  "feature": "User Registration",
+  "requirement_ids": [
+    "FR-001"
+  ],
+  "project_id": "818a928e-e824-4f69-9286-542d973697c0",
+  "document_id": "341105ad-a0df-4237-bb2f-0cb89b35cfe9",
+  "dense_top_k": 20,
+  "bm25_top_k": 20,
+  "rrf_k": 60,
+  "reranker_candidates": 20,
+  "reranker_final": 5
+}
+---------------------------------------------------
+
+

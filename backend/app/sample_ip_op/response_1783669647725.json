@@ -1,0 +1,931 @@
+{
+  "success": true,
+  "message": "User stories generated and validated.",
+  "data": {
+    "workflow_id": "WF-TEST-RUN",
+    "status": "RETRY_REQUIRED",
+    "stories": [
+      {
+        "id": "US-001",
+        "feature_id": "E001-FEAT-001",
+        "epic_id": "E001",
+        "one_line_story_id": "E001-FEAT-001-STORY-001",
+        "chunk_ids_used": [
+          "c29f9e22-82cc-4a46-808a-362751d23500"
+        ],
+        "title": "As a User I want to register",
+        "user_story": "As a User, I want to register, so that I can access the system.",
+        "description": "Detailed implementation story to register for User Registration under epic User Authentication, constrained to supplied planning artifacts and supported by the evidence pack. evidence: c29f9e22-82cc-4a46-808a-362751d23500: Functional Requirements FR-1: User Registration",
+        "persona": "User",
+        "goal": "register",
+        "business_value": "I can access the system",
+        "acceptance_criteria": [
+          {
+            "id": "AC-001",
+            "description": "Given the User can access User Registration, When they register, Then the system completes the request successfully.",
+            "source_refs": [
+              "c29f9e22-82cc-4a46-808a-362751d23500"
+            ]
+          },
+          {
+            "id": "AC-002",
+            "description": "Given User Registration is available, When ac, Then the expected outcome is recorded.",
+            "source_refs": [
+              "AC",
+              "c29f9e22-82cc-4a46-808a-362751d23500"
+            ]
+          }
+        ],
+        "business_rules": [
+          "Rule"
+        ],
+        "dependencies": [],
+        "definition_of_done": [
+          "AC-001 is implemented, tested, and traceable to source evidence.",
+          "AC-002 is implemented, tested, and traceable to source evidence."
+        ],
+        "assumptions": [
+          "Generated only from Agent 1 source evidence and Agent 2 planning context.",
+          "Generation hierarchy was enforced as Epic -> Feature -> One-Line Story -> Evidence Pack.",
+          "Optional RAG context was supplied by the caller and consumed as evidence metadata.",
+          "No explicit business goals were supplied in the evidence pack."
+        ],
+        "risks": [
+          "Non-functional requirement impact: Password Encryption"
+        ],
+        "requirement_mapping": [
+          {
+            "id": "FR-001",
+            "name": "User Registration",
+            "source": "Allow users to register with email and password."
+          }
+        ],
+        "epic_mapping": [
+          {
+            "id": "E001",
+            "name": "User Authentication",
+            "source": "Epic managing credentials."
+          }
+        ],
+        "feature_mapping": [
+          {
+            "id": "E001-FEAT-001",
+            "name": "User Registration",
+            "source": "Registering a new account."
+          }
+        ],
+        "source_chunk_references": [
+          {
+            "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+            "name": "sample_brd.txt",
+            "source": "Functional Requirements FR-1: User Registration"
+          }
+        ],
+        "priority": "MEDIUM",
+        "story_points": 3,
+        "confidence_score": 0.84,
+        "retry_attempts": 0,
+        "invest_compliance": {
+          "independent": true,
+          "negotiable": true,
+          "valuable": true,
+          "estimable": true,
+          "small": true,
+          "testable": true,
+          "notes": []
+        },
+        "traceability": {
+          "workflow_id": "WF-TEST-RUN",
+          "requirement_refs": [
+            "FR-001"
+          ],
+          "chunk_refs": [
+            "c29f9e22-82cc-4a46-808a-362751d23500"
+          ],
+          "epic_refs": [
+            "E001"
+          ],
+          "feature_refs": [
+            "E001-FEAT-001"
+          ],
+          "one_line_story_refs": [
+            "E001-FEAT-001-STORY-001"
+          ],
+          "dependency_refs": [],
+          "generated_by": "agent-3-user-story-generator",
+          "validated_by": "agent-4-story-validator",
+          "approved_by": null,
+          "metadata": {
+            "source_of_truth": "agent1_output",
+            "planning_context": "agent2_output",
+            "generation_hierarchy": "Epic -> Feature -> One-Line Story -> Evidence Pack -> User Story",
+            "feature_id": "E001-FEAT-001",
+            "epic_id": "E001",
+            "one_line_story_id": "E001-FEAT-001-STORY-001",
+            "traceability_rows": [],
+            "planner_metadata": {},
+            "master_context": {},
+            "story_context": {},
+            "rag_context_present": true
+          }
+        },
+        "traceability_links": {
+          "chunk_ids": [
+            "c29f9e22-82cc-4a46-808a-362751d23500"
+          ],
+          "requirement_ids": [
+            "FR-001"
+          ],
+          "feature_id": "E001-FEAT-001",
+          "epic_id": "E001",
+          "story_id": "US-001",
+          "one_line_story_id": "E001-FEAT-001-STORY-001",
+          "evidence_pack_id": "EPACK-E001-E001-FEAT-001-E001-FEAT-001-STORY-001"
+        },
+        "generation_timestamp": "2026-07-10T05:56:14.804244Z",
+        "metadata": {
+          "source": "agent3_user_story_generation",
+          "authoritative_source": "agent1_output",
+          "planning_source": "agent2_output",
+          "generation_hierarchy": "Epic -> Feature -> One-Line Story -> Evidence Pack -> User Story",
+          "evidence_pack": {
+            "id": "EPACK-E001-E001-FEAT-001-E001-FEAT-001-STORY-001",
+            "workflow_id": "WF-TEST-RUN",
+            "epic_id": "E001",
+            "feature_id": "E001-FEAT-001",
+            "one_line_story_id": "E001-FEAT-001-STORY-001",
+            "chunk_refs": [
+              "c29f9e22-82cc-4a46-808a-362751d23500"
+            ],
+            "requirement_refs": [
+              "FR-001"
+            ],
+            "business_rules": [
+              "Rule"
+            ],
+            "acceptance_criteria": [
+              "AC"
+            ],
+            "dependencies": [],
+            "actors": [
+              "User"
+            ],
+            "business_goals": [],
+            "planner_metadata": {},
+            "master_context": {},
+            "story_context": {},
+            "rag_context": {
+              "epic": "User Authentication",
+              "feature": "User Registration",
+              "source_chunks": [],
+              "supporting_requirements": [
+                {
+                  "id": "FR-001",
+                  "description": "FR-001",
+                  "source": null
+                }
+              ],
+              "dependencies": [],
+              "business_rules": [],
+              "retrieval_metadata": {
+                "bm25_latency_ms": 4079.806499998085,
+                "dense_latency_ms": 14985.69610004779,
+                "pipeline_latency_ms": 14993.574499967508,
+                "bm25_count": 0,
+                "dense_count": 0,
+                "fused_count": 0,
+                "reranked_count": 0,
+                "context_builder_latency_ms": 0.051600043661892414,
+                "chunk_ids": [],
+                "document_ids": []
+              }
+            },
+            "metadata": {
+              "workflow_id": "WF-TEST-RUN",
+              "epic_metadata": {},
+              "feature_metadata": {},
+              "one_line_story_priority": "MEDIUM",
+              "payload_metadata": {}
+            }
+          },
+          "quality_gates": {
+            "hierarchy_present": true,
+            "has_chunk_evidence": true,
+            "all_chunk_refs_resolved": true,
+            "has_requirement_mapping": true,
+            "has_business_rules": true,
+            "has_acceptance_criteria": true,
+            "acceptance_criteria_with_chunk_refs": [
+              "AC-001",
+              "AC-002"
+            ],
+            "has_dependencies": false,
+            "has_actor": true,
+            "has_business_goals": false,
+            "planner_metadata_present": false,
+            "story_context_present": false,
+            "master_context_present": false,
+            "rag_context_present": true
+          },
+          "confidence": {
+            "score": 0.85,
+            "components": {
+              "hierarchy": 0.2,
+              "chunk_evidence": 0.2,
+              "requirement_mapping": 0.15,
+              "agent1_context": 0.15,
+              "agent2_context": 0,
+              "field_completeness": 0.1,
+              "optional_context": 0.05
+            },
+            "rationale": [
+              "Hierarchy validated through Epic, Feature, and One-Line Story.",
+              "Chunk and requirement evidence are scored only when supplied references resolve.",
+              "Optional RAG context is consumed only when already present in the request."
+            ],
+            "input_confidence": {}
+          },
+          "one_line_story": "As a User, I want to register...",
+          "retrieved_chunk_ids": [
+            "c29f9e22-82cc-4a46-808a-362751d23500"
+          ],
+          "retrieved_chunk_sources": [
+            "sample_brd.txt"
+          ]
+        }
+      }
+    ],
+    "user_stories": [
+      {
+        "id": "US-001",
+        "feature_id": "E001-FEAT-001",
+        "epic_id": "E001",
+        "one_line_story_id": "E001-FEAT-001-STORY-001",
+        "chunk_ids_used": [
+          "c29f9e22-82cc-4a46-808a-362751d23500"
+        ],
+        "title": "As a User I want to register",
+        "user_story": "As a User, I want to register, so that I can access the system.",
+        "description": "Detailed implementation story to register for User Registration under epic User Authentication, constrained to supplied planning artifacts and supported by the evidence pack. evidence: c29f9e22-82cc-4a46-808a-362751d23500: Functional Requirements FR-1: User Registration",
+        "persona": "User",
+        "goal": "register",
+        "business_value": "I can access the system",
+        "acceptance_criteria": [
+          {
+            "id": "AC-001",
+            "description": "Given the User can access User Registration, When they register, Then the system completes the request successfully.",
+            "source_refs": [
+              "c29f9e22-82cc-4a46-808a-362751d23500"
+            ]
+          },
+          {
+            "id": "AC-002",
+            "description": "Given User Registration is available, When ac, Then the expected outcome is recorded.",
+            "source_refs": [
+              "AC",
+              "c29f9e22-82cc-4a46-808a-362751d23500"
+            ]
+          }
+        ],
+        "business_rules": [
+          "Rule"
+        ],
+        "dependencies": [],
+        "definition_of_done": [
+          "AC-001 is implemented, tested, and traceable to source evidence.",
+          "AC-002 is implemented, tested, and traceable to source evidence."
+        ],
+        "assumptions": [
+          "Generated only from Agent 1 source evidence and Agent 2 planning context.",
+          "Generation hierarchy was enforced as Epic -> Feature -> One-Line Story -> Evidence Pack.",
+          "Optional RAG context was supplied by the caller and consumed as evidence metadata.",
+          "No explicit business goals were supplied in the evidence pack."
+        ],
+        "risks": [
+          "Non-functional requirement impact: Password Encryption"
+        ],
+        "requirement_mapping": [
+          {
+            "id": "FR-001",
+            "name": "User Registration",
+            "source": "Allow users to register with email and password."
+          }
+        ],
+        "epic_mapping": [
+          {
+            "id": "E001",
+            "name": "User Authentication",
+            "source": "Epic managing credentials."
+          }
+        ],
+        "feature_mapping": [
+          {
+            "id": "E001-FEAT-001",
+            "name": "User Registration",
+            "source": "Registering a new account."
+          }
+        ],
+        "source_chunk_references": [
+          {
+            "id": "c29f9e22-82cc-4a46-808a-362751d23500",
+            "name": "sample_brd.txt",
+            "source": "Functional Requirements FR-1: User Registration"
+          }
+        ],
+        "priority": "MEDIUM",
+        "story_points": 3,
+        "confidence_score": 0.84,
+        "retry_attempts": 0,
+        "invest_compliance": {
+          "independent": true,
+          "negotiable": true,
+          "valuable": true,
+          "estimable": true,
+          "small": true,
+          "testable": true,
+          "notes": []
+        },
+        "traceability": {
+          "workflow_id": "WF-TEST-RUN",
+          "requirement_refs": [
+            "FR-001"
+          ],
+          "chunk_refs": [
+            "c29f9e22-82cc-4a46-808a-362751d23500"
+          ],
+          "epic_refs": [
+            "E001"
+          ],
+          "feature_refs": [
+            "E001-FEAT-001"
+          ],
+          "one_line_story_refs": [
+            "E001-FEAT-001-STORY-001"
+          ],
+          "dependency_refs": [],
+          "generated_by": "agent-3-user-story-generator",
+          "validated_by": "agent-4-story-validator",
+          "approved_by": null,
+          "metadata": {
+            "source_of_truth": "agent1_output",
+            "planning_context": "agent2_output",
+            "generation_hierarchy": "Epic -> Feature -> One-Line Story -> Evidence Pack -> User Story",
+            "feature_id": "E001-FEAT-001",
+            "epic_id": "E001",
+            "one_line_story_id": "E001-FEAT-001-STORY-001",
+            "traceability_rows": [],
+            "planner_metadata": {},
+            "master_context": {},
+            "story_context": {},
+            "rag_context_present": true
+          }
+        },
+        "traceability_links": {
+          "chunk_ids": [
+            "c29f9e22-82cc-4a46-808a-362751d23500"
+          ],
+          "requirement_ids": [
+            "FR-001"
+          ],
+          "feature_id": "E001-FEAT-001",
+          "epic_id": "E001",
+          "story_id": "US-001",
+          "one_line_story_id": "E001-FEAT-001-STORY-001",
+          "evidence_pack_id": "EPACK-E001-E001-FEAT-001-E001-FEAT-001-STORY-001"
+        },
+        "generation_timestamp": "2026-07-10T05:56:14.804244Z",
+        "metadata": {
+          "source": "agent3_user_story_generation",
+          "authoritative_source": "agent1_output",
+          "planning_source": "agent2_output",
+          "generation_hierarchy": "Epic -> Feature -> One-Line Story -> Evidence Pack -> User Story",
+          "evidence_pack": {
+            "id": "EPACK-E001-E001-FEAT-001-E001-FEAT-001-STORY-001",
+            "workflow_id": "WF-TEST-RUN",
+            "epic_id": "E001",
+            "feature_id": "E001-FEAT-001",
+            "one_line_story_id": "E001-FEAT-001-STORY-001",
+            "chunk_refs": [
+              "c29f9e22-82cc-4a46-808a-362751d23500"
+            ],
+            "requirement_refs": [
+              "FR-001"
+            ],
+            "business_rules": [
+              "Rule"
+            ],
+            "acceptance_criteria": [
+              "AC"
+            ],
+            "dependencies": [],
+            "actors": [
+              "User"
+            ],
+            "business_goals": [],
+            "planner_metadata": {},
+            "master_context": {},
+            "story_context": {},
+            "rag_context": {
+              "epic": "User Authentication",
+              "feature": "User Registration",
+              "source_chunks": [],
+              "supporting_requirements": [
+                {
+                  "id": "FR-001",
+                  "description": "FR-001",
+                  "source": null
+                }
+              ],
+              "dependencies": [],
+              "business_rules": [],
+              "retrieval_metadata": {
+                "bm25_latency_ms": 4079.806499998085,
+                "dense_latency_ms": 14985.69610004779,
+                "pipeline_latency_ms": 14993.574499967508,
+                "bm25_count": 0,
+                "dense_count": 0,
+                "fused_count": 0,
+                "reranked_count": 0,
+                "context_builder_latency_ms": 0.051600043661892414,
+                "chunk_ids": [],
+                "document_ids": []
+              }
+            },
+            "metadata": {
+              "workflow_id": "WF-TEST-RUN",
+              "epic_metadata": {},
+              "feature_metadata": {},
+              "one_line_story_priority": "MEDIUM",
+              "payload_metadata": {}
+            }
+          },
+          "quality_gates": {
+            "hierarchy_present": true,
+            "has_chunk_evidence": true,
+            "all_chunk_refs_resolved": true,
+            "has_requirement_mapping": true,
+            "has_business_rules": true,
+            "has_acceptance_criteria": true,
+            "acceptance_criteria_with_chunk_refs": [
+              "AC-001",
+              "AC-002"
+            ],
+            "has_dependencies": false,
+            "has_actor": true,
+            "has_business_goals": false,
+            "planner_metadata_present": false,
+            "story_context_present": false,
+            "master_context_present": false,
+            "rag_context_present": true
+          },
+          "confidence": {
+            "score": 0.85,
+            "components": {
+              "hierarchy": 0.2,
+              "chunk_evidence": 0.2,
+              "requirement_mapping": 0.15,
+              "agent1_context": 0.15,
+              "agent2_context": 0,
+              "field_completeness": 0.1,
+              "optional_context": 0.05
+            },
+            "rationale": [
+              "Hierarchy validated through Epic, Feature, and One-Line Story.",
+              "Chunk and requirement evidence are scored only when supplied references resolve.",
+              "Optional RAG context is consumed only when already present in the request."
+            ],
+            "input_confidence": {}
+          },
+          "one_line_story": "As a User, I want to register...",
+          "retrieved_chunk_ids": [
+            "c29f9e22-82cc-4a46-808a-362751d23500"
+          ],
+          "retrieved_chunk_sources": [
+            "sample_brd.txt"
+          ]
+        }
+      }
+    ],
+    "traceability_links": [],
+    "generation_metadata": {
+      "generated_story_count": 1,
+      "workflow_status": "COMPLETED",
+      "langgraph_execution": true
+    },
+    "confidence_score": 0.89,
+    "validation": {
+      "validation_status": "VALIDATION_FAILED",
+      "passed": false,
+      "confidence_score": 0.89,
+      "threshold": 0.8,
+      "issues": [
+        {
+          "issue_id": "ISSUE-94156FED",
+          "severity": "ERROR",
+          "category": "Retrieved Chunk Evidence",
+          "story_id": "US-001",
+          "field": "description",
+          "message": "Story text has low semantic overlap with available evidence.",
+          "source_reference": "rag_context",
+          "suggested_action": "Retry generation with evidence grounding or send to human review."
+        }
+      ],
+      "recommendations": [
+        "Retry workflow from AGENT_3_USER_STORY using validation issues and traceability gaps as feedback.",
+        "Independent validation used optional RAG context; no document retrieval was performed.",
+        "Evidence Match Score: 0.10.",
+        "Traceability Confidence: 1.00.",
+        "Validated evidence set: 1 chunks, 1 requirements, 1 business rules, 0 dependencies.",
+        "Retry Agent 3 using the mapped chunks and require every generated field to cite evidence."
+      ],
+      "retry_required": true,
+      "review_required": false,
+      "regeneration_target": "AGENT_3_USER_STORY",
+      "failed_story_ids": [
+        "US-001"
+      ],
+      "upstream_issue_categories": [
+        "Retrieved Chunk Evidence"
+      ],
+      "story_results": [
+        {
+          "story_id": "US-001",
+          "confidence_score": 0.84,
+          "passed": false,
+          "retry_required": true,
+          "review_required": false,
+          "retry_attempts": 0,
+          "issues": [
+            {
+              "issue_id": "ISSUE-94156FED",
+              "severity": "ERROR",
+              "category": "Retrieved Chunk Evidence",
+              "story_id": "US-001",
+              "field": "description",
+              "message": "Story text has low semantic overlap with available evidence.",
+              "source_reference": "rag_context",
+              "suggested_action": "Retry generation with evidence grounding or send to human review."
+            }
+          ],
+          "criteria_scores": [
+            {
+              "category": "Completeness",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Consistency",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Coverage",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Business Rules",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Acceptance Criteria",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Duplicate Stories",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Missing Stories",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Traceability",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "INVEST Compliance",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Relationship Integrity",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Formatting",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Hallucination Detection",
+              "score": 10,
+              "max_score": 10,
+              "passed": true,
+              "issue_count": 0,
+              "details": []
+            },
+            {
+              "category": "Retrieved Chunk Evidence",
+              "score": 6,
+              "max_score": 10,
+              "passed": false,
+              "issue_count": 1,
+              "details": [
+                "Story text has low semantic overlap with available evidence."
+              ]
+            }
+          ]
+        }
+      ],
+      "traceability_matrix": [
+        {
+          "story_id": "US-001",
+          "requirement_refs": [
+            "FR-001"
+          ],
+          "chunk_refs": [
+            "c29f9e22-82cc-4a46-808a-362751d23500"
+          ],
+          "epic_refs": [
+            "E001"
+          ],
+          "feature_refs": [
+            "E001-FEAT-001"
+          ],
+          "one_line_story_refs": [
+            "E001-FEAT-001-STORY-001"
+          ],
+          "dependency_refs": [],
+          "missing_links": []
+        }
+      ],
+      "criteria_scores": [
+        {
+          "category": "Completeness",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Consistency",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Coverage",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Business Rules",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Acceptance Criteria",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Duplicate Stories",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Missing Stories",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Traceability",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "INVEST Compliance",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Relationship Integrity",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Formatting",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Hallucination Detection",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": []
+        },
+        {
+          "category": "Retrieved Chunk Evidence",
+          "score": 6,
+          "max_score": 10,
+          "passed": false,
+          "issue_count": 1,
+          "details": [
+            "Story text has low semantic overlap with available evidence."
+          ]
+        },
+        {
+          "category": "Independent Evidence Match",
+          "score": 1,
+          "max_score": 10,
+          "passed": false,
+          "issue_count": 0,
+          "details": [
+            "Average evidence match score: 0.10"
+          ]
+        },
+        {
+          "category": "Traceability Confidence",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Average traceability confidence: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Field-level validation",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Coverage Matrix",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Relationship Integrity",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Evidence validation",
+          "score": 8.5,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 0.85"
+          ]
+        },
+        {
+          "category": "Independent Semantic validation",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Hallucination detection",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Contradiction detection",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        },
+        {
+          "category": "Independent Traceability",
+          "score": 10,
+          "max_score": 10,
+          "passed": true,
+          "issue_count": 0,
+          "details": [
+            "Independent category score: 1.00"
+          ]
+        }
+      ],
+      "coverage": {
+        "requirements": true,
+        "business_rules": true,
+        "acceptance_criteria": true,
+        "traceability": true,
+        "retrieved_chunks": true,
+        "independent_evidence_match": false,
+        "independent_traceability_confidence": true,
+        "rag_context_used": true,
+        "retrieval_metadata_present": false,
+        "coverage_matrix_complete": true
+      }
+    },
+    "retry_attempts": 3,
+    "review_required": false,
+    "audit_trail": [],
+    "workflow_history": [],
+    "created_at": "2026-07-10T05:56:46.126175Z",
+    "updated_at": "2026-07-10T05:56:46.126183Z"
+  },
+  "errors": []
+}
