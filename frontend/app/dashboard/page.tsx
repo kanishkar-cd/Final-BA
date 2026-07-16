@@ -8,6 +8,7 @@ import { useWorkspaceStore } from '@/store/workspaceStore';
 import { Badge } from '@/components/common/Badge';
 import { Button } from '@/components/common/Button';
 import { cn } from '@/lib/utils';
+import MagicBento, { MagicBentoCard } from '@/components/common/MagicBento';
 
 export default function DashboardPage() {
   const { workspaces } = useWorkspaceStore();
@@ -52,9 +53,18 @@ export default function DashboardPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {workspaces.map((ws) => (
-            <div 
+            <MagicBentoCard
               key={ws.id}
-              className="bg-card rounded-xl p-5 border border-border flex flex-col justify-between space-y-4 shadow-sm hover:shadow-md transition-shadow group relative overflow-visible"
+              style={{
+                backgroundColor: 'var(--card)',
+                borderColor: 'var(--border)',
+                minHeight: 'auto',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                padding: '1.25rem',
+              }}
+              enableStars={true}
             >
               <div className="space-y-3">
                 <div className="flex items-start justify-between gap-4">
@@ -87,7 +97,7 @@ export default function DashboardPage() {
                   </Button>
                 </Link>
               </div>
-            </div>
+            </MagicBentoCard>
           ))}
         </div>
       )}
