@@ -184,9 +184,22 @@ class WorkflowNodes:
         if retry_service.should_retry(validation_result, retry_count, max_retry_attempts):
             retry_count += 1
             
+        # Update state's user_stories list with calculated confidence scores
+        user_stories = list(state.get("user_stories", []))
+        if user_stories and validation_result.story_results:
+            story_scores = {res.story_id: res.confidence_score for res in validation_result.story_results}
+            for i, story in enumerate(user_stories):
+                story_id = story.get("id") if isinstance(story, dict) else getattr(story, "id", None)
+                if story_id in story_scores:
+                    if isinstance(story, dict):
+                        story["confidence_score"] = story_scores[story_id]
+                    else:
+                        story.confidence_score = story_scores[story_id]
+
         return {
             "validation_result": validation_result,
             "retry_count": retry_count,
+            "user_stories": user_stories,
         }
 
     async def guardrails_hook(self, state: WorkflowState) -> WorkflowState:

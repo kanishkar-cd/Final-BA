@@ -38,19 +38,68 @@ class ConfidenceService:
         return round(max(0.0, min(1.0, score)), 2)
 
     def calculate_story(self, story: UserStory, issues: list[ValidationIssue]) -> float:
+        score = 100.0
+        
+        # Acceptance Criteria Completeness
+        if not story.acceptance_criteria:
+            score -= 30.0
+        elif len(story.acceptance_criteria) < 2:
+            score -= 10.0
+            
+        # Presence of business rules
+        if not story.business_rules:
+            score -= 10.0
+            
+        # Missing fields / Story structure quality
+        if not story.description or len(story.description.strip()) < 10:
+            score -= 10.0
+        if not story.goal or len(story.goal.strip()) < 5:
+            score -= 5.0
+        if not story.business_value or len(story.business_value.strip()) < 5:
+            score -= 5.0
+            
+        # Requirement-to-story mapping quality
+        if not story.epic_mapping:
+            score -= 5.0
+        if not story.feature_mapping:
+            score -= 5.0
+        if not story.requirement_mapping:
+            score -= 5.0
+            
+        # Traceability & Requirement coverage
+        if not story.traceability or not story.traceability.feature_refs:
+            score -= 15.0
+            
+        # INVEST compliance
+        if story.invest_compliance:
+            invest = story.invest_compliance
+            invest_flags = [
+                invest.independent,
+                invest.negotiable,
+                invest.valuable,
+                invest.estimable,
+                invest.small,
+                invest.testable,
+            ]
+            for flag in invest_flags:
+                if not flag:
+                    score -= 3.0
+        else:
+            score -= 18.0
+            
+        # Validation results penalties
         severity_penalty = {
-            IssueSeverity.INFO: 0.02,
-            IssueSeverity.WARNING: 0.06,
-            IssueSeverity.ERROR: 0.16,
-            IssueSeverity.CRITICAL: 0.25,
+            IssueSeverity.INFO: 2.0,
+            IssueSeverity.WARNING: 6.0,
+            IssueSeverity.ERROR: 16.0,
+            IssueSeverity.CRITICAL: 25.0,
         }
         story_issues = [issue for issue in issues if issue.story_id == story.id]
-        penalty = sum(severity_penalty[issue.severity] for issue in story_issues)
-        if not story.traceability or not story.traceability.feature_refs:
-            penalty += 0.12
-        if not _is_invest_compliant(story):
-            penalty += 0.1
-        return round(max(0.0, min(1.0, 1.0 - penalty)), 2)
+        score -= sum(severity_penalty[issue.severity] for issue in story_issues)
+        
+        # Ensure between 0 and 100, then convert to float between 0.0 and 1.0
+        final_score = max(0.0, min(100.0, score)) / 100.0
+        return round(final_score, 2)
 
     def criteria_scores(self, issues: list[ValidationIssue]) -> list[ConfidenceCriterionScore]:
         return [

@@ -139,7 +139,7 @@ export default function StoryRefinementPage() {
              ) : activeTab === 'traceability' ? (
                <TraceabilityTab projectId={projectId} story={story} />
              ) : (
-               <VersionHistoryTab />
+               <VersionHistoryTab projectId={projectId} storyId={story.id} currentVersion={story.version || 1} />
              )}
           </div>
         </div>
@@ -261,11 +261,32 @@ function InlineListField({ label, values, onSave }: { label: string, values: str
   );
 }
 
-function VersionHistoryTab() {
-  const versions = [
-    { id: 'v2', time: '10:35 AM Today', source: 'Manual Edit', tagColor: 'bg-blue-500/10 text-blue-600', summary: 'Updated Acceptance Criteria to include guest email validation.' },
-    { id: 'v1', time: '10:00 AM Today', source: 'Generated', tagColor: 'bg-purple-500/10 text-purple-600', summary: 'Initial AI generation from Epic.' },
-  ];
+function VersionHistoryTab({ projectId, storyId, currentVersion }: { projectId: string; storyId: string; currentVersion: number }) {
+  const [versions, setVersions] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    api.getVersions(projectId).then((data) => {
+      const storyVersions = data.filter(v => v.entityId === storyId && v.entityType === 'story');
+      // Sort newest first
+      storyVersions.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      setVersions(storyVersions);
+      setLoading(false);
+    });
+  }, [projectId, storyId]);
+
+  const handleRestore = async (versionStr: string) => {
+    const vNum = parseInt(versionStr.replace('v', ''), 10);
+    try {
+      await api.undoArtifact(projectId, 'story', storyId, vNum);
+      window.location.reload(); // Refresh the page to show the restored story
+    } catch (e) {
+      console.error('Failed to restore version:', e);
+      alert('Failed to restore version');
+    }
+  };
+
+  if (loading) return <div className="text-sm text-muted-foreground">Loading versions...</div>;
 
   return (
     <div className="space-y-8">
@@ -273,16 +294,17 @@ function VersionHistoryTab() {
         <div key={v.id} className="relative pl-6 pb-8 border-l-2 border-border last:border-0 last:pb-0">
           <div className="absolute w-3 h-3 bg-background border-2 border-primary rounded-full -left-[7.5px] top-1" />
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-xs text-muted-foreground font-medium">{v.time}</span>
-            <span className={cn("text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wider", v.tagColor)}>{v.source}</span>
+            <span className="text-xs text-muted-foreground font-medium">{new Date(v.timestamp).toLocaleString()}</span>
+            <span className="text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wider bg-purple-500/10 text-purple-600">{v.author || v.source}</span>
           </div>
-          <p className="text-sm text-foreground mb-3">{v.summary}</p>
+          <p className="text-sm text-foreground mb-3">{v.changes || 'No summary available'}</p>
           <div className="flex gap-2">
             <Button variant="secondary" size="sm" className="h-7 text-xs">View Diff</Button>
-            {i !== 0 && <Button variant="ghost" size="sm" className="h-7 text-xs text-primary">Restore this version</Button>}
+            {i !== 0 && <Button variant="ghost" size="sm" className="h-7 text-xs text-primary" onClick={() => handleRestore(v.version)}>Restore this version</Button>}
           </div>
         </div>
       ))}
+      {versions.length === 0 && <div className="text-sm text-muted-foreground">No history available.</div>}
     </div>
   );
 }

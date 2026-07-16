@@ -40,6 +40,7 @@ export default function EpicReviewPage() {
         const state = res.state || {};
         setWorkflowStatus(state.workflow_status || 'UNKNOWN');
         const rawEpics: any[] = state.epics || [];
+        const versions: any[] = state.artifact_versions || [];
         setEpics(
           rawEpics.map((e: any, idx: number) => ({
             id: e.id,
@@ -48,6 +49,12 @@ export default function EpicReviewPage() {
             summary: e.description || '',
             status: (e.metadata?.status as EntityStatus) || 'needs_review',
             confidenceScore: e.metadata?.confidence_score ?? 0,
+            version: Math.max(
+              1,
+              versions.filter(
+                (v: any) => v.entityType === 'epic' && v.entityId === e.id
+              ).length
+            ),
           }))
         );
         const epicNames = new Map(rawEpics.map((e: any) => [e.id, e.name || e.title || e.id]));
@@ -111,7 +118,8 @@ export default function EpicReviewPage() {
     setRegeneratingIds((prev) => new Set(prev).add(epicId));
     setActiveFeedbackId(null);
     try {
-      const updatedEpic = await api.regenerateEpic(projectId, epicId, feedbackText);
+      const epicToRegenerate = epics.find(e => e.id === epicId);
+      const updatedEpic = await api.regenerateEpic(projectId, epicId, feedbackText, epicToRegenerate?.sNo);
       setEpics((prev) =>
         prev.map((e) =>
           e.id === epicId ? { ...updatedEpic, status: 'ready' as EntityStatus, version: (e.version || 1) + 1 } : e
@@ -136,20 +144,22 @@ export default function EpicReviewPage() {
     setActiveFeedbackId(null);
   };
 
+  const handleRestoreEpic = async (epicId: string, versionToRestore: number) => {
+    try {
+      await api.undoArtifact(projectId, 'epic', epicId, versionToRestore);
+      window.location.reload(); // Quickest way to reflect restored state
+    } catch (err) {
+      console.error('Failed to restore epic:', err);
+      alert('Failed to restore version');
+    }
+  };
+
   const allApproved = epics.length > 0 && epics.every((e) => e.status === 'approved');
   const allReviewed = epics.length > 0 && epics.every((e) => e.status === 'approved' || e.status === 'rejected');
   const hasApproved = epics.some((e) => e.status === 'approved');
   const canProceed = allReviewed && hasApproved;
 
-  useEffect(() => {
-    // Only auto-redirect if all reviewed AND we are already past the outline generation stage
-    if (canProceed && workflowStatus !== 'OUTLINE_REVIEW_REQUIRED') {
-      const timer = setTimeout(() => {
-        router.push(`/projects/${projectId}/stories`);
-      }, 1500);
-      return () => clearTimeout(timer);
-    }
-  }, [canProceed, projectId, router, workflowStatus]);
+  // Auto-navigation removed as requested; users must click Proceed explicitly.
 
   const handleApproveOutline = async () => {
     try {
@@ -361,7 +371,7 @@ export default function EpicReviewPage() {
                                 {epic.title}
                                 {epic.version && epic.version > 1 && (
                                   <span className="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold">
-                                    v{epic.version}
+                                    version-{epic.version}
                                   </span>
                                 )}
                                 {epic.status === 'approved' && <CheckCircle2 className="w-4 h-4 text-green-500" />}
@@ -396,6 +406,16 @@ export default function EpicReviewPage() {
                           >
                             <RotateCw className="w-3 h-3 mr-1.5" /> Regenerate
                           </Button>
+                          {epic.version && epic.version > 1 && (
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="h-7 px-2.5 text-[11px] font-semibold text-primary hover:bg-primary/10"
+                              onClick={() => handleRestoreEpic(epic.id, epic.version! - 1)}
+                            >
+                              <RotateCw className="w-3 h-3 mr-1.5 transform -scale-x-100" /> Undo
+                            </Button>
+                          )}
                           <Button
                             size="sm"
                             variant="secondary"
