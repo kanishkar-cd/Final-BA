@@ -38,19 +38,30 @@ export default function StoryBoardPage() {
       });
   }, [projectId]);
 
-  const handleStatusChange = async (storyId: string, newStatus: EntityStatus, bumpVersion?: boolean) => {
-    try {
-      const updated = await api.updateStory(projectId, storyId, { status: newStatus });
-      setStories((prev) =>
-        prev.map((s) =>
-          s.id === storyId
-            ? { ...updated, version: bumpVersion ? (s.version || 1) + 1 : s.version }
-            : s
-        )
-      );
-    } catch (err) {
-      console.error(err);
-    }
+  const handleStatusChange = (storyId: string, newStatus: EntityStatus, bumpVersion?: boolean) => {
+    // 1. Optimistic UI update
+    setStories((prev) =>
+      prev.map((s) =>
+        s.id === storyId
+          ? { ...s, status: newStatus, version: bumpVersion ? (s.version || 1) + 1 : s.version }
+          : s
+      )
+    );
+
+    // 2. Async background call
+    api.updateStory(projectId, storyId, { status: newStatus })
+      .then((updated) => {
+        setStories((prev) =>
+          prev.map((s) =>
+            s.id === storyId
+              ? { ...s, ...updated, version: bumpVersion ? (s.version || 1) + 1 : s.version }
+              : s
+          )
+        );
+      })
+      .catch((err) => {
+        console.error('Failed to update story status:', err);
+      });
   };
 
   const handleUpdateStory = (updatedStory: Story) => {
@@ -588,7 +599,7 @@ function StoryCard({
                 className={cn(
                   'h-7 px-2.5 text-[11px] font-semibold bg-background hover:bg-red-50 hover:text-red-600 hover:border-red-200 dark:hover:bg-red-900/20 dark:hover:text-red-400',
                   story.status === 'rejected' &&
-                    'bg-red-50 border-red-200 text-red-600 dark:bg-red-900/20 dark:text-red-400'
+                    '!bg-red-50 !border-red-200 !text-red-600 dark:!bg-red-900/20 dark:!text-red-400'
                 )}
                 onClick={() => onStatusChange('rejected')}
               >
@@ -600,7 +611,7 @@ function StoryCard({
                 className={cn(
                   'h-7 px-2.5 text-[11px] font-semibold bg-background hover:bg-green-50 hover:text-green-600 hover:border-green-200 dark:hover:bg-green-900/20 dark:hover:text-green-400',
                   story.status === 'approved' &&
-                    'bg-green-50 border-green-200 text-green-600 dark:bg-green-900/20 dark:text-green-400'
+                    '!bg-green-50 !border-green-200 !text-green-600 dark:!bg-green-900/20 dark:!text-green-400'
                 )}
                 onClick={() => onStatusChange('approved')}
               >

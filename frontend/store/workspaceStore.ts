@@ -8,6 +8,7 @@ interface WorkspaceState {
   setActiveWorkspaceId: (id: string | null) => void;
   createWorkspace: (name: string, description: string) => void;
   removeWorkspace: (id: string) => void;
+  updateWorkspaceStatus: (id: string, status: 'active' | 'completed') => void;
 }
 
 export const useWorkspaceStore = create<WorkspaceState>()(
@@ -35,6 +36,12 @@ export const useWorkspaceStore = create<WorkspaceState>()(
         }),
       removeWorkspace: (id) =>
         set((state) => ({ workspaces: state.workspaces.filter((w) => w.id !== id) })),
+      updateWorkspaceStatus: (id, status) =>
+        set((state) => ({
+          workspaces: state.workspaces.map((w) =>
+            w.id === id ? { ...w, status } : w
+          ),
+        })),
     }),
     { name: 'ba-workspaces' }
   )

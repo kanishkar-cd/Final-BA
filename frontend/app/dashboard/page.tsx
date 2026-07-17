@@ -91,7 +91,7 @@ export default function DashboardPage() {
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>
-                <Link href={`/projects/${ws.id}/epics`}>
+                <Link href={`/projects/${ws.id}/processing`}>
                   <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground text-xs px-3 py-1.5 h-8 rounded-lg font-bold border-none transition-colors shadow-sm">
                     Open Project
                   </Button>

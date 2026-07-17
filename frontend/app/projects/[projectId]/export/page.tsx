@@ -1,19 +1,21 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { Download, FileText, FileSpreadsheet, File, Loader2, AlertTriangle } from 'lucide-react';
 import { api } from '@/services/api';
 import { Story, Epic } from '@/services/mockData';
 import { Button } from '@/components/common/Button';
 import { Modal } from '@/components/common/Modal';
 import { cn } from '@/lib/utils';
+import { useWorkspaceStore } from '@/store/workspaceStore';
 
 type ExportFormat = 'json' | 'csv' | 'txt';
 type ExportStatus = 'idle' | 'processing' | 'done' | 'error';
 
 export default function ExportPage() {
   const params = useParams();
+  const router = useRouter();
   const projectId = params?.projectId as string;
 
   const [epics, setEpics] = useState<Epic[]>([]);
@@ -45,6 +47,7 @@ export default function ExportPage() {
     try {
       await api.exportWorkflow(projectId, selectedFormat);
       setExportStatus('done');
+      useWorkspaceStore.getState().updateWorkspaceStatus(projectId, 'completed');
     } catch (err: any) {
       setExportError(err?.message || 'Export failed.');
       setExportStatus('error');
@@ -106,12 +109,6 @@ export default function ExportPage() {
               {epics.length} epic{epics.length !== 1 ? 's' : ''} &middot; {stories.length} user stor{stories.length !== 1 ? 'ies' : 'y'} &middot; Generated {new Date().toLocaleDateString()}
             </p>
           </div>
-          <Button
-            onClick={() => { setIsExportModalOpen(true); setExportStatus('idle'); setExportError(null); }}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-4 h-9 shadow-sm rounded-lg flex items-center gap-2"
-          >
-            <Download className="w-4 h-4" /> Export
-          </Button>
         </div>
       </div>
 
@@ -150,6 +147,22 @@ export default function ExportPage() {
                 </div>
               </div>
             )}
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-border flex items-center justify-between">
+            <Button
+              variant="ghost"
+              onClick={() => router.push(`/projects/${projectId}/validation`)}
+              className="text-muted-foreground hover:text-foreground hover:bg-accent px-4 h-10 rounded-lg text-sm"
+            >
+              Back to Validation
+            </Button>
+            <Button
+              onClick={() => { setIsExportModalOpen(true); setExportStatus('idle'); setExportError(null); }}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 h-10 shadow-md rounded-lg flex items-center gap-2"
+            >
+              <Download className="w-4 h-4" /> Export Document
+            </Button>
           </div>
         </div>
       </div>

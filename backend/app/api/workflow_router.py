@@ -120,6 +120,17 @@ async def undo_artifact(
     except WorkflowStateNotFoundError as exc:
         raise _not_found(exc) from exc
 
+@router.post("/{workflow_id}/approve-outline")
+async def approve_outline(
+    workflow_id: str,
+    workflow_service: WorkflowApiService = Depends(get_workflow_api_service),
+) -> dict:
+    """Approve the epic/feature outline and transition the workflow status."""
+    try:
+        return await workflow_service.update_state_partial(workflow_id, {"workflow_status": "OUTLINE_APPROVED"})
+    except WorkflowStateNotFoundError as exc:
+        raise _not_found(exc) from exc
+
 # ── MCP → Agent-1 workflow endpoints ─────────────────────────────────────────
 # These endpoints let you start the full pipeline directly from a Jira issue
 # key or a Confluence page ID.  The MCP connector fetches raw_text, which is
