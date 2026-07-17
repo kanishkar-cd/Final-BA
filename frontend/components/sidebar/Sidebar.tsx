@@ -46,14 +46,19 @@ export const Sidebar: React.FC = () => {
     { id: 7, label: 'Final Export', icon: CheckCircle, path: 'export' }
   ];
 
+  const filteredSteps = currentWorkspace?.status === 'completed'
+    ? steps.filter(s => s.path === 'export')
+    : steps;
+
   // Calculate arc offset for the wheel effect
   const getOffset = (index: number, total: number) => {
+    if (total <= 1) return 0;
     const normalized = index / (total - 1);
     const curve = Math.sin(normalized * Math.PI);
     return curve * 30; // 30px maximum bulge
   };
 
-  const dockItems = steps.map((step) => {
+  const filteredDockItems = filteredSteps.map((step) => {
     const Icon = step.icon;
     const isActive = pathname.includes(step.path);
     return {
@@ -110,10 +115,10 @@ export const Sidebar: React.FC = () => {
                   {/* Vertical Arc Background Line */}
                   <div className="absolute left-[38px] top-4 bottom-4 w-px bg-gradient-to-b from-transparent via-border to-transparent -z-10" />
                   
-                  {steps.map((step, idx) => {
+                  {filteredSteps.map((step, idx) => {
                     const Icon = step.icon;
                     const isActive = pathname.includes(step.path);
-                    const offset = getOffset(idx, steps.length);
+                    const offset = getOffset(idx, filteredSteps.length);
                     
                     return (
                       <Link
@@ -143,7 +148,7 @@ export const Sidebar: React.FC = () => {
             ) : (
               <div className="flex flex-col items-center justify-center h-full">
                 <Dock 
-                  items={dockItems}
+                  items={filteredDockItems}
                   direction="vertical"
                   panelHeight={52}
                   baseItemSize={38}

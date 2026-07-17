@@ -3,15 +3,75 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Plus, FolderPlus, Clock, CheckCircle2, ArrowRight, Trash2 } from 'lucide-react';
+import { Plus, FolderPlus, Clock, CheckCircle2, ArrowRight, Trash2, Loader2 } from 'lucide-react';
 import { useWorkspaceStore } from '@/store/workspaceStore';
 import { Badge } from '@/components/common/Badge';
 import { Button } from '@/components/common/Button';
 import { cn } from '@/lib/utils';
 import MagicBento, { MagicBentoCard } from '@/components/common/MagicBento';
+import { api } from '@/services/api';
+
+function getNextPage(response: any): string {
+  if (!response) return 'processing';
+  const status = response.workflow_status || response.state?.workflow_status || 'PENDING';
+  const node = response.state?.current_node || response.state?.state?.current_node || 'START';
+  
+  if (status === 'RUNNING' || status === 'PENDING') {
+    return 'processing';
+  }
+  
+  if (status === 'FAILED') {
+    return 'processing';
+  }
+  
+  switch (node) {
+    case 'START':
+    case 'PENDING':
+    case 'preprocessing':
+      return 'requirements';
+    case 'requirement_analysis':
+      return 'epics';
+    case 'epic_generation':
+    case 'feature_generation':
+    case 'one_line_story_generation':
+      return 'stories';
+    case 'user_story_generation':
+      return 'validation';
+    case 'validation':
+    case 'human_review_hook':
+      return 'export';
+    case 'COMPLETED':
+    case 'END':
+      return 'export';
+    default:
+      return 'processing';
+  }
+}
 
 export default function DashboardPage() {
   const { workspaces } = useWorkspaceStore();
+  const router = useRouter();
+  const [openingId, setOpeningId] = useState<string | null>(null);
+
+  const handleOpenProject = async (projectId: string, status: string) => {
+    if (status === 'completed') {
+      router.push(`/projects/${projectId}/export`);
+      return;
+    }
+
+    setOpeningId(projectId);
+    try {
+      const workflowId = localStorage.getItem(`wf_id_${projectId}`) || projectId;
+      const res = await api.getWorkflowState(workflowId);
+      const nextTab = getNextPage(res);
+      router.push(`/projects/${projectId}/${nextTab}`);
+    } catch (err) {
+      console.warn("Failed to fetch workflow state, defaulting to processing:", err);
+      router.push(`/projects/${projectId}/processing`);
+    } finally {
+      setOpeningId(null);
+    }
+  };
 
 
 
@@ -91,11 +151,17 @@ export default function DashboardPage() {
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>
-                <Link href={`/projects/${ws.id}/processing`}>
-                  <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground text-xs px-3 py-1.5 h-8 rounded-lg font-bold border-none transition-colors shadow-sm">
-                    Open Project
-                  </Button>
-                </Link>
+                <Button 
+                  size="sm" 
+                  disabled={openingId !== null}
+                  onClick={() => handleOpenProject(ws.id, ws.status)}
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground text-xs px-3 py-1.5 h-8 rounded-lg font-bold border-none transition-colors shadow-sm flex items-center gap-1.5"
+                >
+                  {openingId === ws.id ? (
+                    <Loader2 className="w-3 h-3 animate-spin" />
+                  ) : null}
+                  Open Project
+                </Button>
               </div>
             </MagicBentoCard>
           ))}
