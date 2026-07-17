@@ -30,6 +30,7 @@
   --ring: #0284C7;
   
   --radius: 0.5rem;
+  --star-glow-color: #0F172A;
 
   /* Legacy / App-specific tokens */
   --color-bg-deep: #f8f9fa;
@@ -75,6 +76,7 @@
   --border: #1E293B;
   --input: #1E293B;
   --ring: #3B82F6;
+  --star-glow-color: #0ECEF0;
 }
 
 @theme inline {
@@ -121,4 +123,62 @@ body {
   background-color: transparent;
   color: var(--foreground);
   transition: color 0.3s ease;
+}
+
+/* StarBorder Effect Styling */
+.star-border-container {
+  display: inline-flex;
+  position: relative;
+  border-radius: 8px !important;
+  overflow: hidden;
+  padding: 5px !important;
+  border: none !important;
+}
+
+.border-gradient-bottom {
+  position: absolute;
+  width: 300%;
+  height: 50%;
+  opacity: 0.95;
+  bottom: -10px;
+  right: -250%;
+  border-radius: 50%;
+  animation: star-movement-bottom 1.5s linear infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.border-gradient-top {
+  position: absolute;
+  opacity: 0.95;
+  width: 300%;
+  height: 50%;
+  top: -10px;
+  left: -250%;
+  border-radius: 50%;
+  animation: star-movement-top 1.5s linear infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes star-movement-bottom {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-100%, 0%);
+    opacity: 0.1;
+  }
+}
+
+@keyframes star-movement-top {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, 0%);
+    opacity: 0.1;
+  }
 }
