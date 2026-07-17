@@ -62,15 +62,16 @@ export default function NewProjectPage() {
         localStorage.setItem(`wf_file_path_${newId}`, importRes.file_path);
         localStorage.setItem(`workflow_started_${newId}`, 'false');
       } else if (activeSource === 'jira') {
-        await api.startWorkflowFromJira(jiraIssueKey, jiraIncludeComments, confidenceThreshold, maxRetryAttempts, newId);
+        await api.startWorkflowFromJira(jiraIssueKey, jiraIncludeComments, confidenceThreshold, maxRetryAttempts, newId, validationMode);
         localStorage.setItem(`workflow_started_${newId}`, 'true');
       } else if (activeSource === 'confluence') {
-        await api.startWorkflowFromConfluence(confluencePageId, confidenceThreshold, maxRetryAttempts, newId);
+        await api.startWorkflowFromConfluence(confluencePageId, confidenceThreshold, maxRetryAttempts, newId, validationMode);
         localStorage.setItem(`workflow_started_${newId}`, 'true');
       } else {
         // No real source selected — go through processing with mock
         localStorage.setItem(`workflow_started_${newId}`, 'true');
       }
+      localStorage.setItem(`wf_validation_mode_${newId}`, validationMode);
       createWorkspace(newName, `Generated from ${activeSource}`);
       router.push(`/projects/${newId}/processing`);
     } catch (err: any) {

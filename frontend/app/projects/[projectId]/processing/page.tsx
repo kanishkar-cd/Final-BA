@@ -161,6 +161,11 @@ export default function ProcessingPage() {
             completedRef.current = true;
             setIsComplete(true);
             setCurrentNode(wfStatus);
+            
+            const mode = localStorage.getItem(`wf_validation_mode_${projectId}`) || state.metadata?.validationMode || 'every-step';
+            if (mode === 'final') {
+              router.push(`/projects/${projectId}/export`);
+            }
             return;
           }
 
@@ -206,6 +211,10 @@ export default function ProcessingPage() {
     }
   };
 
+  // Determine if we should show the manual continue button
+  const validationMode = typeof window !== 'undefined' ? localStorage.getItem(`wf_validation_mode_${projectId}`) : 'every-step';
+  const showContinueButton = isComplete && validationMode !== 'final';
+
   return (
     <div className="flex-1 flex flex-col min-h-0 bg-background text-foreground overflow-auto">
       {/* ── Header ────────────────────────────────────────────────────────── */}
@@ -224,7 +233,7 @@ export default function ProcessingPage() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            {isComplete && (
+            {showContinueButton && (
               <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
                 <Button onClick={handleContinue} className="flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 shadow-md">
                   {currentNode === 'OUTLINE_REVIEW_REQUIRED' ? 'Review Epics & Features' : 'Review Requirements'} <ArrowRight className="w-4 h-4" />

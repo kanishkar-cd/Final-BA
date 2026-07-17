@@ -141,7 +141,8 @@ export const api = {
     filePath: string,
     confidenceThreshold: number,
     maxRetryAttempts: number,
-    projectId: string
+    projectId: string,
+    validationMode: string = 'every-step'
   ): Promise<any> => {
     return apiClient.post('/api/workflow/start', {
       workflow_id: projectId,
@@ -149,6 +150,7 @@ export const api = {
       project_id: projectId,
       confidence_threshold: confidenceThreshold,
       max_retry_attempts: maxRetryAttempts,
+      metadata: { validationMode },
     });
   },
 
@@ -161,7 +163,8 @@ export const api = {
     includeComments: boolean,
     confidenceThreshold: number,
     maxRetryAttempts: number,
-    projectId: string
+    projectId: string,
+    validationMode: string = 'every-step'
   ): Promise<any> => {
     return apiClient.post('/api/workflow/mcp/jira/start', {
       workflow_id: projectId,
@@ -170,6 +173,7 @@ export const api = {
       project_id: projectId,
       confidence_threshold: confidenceThreshold,
       max_retry_attempts: maxRetryAttempts,
+      metadata: { validationMode },
     });
   },
 
@@ -177,7 +181,8 @@ export const api = {
     pageId: string,
     confidenceThreshold: number,
     maxRetryAttempts: number,
-    projectId: string
+    projectId: string,
+    validationMode: string = 'every-step'
   ): Promise<any> => {
     return apiClient.post('/api/workflow/mcp/confluence/start', {
       workflow_id: projectId,
@@ -185,6 +190,7 @@ export const api = {
       project_id: projectId,
       confidence_threshold: confidenceThreshold,
       max_retry_attempts: maxRetryAttempts,
+      metadata: { validationMode },
     });
   },
 

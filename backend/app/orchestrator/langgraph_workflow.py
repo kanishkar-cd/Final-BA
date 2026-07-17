@@ -169,7 +169,8 @@ class LangGraphWorkflow:
                         )
                     )
                 elif node_name == "human_review_hook" and state.get("review_required"):
-                    merged_update.setdefault("workflow_status", "REVIEW_REQUIRED")
+                    if not (state.get("metadata", {}).get("validationMode") == "final"):
+                        merged_update.setdefault("workflow_status", "REVIEW_REQUIRED")
                 merged_update.update(
                     {
                         "workflow_status": merged_update.get(
@@ -279,6 +280,13 @@ class LangGraphWorkflow:
 
         if getattr(validation_result, "passed", False):
             return "success"
+        
+        validation_mode = (state.get("metadata") or {}).get("validationMode")
+        if validation_mode == "final":
+             if state.get("workflow_status") == "RETRY_REQUIRED":
+                 return "retry"
+             return "failure"
+
         if state.get("review_required") or state.get("workflow_status") == "REVIEW_REQUIRED":
             return "human_review"
         if state.get("workflow_status") == "RETRY_REQUIRED":
@@ -339,6 +347,20 @@ class LangGraphWorkflow:
                 "warnings": [
                     *state.get("warnings", []),
                     "Validation requested a retry; workflow is looping back to user story generation.",
+                ],
+            }
+
+        validation_mode = (state.get("metadata") or {}).get("validationMode")
+        if validation_mode == "final":
+            return {
+                "retry_status": "RETRIES_EXHAUSTED",
+                "review_required": False,
+                "review_status": "NOT_REQUIRED",
+                "approval_status": "NOT_REQUIRED",
+                "workflow_status": "COMPLETED",
+                "warnings": [
+                    *state.get("warnings", []),
+                    "Validation remains unresolved after retry exhaustion, but proceeding automatically due to End-to-End mode.",
                 ],
             }
 
