@@ -39,37 +39,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        className={`star-border-container relative overflow-hidden inline-flex items-center justify-center font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
-        style={{
-          padding: '5px',
-          background: 'rgba(0, 0, 0, 0.1)',
-          border: 'none',
-          ...props.style
-        }}
+        className={`${baseStyle} ${variants[variant]} ${sizes[size]} ${className}`}
         {...props}
       >
-        <div
-          className="border-gradient-bottom"
-          style={{
-            background: 'radial-gradient(circle, #7e22ce, transparent 35%)',
-            animationDuration: '1.5s'
-          }}
-        />
-        <div
-          className="border-gradient-top"
-          style={{
-            background: 'radial-gradient(circle, #7e22ce, transparent 35%)',
-            animationDuration: '1.5s'
-          }}
-        />
-        <span 
-          className={`relative z-10 flex items-center justify-center gap-1.5 w-full h-full rounded-[3px] ${variants[variant]} ${sizes[size]}`}
-          style={{
-            transition: 'background-color 200ms ease, color 200ms ease',
-          }}
-        >
-          {children}
-        </span>
+        {children}
       </button>
     );
   }

@@ -24,7 +24,7 @@ import {
 import { useInView } from 'react-intersection-observer';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useTheme } from 'next-themes';
-import MagicBento from '@/components/common/MagicBento';
+
 // @ts-ignore
 import * as THREE from 'three';
 
@@ -317,30 +317,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* SECTION 4 - KEY BENEFITS */}
-      <section className="bg-transparent py-[100px] px-[48px] w-full" ref={refBenefits}>
-        <div className="max-w-[1280px] mx-auto w-full">
-          <div className="flex flex-col items-center">
-            <span className="text-[13px] text-primary uppercase tracking-widest font-bold text-center">Key Benefits</span>
-            <h2 className="text-[32px] font-bold text-foreground mt-[12px] text-center">Built for Modern Teams</h2>
-          </div>
-
-          <div className="mt-[64px] flex justify-center w-full">
-            <MagicBento 
-              textAutoHide={true}
-              enableStars={true}
-              enableSpotlight={true}
-              enableBorderGlow={true}
-              enableTilt={true}
-              enableMagnetism={true}
-              clickEffect={true}
-              spotlightRadius={300}
-              particleCount={12}
-              glowColor="0, 213, 255"
-            />
-          </div>
-        </div>
-      </section>
 
       {/* SECTION 5 - CTA BANNER */}
       <section className="bg-transparent pb-[100px] px-[48px] w-full">
