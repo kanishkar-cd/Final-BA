@@ -11,6 +11,7 @@ from app.prompts.story_validation_prompt import (
     USER_PROMPT as STORY_VALIDATION_USER_PROMPT,
 )
 from app.prompts.user_story_prompt import (
+    BATCH_USER_PROMPT as USER_STORY_BATCH_USER_PROMPT,
     SYSTEM_PROMPT as USER_STORY_SYSTEM_PROMPT,
     USER_PROMPT as USER_STORY_USER_PROMPT,
 )
@@ -99,6 +100,16 @@ class PromptManager:
 
     def get_user_story_prompt(self, **kwargs) -> PromptTemplate:
         return self.get_prompt(self.USER_STORY, **kwargs)
+
+    @staticmethod
+    def get_user_story_batch_prompt(batch_context: str, story_schema: str) -> PromptTemplate:
+        return PromptTemplate(
+            system_prompt=USER_STORY_SYSTEM_PROMPT,
+            user_prompt=USER_STORY_BATCH_USER_PROMPT.format(
+                batch_context=batch_context,
+                story_schema=story_schema,
+            ),
+        )
 
     def get_story_validation_prompt(self, **kwargs) -> PromptTemplate:
         return self.get_prompt(self.STORY_VALIDATION, **kwargs)

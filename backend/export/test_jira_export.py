@@ -203,7 +203,7 @@ def create_sample_workflow_output():
     return user_stories, epics, features, traceability, export_metadata
 
 
-def test_jira_export():
+def run_jira_export_demo():
     """Test the complete Jira export workflow."""
     
     print("=" * 70)
@@ -349,4 +349,4 @@ def test_jira_export():
 
 
 if __name__ == "__main__":
-    test_jira_export()
+    run_jira_export_demo()

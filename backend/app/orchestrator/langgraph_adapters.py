@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from typing import Any
 from uuid import UUID, uuid4
@@ -171,7 +172,8 @@ class WorkflowStateAdapter:
         return state
 
     def generation_request_from_state(self, state: WorkflowState) -> GenerateUserStoriesRequest:
-        agent1_output = state.get("agent1_output") or Agent1Output()
+        retrieved_chunks = state.get("retrieved_chunks") or []
+        agent1_output = state.get("agent1_output") or Agent1Output(chunks=retrieved_chunks)
         agent2_output = state.get("agent2_output") or Agent2Output(
             epics=state.get("epics", []),
             features=state.get("features", []),
@@ -181,6 +183,7 @@ class WorkflowStateAdapter:
             workflow_id=state.get("workflow_id", f"WF-{uuid4().hex[:8].upper()}"),
             confidence_threshold=state.get("confidence_threshold", 0.8),
             max_retry_attempts=state.get("max_retry_attempts", 3),
+            retrieved_chunks=retrieved_chunks,
             agent1_output=agent1_output,
             agent2_output=agent2_output,
             traceability=state.get("traceability", {}),
@@ -229,6 +232,7 @@ class WorkflowStateAdapter:
             functional_requirements=self.artifacts_from_strings(
                 requirement_analysis.get("functional_requirements", []),
                 prefix="FR",
+                actor_mappings=requirement_analysis.get("actor_requirement_mappings", []),
             ),
             non_functional_requirements=self.artifacts_from_strings(
                 requirement_analysis.get("non_functional_requirements", []),
@@ -240,15 +244,44 @@ class WorkflowStateAdapter:
             traceability_metadata={
                 "source": "requirement_analysis_agent",
                 "business_goals": list(requirement_analysis.get("business_goals", [])),
+                "actor_requirement_mappings": list(
+                    requirement_analysis.get("actor_requirement_mappings", [])
+                ),
             },
         )
 
     @staticmethod
-    def artifacts_from_strings(values: list[str], *, prefix: str) -> list[PlanningArtifact]:
-        return [
-            PlanningArtifact(id=f"{prefix}-{index:03d}", name=value)
-            for index, value in enumerate(values, start=1)
-        ]
+    def artifacts_from_strings(
+        values: list[str],
+        *,
+        prefix: str,
+        actor_mappings: list[dict[str, Any]] | None = None,
+    ) -> list[PlanningArtifact]:
+        mappings = actor_mappings or []
+        artifacts: list[PlanningArtifact] = []
+        for index, value in enumerate(values, start=1):
+            normalized_value = " ".join(value.casefold().split()).rstrip(".")
+            mapping = next(
+                (
+                    item
+                    for item in mappings
+                    if isinstance(item, dict)
+                    and " ".join(str(item.get("requirement", "")).casefold().split()).rstrip(".")
+                    == normalized_value
+                ),
+                {},
+            )
+            artifacts.append(
+                PlanningArtifact(
+                    id=f"{prefix}-{index:03d}",
+                    name=value,
+                    metadata={
+                        "actor": str(mapping.get("actor", "")).strip() or None,
+                        "chunk_refs": list(mapping.get("chunk_refs") or []),
+                    },
+                )
+            )
+        return artifacts
 
     @staticmethod
     def build_traceability_matrix(
@@ -258,7 +291,6 @@ class WorkflowStateAdapter:
         requirements: list[PlanningArtifact],
     ) -> list[dict[str, Any]]:
         chunk_ids = [chunk.id for chunk in retrieved_chunks]
-        requirement_ids = [requirement.id for requirement in requirements]
         rows: list[dict[str, Any]] = []
         seen_mappings: set[tuple[str, str]] = set()
         for story in one_line_stories:
@@ -274,7 +306,8 @@ class WorkflowStateAdapter:
                         "one_line_story_id": story.id,
                         "epic_id": story.epic_id,
                         "chunk_ids": story.chunk_refs or chunk_ids,
-                        "requirement_ids": story.requirement_refs or requirement_ids,
+                        "requirement_ids": list(story.requirement_refs),
+                        "actor": story.actor,
                     }
                 )
         return rows
@@ -359,6 +392,7 @@ class EpicFeatureAdapter:
                         metadata={
                             "epic_id": epic.epic_id,
                             "source": "epic_generation.features",
+                            "actor": epic.feature_actors.get(feature_name),
                         },
                     )
                 )
@@ -375,34 +409,74 @@ class EpicOneLineStoryAdapter:
             epic_id = str(feature.metadata.get("epic_id", ""))
             features_by_epic.setdefault(epic_id, []).append(feature)
 
-        chunk_refs = [chunk.id for chunk in state.get("retrieved_chunks", [])]
         agent1_output = state.get("agent1_output") or Agent1Output()
-        requirement_refs = [
-            requirement.id for requirement in agent1_output.functional_requirements
-        ]
-        actor = agent1_output.actors[0] if agent1_output.actors else None
 
         for epic in getattr(state.get("epic_generation"), "epics", []):
             epic_features = features_by_epic.get(epic.epic_id, [])
-            if not epic_features:
-                continue
-            stories.append(
-                OneLineStoryInput(
-                    id=f"{epic.epic_id}-STORY-001",
-                    feature_id=epic_features[0].id,
-                    feature_refs=[feature.id for feature in epic_features],
-                    epic_id=epic.epic_id,
-                    summary=epic.one_line_story,
-                    actor=actor,
-                    business_value=self.business_value_from_story(
-                        epic.one_line_story
-                    ),
-                    requirement_refs=requirement_refs,
-                    chunk_refs=chunk_refs,
-                    dependency_refs=list(epic.dependencies),
+            for index, feature in enumerate(epic_features, start=1):
+                actor = str(feature.metadata.get("actor") or "").strip() or None
+                actor_parts = {
+                    part.casefold()
+                    for part in re.split(r"\s*(?:,|/|\band\b)\s*", actor or "")
+                    if part.strip()
+                }
+                actor_requirements = [
+                    requirement
+                    for requirement in agent1_output.functional_requirements
+                    if actor
+                    and str(requirement.metadata.get("actor") or "").casefold()
+                    in actor_parts
+                ]
+                feature_tokens = self.meaningful_tokens(feature.name or feature.id)
+                scoped_requirements = [
+                    requirement
+                    for requirement in actor_requirements
+                    if feature_tokens.intersection(
+                        self.meaningful_tokens(requirement.name or requirement.id)
+                    )
+                ]
+                requirement_refs = [requirement.id for requirement in scoped_requirements]
+                chunk_refs = list(
+                    dict.fromkeys(
+                        ref
+                        for requirement in scoped_requirements
+                        for ref in requirement.metadata.get("chunk_refs", [])
+                    )
                 )
-            )
+                if not chunk_refs:
+                    chunk_refs = [chunk.id for chunk in state.get("retrieved_chunks", [])]
+                goal = feature.name or feature.id
+                business_value = self.business_value_from_story(epic.one_line_story)
+                summary = (
+                    f"As a {actor}, I want to {goal}, so that {business_value}."
+                    if actor and business_value
+                    else goal
+                )
+                stories.append(
+                    OneLineStoryInput(
+                        id=f"{epic.epic_id}-STORY-{index:03d}",
+                        feature_id=feature.id,
+                        feature_refs=[feature.id],
+                        epic_id=epic.epic_id,
+                        summary=summary,
+                        actor=actor,
+                        business_value=business_value,
+                        requirement_refs=requirement_refs,
+                        chunk_refs=chunk_refs,
+                        dependency_refs=list(epic.dependencies),
+                    )
+                )
         return stories
+
+    @staticmethod
+    def meaningful_tokens(value: str) -> set[str]:
+        stop_words = {
+            "and", "for", "the", "with", "management", "functionality", "system",
+        }
+        return {
+            token for token in re.findall(r"[a-z0-9]+", value.casefold())
+            if len(token) > 2 and token not in stop_words
+        }
 
     @staticmethod
     def business_value_from_story(story: str) -> str | None:

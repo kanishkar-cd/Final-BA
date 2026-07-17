@@ -232,7 +232,7 @@ def test_langgraph_workflow_wires_nodes_in_required_sequence(monkeypatch: Any) -
         "user_story_generation",
         "validation",
     ]
-    assert final_state["workflow_status"] == "COMPLETED"
+    assert final_state["workflow_status"] == "FAILED"
 
 
 def test_validation_routing_uses_retry_human_review_and_success_paths() -> None:
@@ -249,6 +249,9 @@ def test_validation_routing_uses_retry_human_review_and_success_paths() -> None:
             regeneration_target=RegenerationTarget.NONE,
         )
     }
+    retry_state.update(
+        workflow._validation_transition(retry_state, retry_state["validation_result"])
+    )
     assert workflow._route_after_validation(retry_state) == "retry"
 
     review_state = {
@@ -262,6 +265,9 @@ def test_validation_routing_uses_retry_human_review_and_success_paths() -> None:
             regeneration_target=RegenerationTarget.HUMAN_REVIEW,
         )
     }
+    review_state.update(
+        workflow._validation_transition(review_state, review_state["validation_result"])
+    )
     assert workflow._route_after_validation(review_state) == "human_review"
 
     success_state = {
@@ -275,7 +281,101 @@ def test_validation_routing_uses_retry_human_review_and_success_paths() -> None:
             regeneration_target=RegenerationTarget.NONE,
         )
     }
+    success_state.update(
+        workflow._validation_transition(success_state, success_state["validation_result"])
+    )
     assert workflow._route_after_validation(success_state) == "success"
+
+
+def test_retry_exhaustion_routes_to_human_review_with_non_completed_status() -> None:
+    class RetryExhaustionNodes:
+        def __init__(self) -> None:
+            self.validation_calls = 0
+            self.review_calls = 0
+
+        async def user_story_generation(self, state: dict[str, Any]) -> dict[str, Any]:
+            return {}
+
+        async def validation(self, state: dict[str, Any]) -> dict[str, Any]:
+            self.validation_calls += 1
+            return {"validation_result": ValidationResult(
+                validation_status=PipelineStatus.VALIDATION_FAILED,
+                passed=False,
+                confidence_score=0.4,
+                threshold=0.8,
+                retry_required=True,
+                review_required=False,
+                regeneration_target=RegenerationTarget.AGENT_3_USER_STORY,
+            )}
+
+        async def human_review_hook(self, state: dict[str, Any]) -> dict[str, Any]:
+            self.review_calls += 1
+            return {"human_review": {"status": "not_configured"}}
+
+    nodes = RetryExhaustionNodes()
+    workflow = LangGraphWorkflow(
+        nodes=nodes,
+        enable_nlp_rag_hook=False,
+        enable_human_review_hook=True,
+    )
+    final_state = asyncio.run(workflow.run_workflow({
+        "workflow_id": "WF-RETRY-EXHAUSTED",
+        "one_line_stories": [{"id": "OLS-1"}],
+        "max_retry_attempts": 2,
+    }))
+
+    assert nodes.validation_calls == 3
+    assert nodes.review_calls == 1
+    assert final_state["retry_count"] == 2
+    assert final_state["retry_status"] == "RETRIES_EXHAUSTED"
+    assert final_state["review_required"] is True
+    assert final_state["review_status"] == "PENDING"
+    assert final_state["workflow_status"] == "REVIEW_REQUIRED"
+    assert final_state["validation_result"].validation_status == PipelineStatus.VALIDATION_FAILED
+
+
+def test_validation_pass_after_retry_reports_completed() -> None:
+    class PassAfterRetryNodes:
+        def __init__(self) -> None:
+            self.validation_calls = 0
+
+        async def user_story_generation(self, state: dict[str, Any]) -> dict[str, Any]:
+            return {}
+
+        async def validation(self, state: dict[str, Any]) -> dict[str, Any]:
+            self.validation_calls += 1
+            passed = self.validation_calls == 2
+            return {"validation_result": ValidationResult(
+                validation_status=(
+                    PipelineStatus.VALIDATION_PASSED
+                    if passed
+                    else PipelineStatus.VALIDATION_FAILED
+                ),
+                passed=passed,
+                confidence_score=1.0 if passed else 0.4,
+                threshold=0.8,
+                retry_required=not passed,
+                review_required=False,
+                regeneration_target=(
+                    RegenerationTarget.NONE
+                    if passed
+                    else RegenerationTarget.AGENT_3_USER_STORY
+                ),
+            )}
+
+    nodes = PassAfterRetryNodes()
+    workflow = LangGraphWorkflow(nodes=nodes, enable_nlp_rag_hook=False)
+    final_state = asyncio.run(workflow.run_workflow({
+        "workflow_id": "WF-PASS-AFTER-RETRY",
+        "one_line_stories": [{"id": "OLS-1"}],
+        "max_retry_attempts": 3,
+    }))
+
+    assert nodes.validation_calls == 2
+    assert final_state["retry_count"] == 1
+    assert final_state["review_required"] is False
+    assert final_state["workflow_status"] == "COMPLETED"
+    assert final_state["validation_result"].validation_status == PipelineStatus.VALIDATION_PASSED
 
 
 def test_workflow_tracks_execution_history_and_progress() -> None:

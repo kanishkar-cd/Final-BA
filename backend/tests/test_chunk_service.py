@@ -5,6 +5,8 @@ import sys
 from typing import Sequence
 from uuid import UUID
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app.chunking.chunk_service import (
@@ -18,6 +20,12 @@ from app.schemas import Chunk
 
 DOCUMENT_ID = UUID("11111111-1111-1111-1111-111111111111")
 PROJECT_ID = UUID("22222222-2222-2222-2222-222222222222")
+
+
+@pytest.fixture(autouse=True)
+def disable_fast_chunking(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Keep semantic chunking tests independent from a developer's .env."""
+    monkeypatch.setenv("FAST_DOCUMENT_CHUNKING", "false")
 
 
 class FakeEmbeddingModel:

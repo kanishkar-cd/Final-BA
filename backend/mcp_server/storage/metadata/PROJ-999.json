@@ -3,7 +3,7 @@
   "project": "PROJ",
   "reporter": "John",
   "assignee": "Jane",
-  "created": "<MagicMock name='JIRA().issue().fields.created' id='2374047762144'>",
-  "updated": "<MagicMock name='JIRA().issue().fields.updated' id='2374047762816'>",
+  "created": "<MagicMock name='JIRA().issue().fields.created' id='2021377797360'>",
+  "updated": "<MagicMock name='JIRA().issue().fields.updated' id='2021377798032'>",
   "labels": []
 }

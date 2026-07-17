@@ -38,6 +38,7 @@ class UserStoryValidator:
         issues.extend(self._validate_duplicates(story_ids))
         for story in stories:
             issues.extend(self._validate_story(story, set(story_ids), payload, validated_by))
+        issues.extend(_validate_repeated_acceptance_templates(stories))
 
         coverage = {
             "requirements": _covers_required([item.id for item in payload.requirements], _story_requirement_refs(stories)),
@@ -153,12 +154,44 @@ class UserStoryValidator:
                     story_id=story.id,
                 )
             )
+        expected_actor = _expected_actor_for_story(story, payload)
+        if expected_actor and _normalize_text(story.persona) != _normalize_text(expected_actor):
+            issues.append(
+                _issue(
+                    "Persona Correctness",
+                    "persona",
+                    f"Story persona '{story.persona}' does not match mapped actor '{expected_actor}'.",
+                    story_id=story.id,
+                )
+            )
+        if story.persona and not _has_source_actor_evidence(story, payload):
+            issues.append(
+                _issue(
+                    "Persona Correctness",
+                    "persona",
+                    (
+                        f"Story persona '{story.persona}' has no supporting actor-to-requirement "
+                        "mapping for this capability. Infrastructure or non-functional work must "
+                        "not be assigned to a human persona without source evidence."
+                    ),
+                    story_id=story.id,
+                )
+            )
         if not story.acceptance_criteria:
             issues.append(_issue("Acceptance Criteria", "acceptance_criteria", "At least one acceptance criterion is required.", story_id=story.id))
         for criterion in story.acceptance_criteria:
             if not _is_given_when_then(criterion.description):
                 issues.append(
                     _issue("Acceptance Criteria", "acceptance_criteria", f"{criterion.id} must use Given/When/Then format.", story_id=story.id)
+                )
+            elif _is_generic_acceptance_criterion(criterion.description):
+                issues.append(
+                    _warning(
+                        "Acceptance Criteria",
+                        "acceptance_criteria",
+                        f"{criterion.id} uses a generic template without a concrete observable behavior.",
+                        story_id=story.id,
+                    )
                 )
         for dependency in story.dependencies:
             missing_ids = [dep_id for dep_id in dependency.depends_on if dep_id not in known_story_ids]
@@ -194,6 +227,12 @@ def _issue(category: str, field: str, message: str, story_id: str | None = None)
     )
 
 
+def _warning(category: str, field: str, message: str, story_id: str | None = None) -> ValidationIssue:
+    issue = _issue(category, field, message, story_id)
+    issue.severity = IssueSeverity.WARNING
+    return issue
+
+
 def _is_agile_story(text: str) -> bool:
     lower = text.lower()
     return lower.startswith("as a ") and " i want " in lower and " so that " in lower
@@ -202,6 +241,116 @@ def _is_agile_story(text: str) -> bool:
 def _is_given_when_then(text: str) -> bool:
     lower = text.lower()
     return all(token in lower for token in ["given", "when", "then"])
+
+
+def _expected_actor_for_story(
+    story: UserStory,
+    payload: ValidateUserStoriesRequest,
+) -> str | None:
+    traceability = payload.traceability
+    for item in traceability.get("one_line_stories", []):
+        if not isinstance(item, dict):
+            continue
+        if item.get("id") == story.one_line_story_id or item.get("feature_id") == story.feature_id:
+            actor = str(item.get("actor") or "").strip()
+            if actor:
+                return actor
+    for item in traceability.get("features", []):
+        if not isinstance(item, dict) or item.get("id") != story.feature_id:
+            continue
+        metadata = item.get("metadata") if isinstance(item.get("metadata"), dict) else {}
+        actor = str(metadata.get("actor") or "").strip()
+        if actor:
+            return actor
+    return None
+
+
+def _has_source_actor_evidence(
+    story: UserStory,
+    payload: ValidateUserStoriesRequest,
+) -> bool:
+    mappings = payload.traceability.get("actor_requirement_mappings", [])
+    if not isinstance(mappings, list) or not mappings:
+        return True
+    capability_tokens = _meaningful_words(" ".join(filter(None, [
+        story.title,
+        story.goal,
+        *(mapping.name for mapping in story.feature_mapping),
+    ])))
+    story_actors = {
+        _normalize_text(actor)
+        for actor in re.split(r"\s*(?:,|/|\band\b)\s*", story.persona or "")
+        if actor.strip()
+    }
+    for mapping in mappings:
+        if not isinstance(mapping, dict):
+            continue
+        mapped_actor = _normalize_text(str(mapping.get("actor") or ""))
+        requirement_tokens = _meaningful_words(str(mapping.get("requirement") or ""))
+        if mapped_actor in story_actors and capability_tokens.intersection(requirement_tokens):
+            return True
+    return False
+
+
+def _meaningful_words(value: str) -> set[str]:
+    stop_words = {
+        "a", "an", "and", "for", "of", "the", "to", "with", "system",
+        "management", "functionality", "capability",
+    }
+    return {
+        token for token in re.findall(r"[a-z0-9]+", value.casefold())
+        if len(token) > 2 and token not in stop_words
+    }
+
+
+def _is_generic_acceptance_criterion(text: str) -> bool:
+    normalized = _normalize_text(text)
+    generic_fragments = (
+        "behavior associated with that request",
+        "when the capability is used",
+        "when the system processes the request",
+        "then the resulting state is visible",
+        "outcome can be verified from the displayed information",
+        "produce the observable outcome stated in the mapped source requirement",
+    )
+    return any(fragment in normalized for fragment in generic_fragments)
+
+
+def _validate_repeated_acceptance_templates(stories: list[UserStory]) -> list[ValidationIssue]:
+    occurrences: dict[str, list[tuple[UserStory, str]]] = {}
+    for story in stories:
+        for criterion in story.acceptance_criteria:
+            key = _acceptance_template_key(criterion.description, story)
+            occurrences.setdefault(key, []).append((story, criterion.id))
+
+    issues: list[ValidationIssue] = []
+    for repeated in occurrences.values():
+        story_ids = {story.id for story, _ in repeated}
+        if len(story_ids) < 2:
+            continue
+        for story, criterion_id in repeated:
+            issues.append(
+                _warning(
+                    "Acceptance Criteria",
+                    "acceptance_criteria",
+                    f"{criterion_id} repeats the same normalized AC structure across stories.",
+                    story_id=story.id,
+                )
+            )
+    return issues
+
+
+def _acceptance_template_key(text: str, story: UserStory) -> str:
+    normalized = _normalize_text(text)
+    variable_values = [
+        story.persona,
+        story.goal,
+        story.title,
+        *(mapping.name for mapping in story.feature_mapping),
+    ]
+    for value in sorted((value for value in variable_values if value), key=len, reverse=True):
+        normalized = normalized.replace(_normalize_text(value), "<value>")
+    return re.sub(r"\b(us|ac|feat|feature|epic)-?\d+\b", "<id>", normalized)
 
 
 def _has_traceability(story: UserStory) -> bool:

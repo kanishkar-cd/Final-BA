@@ -116,7 +116,22 @@ class WorkflowApiService:
                 if issue.story_id
             )
         ) or [story.id for story in previous]
-        retry_payload = WorkflowStateAdapter().generation_request_from_state(state)
+        # A retry is also a valid standalone API operation. When no persisted
+        # workflow exists yet, build its generation context from the request
+        # instead of trying to adapt an empty state (which drops chunks and
+        # fails GenerateUserStoriesRequest validation).
+        try:
+            retry_payload = (
+                WorkflowStateAdapter().generation_request_from_state(state)
+                if state
+                else None
+            )
+        except ValueError:
+            retry_payload = None
+        if retry_payload is None:
+            retry_payload = GenerateUserStoriesRequest.model_validate(
+                request.model_dump()
+            )
         feedback = " ".join(
             issue.message.strip()
             for issue in request.validation_issues
@@ -535,7 +550,6 @@ class WorkflowApiService:
                 threshold=0.8,
             )
         if isinstance(validation_result, dict):
-            from app.schemas.user_story import ValidationResult
             return ValidationResult(**validation_result)
         return validation_result
 

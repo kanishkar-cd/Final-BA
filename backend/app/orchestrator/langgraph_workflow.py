@@ -7,7 +7,6 @@ from typing import Any
 from app.orchestrator.langgraph_nodes import WorkflowNodes
 from app.orchestrator.langgraph_state import WorkflowState
 from app.regeneration.retry_service import RetryService
-from app.schemas.user_story import PipelineStatus, RegenerationTarget
 
 NodeCallable = Callable[[WorkflowState], Awaitable[WorkflowState]]
 
@@ -78,18 +77,23 @@ class LangGraphWorkflow:
         elif hasattr(graph, "add_node"):
             self._add_node(graph, "human_review_hook", self._get_node("human_review_hook"))
 
-        graph.add_conditional_edges(
-            START,
-            self._route_initial_node,
-            {
-                "preprocessing": "preprocessing",
-                "requirement_analysis": "requirement_analysis",
-                "epic_generation": "epic_generation",
-                "feature_generation": "feature_generation",
-                "one_line_story_generation": "one_line_story_generation",
-                "user_story_generation": "user_story_generation",
-            },
-        )
+        if hasattr(graph, "add_conditional_edges"):
+            graph.add_conditional_edges(
+                START,
+                self._route_initial_node,
+                {
+                    "preprocessing": "preprocessing",
+                    "requirement_analysis": "requirement_analysis",
+                    "epic_generation": "epic_generation",
+                    "feature_generation": "feature_generation",
+                    "one_line_story_generation": "one_line_story_generation",
+                    "user_story_generation": "user_story_generation",
+                },
+            )
+        else:
+            # Compatibility with simple graph implementations and older
+            # LangGraph versions that only expose static edges.
+            graph.add_edge(START, "preprocessing")
         self._add_optional_edge(
             graph,
             "preprocessing",
@@ -157,12 +161,20 @@ class LangGraphWorkflow:
                     duration_ms=duration_ms,
                 )
                 merged_update = dict(update or {})
+                if node_name == "validation":
+                    merged_update.update(
+                        self._validation_transition(
+                            state,
+                            merged_update.get("validation_result"),
+                        )
+                    )
+                elif node_name == "human_review_hook" and state.get("review_required"):
+                    merged_update.setdefault("workflow_status", "REVIEW_REQUIRED")
                 merged_update.update(
                     {
-                        "workflow_status": (
-                            "COMPLETED"
-                            if node_name == "validation"
-                            else state.get("workflow_status", "RUNNING")
+                        "workflow_status": merged_update.get(
+                            "workflow_status",
+                            state.get("workflow_status", "RUNNING"),
                         ),
                         "current_node": node_name,
                         "completed_nodes": self._completed_nodes(state),
@@ -263,69 +275,84 @@ class LangGraphWorkflow:
     def _route_after_validation(self, state: WorkflowState) -> str:
         validation_result = state.get("validation_result")
         if validation_result is None:
-            state["workflow_status"] = "FAILED"
-            state["failed_node"] = "validation"
-            state["last_error"] = {
+            return "failure"
+
+        if getattr(validation_result, "passed", False):
+            return "success"
+        if state.get("review_required") or state.get("workflow_status") == "REVIEW_REQUIRED":
+            return "human_review"
+        if state.get("workflow_status") == "RETRY_REQUIRED":
+            return "retry"
+        return "failure"
+
+    def _validation_transition(
+        self,
+        state: WorkflowState,
+        validation_result: Any,
+    ) -> dict[str, Any]:
+        """Persist the validation decision before LangGraph evaluates routing."""
+        if validation_result is None:
+            error = {
                 "node": "validation",
                 "type": "ValueError",
                 "message": "validation_result is missing",
             }
-            return "failure"
+            return {
+                "workflow_status": "FAILED",
+                "failed_node": "validation",
+                "last_error": error,
+            }
+
+        if getattr(validation_result, "passed", False):
+            return {
+                "review_required": False,
+                "review_status": "NOT_REQUIRED",
+                "approval_status": "NOT_REQUIRED",
+                "retry_status": None,
+                "workflow_status": "COMPLETED",
+            }
 
         retry_count = int(state.get("retry_count", 0))
         max_retry_attempts = int(state.get("max_retry_attempts", 3))
-        if (
-            getattr(validation_result, "retry_required", False)
-            and self._retry_service.should_retry(
-                validation_result,
-                retry_count,
-                max_retry_attempts,
-            )
+        if self._retry_service.should_retry(
+            validation_result,
+            retry_count,
+            max_retry_attempts,
         ):
-            state["retry_count"] = retry_count + 1
-            state["retry_reason"] = "validation_requested_retry"
-            state["retry_status"] = "RETRY_REQUIRED"
-            state["review_required"] = False
-            state["review_status"] = "RETRY_PENDING"
-            state["approval_status"] = "NOT_REQUIRED"
-            state["workflow_status"] = "RETRY_REQUIRED"
-            state["retry_history"] = [
-                *state.get("retry_history", []),
-                {
-                    "retry_count": retry_count + 1,
-                    "reason": "validation_requested_retry",
-                    "status": "RETRY_REQUIRED",
-                },
-            ]
-            state["warnings"] = [
+            next_retry_count = retry_count + 1
+            return {
+                "retry_count": next_retry_count,
+                "retry_reason": "validation_requested_retry",
+                "retry_status": "RETRY_REQUIRED",
+                "retry_history": [
+                    *state.get("retry_history", []),
+                    {
+                        "retry_count": next_retry_count,
+                        "reason": "validation_requested_retry",
+                        "status": "RETRY_REQUIRED",
+                    },
+                ],
+                "review_required": False,
+                "review_status": "RETRY_PENDING",
+                "approval_status": "NOT_REQUIRED",
+                "workflow_status": "RETRY_REQUIRED",
+                "warnings": [
+                    *state.get("warnings", []),
+                    "Validation requested a retry; workflow is looping back to user story generation.",
+                ],
+            }
+
+        return {
+            "retry_status": "RETRIES_EXHAUSTED",
+            "review_required": True,
+            "review_status": "PENDING",
+            "approval_status": "PENDING",
+            "workflow_status": "REVIEW_REQUIRED",
+            "warnings": [
                 *state.get("warnings", []),
-                "Validation requested a retry; workflow is looping back to user story generation.",
-            ]
-            return "retry"
-
-        if (
-            getattr(validation_result, "review_required", False)
-            or getattr(validation_result, "regeneration_target", None)
-            == RegenerationTarget.HUMAN_REVIEW
-        ):
-            state["review_required"] = True
-            state["review_status"] = "PENDING"
-            state["approval_status"] = "PENDING"
-            state["workflow_status"] = "REVIEW_REQUIRED"
-            return "human_review"
-
-        if getattr(validation_result, "passed", False):
-            state["review_required"] = False
-            state["review_status"] = "NOT_REQUIRED"
-            state["approval_status"] = "NOT_REQUIRED"
-            state["workflow_status"] = "COMPLETED"
-            return "success"
-
-        state["review_required"] = False
-        state["review_status"] = "FAILED"
-        state["approval_status"] = "REJECTED"
-        state["workflow_status"] = "FAILED"
-        return "failure"
+                "Validation remains unresolved after retry exhaustion; human review is required.",
+            ],
+        }
 
     def _seed_state(self, state: WorkflowState) -> None:
         state.setdefault("workflow_status", "RUNNING")

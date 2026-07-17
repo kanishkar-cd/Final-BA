@@ -125,7 +125,8 @@ def test_direct_generation_skips_preprocessing_crash(mock_execute) -> None:
     # Should not raise ValueError for missing file_path
     try:
         final_state = asyncio.run(workflow.run_workflow(state))
-        assert final_state.get("workflow_status") in ("COMPLETED", "FAILED")
+        assert final_state.get("workflow_status") == "REVIEW_REQUIRED"
+        assert final_state.get("review_required") is True
     except ValueError as e:
         if "file_path is required" in str(e):
             raise AssertionError("Preprocessing crashed due to missing file_path!") from e

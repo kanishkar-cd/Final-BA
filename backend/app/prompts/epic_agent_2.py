@@ -33,6 +33,7 @@ Perform self-validation within this same response before returning the final JSO
 - Treat extracted functional requirements as the only source for features. Ignore business goals during feature assignment unless they explicitly describe implementation work.
 - Generate concise and business-oriented Epic titles.
 - Generate feature names that preserve the source requirement intent and belong only under that Epic; do not invent or duplicate features.
+- Preserve actor_requirement_mappings: populate feature_actors with one entry for every feature, using the actor explicitly associated with that source requirement/use case. Do not use one default actor for all features when multiple actors are supplied.
 - Generate exactly one concise, business-oriented sentence in one_line_story for each Epic, derived only from that Epic and its features.
 - Assign an appropriate priority (Critical, High, Medium, or Low).
 - Include only dependencies explicitly extracted from the requirements.
@@ -49,6 +50,7 @@ Output schema:
       "epic_id": "",
       "title": "",
       "features": [],
+      "feature_actors": {{}},
       "one_line_story": "",
       "dependencies": [],
       "priority": ""
