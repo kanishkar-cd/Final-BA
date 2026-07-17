@@ -57,6 +57,18 @@ async def get_workflow(
         raise _not_found(exc) from exc
 
 
+@router.patch("/{workflow_id}")
+async def patch_workflow(
+    workflow_id: str,
+    updates: dict,
+    workflow_service: WorkflowApiService = Depends(get_workflow_api_service),
+) -> dict:
+    try:
+        return await workflow_service.update_state_partial(workflow_id, updates)
+    except WorkflowStateNotFoundError as exc:
+        raise _not_found(exc) from exc
+
+
 @router.get("/{workflow_id}/status", response_model=WorkflowStatusResponse)
 async def get_workflow_status(
     workflow_id: str,
@@ -85,6 +97,39 @@ async def regenerate_epic(
     except WorkflowStateNotFoundError as exc:
         raise _not_found(exc) from exc
 
+
+class UndoRequest(BaseModel):
+    entity_type: str
+    entity_id: str
+    target_version: int
+
+@router.post("/{workflow_id}/undo")
+async def undo_artifact(
+    workflow_id: str,
+    request: UndoRequest,
+    workflow_service: WorkflowApiService = Depends(get_workflow_api_service),
+) -> dict:
+    """Undo an artifact to a previous version."""
+    try:
+        return await workflow_service.undo_artifact(
+            workflow_id,
+            request.entity_type,
+            request.entity_id,
+            request.target_version,
+        )
+    except WorkflowStateNotFoundError as exc:
+        raise _not_found(exc) from exc
+
+@router.post("/{workflow_id}/approve-outline")
+async def approve_outline(
+    workflow_id: str,
+    workflow_service: WorkflowApiService = Depends(get_workflow_api_service),
+) -> dict:
+    """Approve the epic/feature outline and transition the workflow status."""
+    try:
+        return await workflow_service.update_state_partial(workflow_id, {"workflow_status": "OUTLINE_APPROVED"})
+    except WorkflowStateNotFoundError as exc:
+        raise _not_found(exc) from exc
 
 # ── MCP → Agent-1 workflow endpoints ─────────────────────────────────────────
 # These endpoints let you start the full pipeline directly from a Jira issue

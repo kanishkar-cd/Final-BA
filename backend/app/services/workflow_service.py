@@ -176,6 +176,27 @@ class WorkflowApiService:
             raise WorkflowStateNotFoundError(f"Workflow '{request.workflow_id}' was not found.")
         stories = [_json_safe(story) for story in state.get("user_stories", [])]
         replacement = request.story.model_dump(mode="json")
+        
+        # Recalculate confidence score for modified story
+        try:
+            from app.confidence.confidence_service import ConfidenceService
+            from app.schemas.user_story import ValidationIssue
+            cs = ConfidenceService()
+            validation_data = state.get("validation") or state.get("validation_result") or {}
+            issues = []
+            if isinstance(validation_data, dict):
+                raw_issues = validation_data.get("issues", [])
+                for issue in raw_issues:
+                    try:
+                        issues.append(ValidationIssue(**issue))
+                    except Exception:
+                        pass
+            elif hasattr(validation_data, "issues"):
+                issues = validation_data.issues
+            replacement["confidence_score"] = cs.calculate_story(request.story, issues)
+        except Exception as e:
+            logger.warning("Could not recalculate modified story confidence score: %s", e)
+
         index = next((i for i, story in enumerate(stories) if story.get("id") == request.story.id), None)
         if index is None:
             raise WorkflowStateNotFoundError(f"Story '{request.story.id}' was not found.")
@@ -357,6 +378,68 @@ class WorkflowApiService:
             except Exception as exc:
                 logger.warning("Failed to update epic planning cache: %s", exc)
         return replacement
+
+    async def undo_artifact(
+        self,
+        workflow_id: str,
+        entity_type: str,
+        entity_id: str,
+        target_version: int,
+    ) -> dict[str, Any]:
+        """Undo an artifact to a previous version."""
+        state = await self._get_state_data(workflow_id)
+        if state is None:
+            raise WorkflowStateNotFoundError(f"Workflow '{workflow_id}' was not found.")
+
+        versions = state.get("artifact_versions", [])
+        
+        # Find the target version snapshot
+        target_record = next(
+            (r for r in versions if r.get("entityType") == entity_type and r.get("entityId") == entity_id and r.get("version") == f"v{target_version}"),
+            None
+        )
+        if not target_record:
+            raise WorkflowStateNotFoundError(f"Version v{target_version} not found for {entity_type} '{entity_id}'.")
+
+        snapshot = dict(target_record["snapshot"])
+        
+        # Update the state based on entity_type
+        if entity_type == "epic":
+            epics = list(state.get("epics", []))
+            index = next((i for i, e in enumerate(epics) if _epic_id(e) == entity_id), None)
+            if index is not None:
+                epics[index] = snapshot
+            state["epics"] = epics
+        elif entity_type == "story":
+            stories = list(state.get("user_stories", []))
+            index = next((i for i, s in enumerate(stories) if s.get("id") == entity_id), None)
+            if index is not None:
+                stories[index] = snapshot
+            state["user_stories"] = stories
+        else:
+            raise ValueError(f"Undo not supported for entity type: {entity_type}")
+
+        # Drop versions newer than the target version for this entity to revert version number
+        new_versions = []
+        for v in versions:
+            if v.get("entityType") == entity_type and str(v.get("entityId")) == str(entity_id):
+                v_num_str = str(v.get("version", "")).replace("v", "")
+                if v_num_str.isdigit() and int(v_num_str) > target_version:
+                    continue  # Drop versions newer than the target
+            new_versions.append(v)
+        state["artifact_versions"] = new_versions
+
+        await self._save_state(workflow_id, state)
+        return snapshot
+
+    async def update_state_partial(self, workflow_id: str, updates: dict[str, Any]) -> dict[str, Any]:
+        state = await self._get_state_data(workflow_id)
+        if state is None:
+            raise WorkflowStateNotFoundError(f"Workflow '{workflow_id}' was not found.")
+        for k, v in updates.items():
+            state[k] = v
+        await self._save_state(workflow_id, state)
+        return {"status": "success"}
 
     async def _get_state_data(self, workflow_id: str) -> Optional[WorkflowState]:
         # 1. Read Cache First
@@ -669,9 +752,13 @@ def _same_epic_content(previous: dict[str, Any], candidate: dict[str, Any]) -> b
 def _merge_regenerated_epic(previous: dict[str, Any], candidate: Epic) -> dict[str, Any]:
     updated = dict(previous)
     metadata = dict(previous.get("metadata") or {})
-    if "name" in previous or "id" in previous:
-        updated["id"] = _epic_id(previous)
+    original_id = _epic_id(previous)
+    
+    if "name" in previous or "title" in previous or "id" in previous:
+        updated["id"] = original_id
+        updated["epic_id"] = original_id
         updated["name"] = candidate.title
+        updated["title"] = candidate.title
         metadata.update(
             {
                 "priority": candidate.priority,
@@ -684,8 +771,10 @@ def _merge_regenerated_epic(previous: dict[str, Any], candidate: Epic) -> dict[s
     else:
         updated.update(
             {
-                "epic_id": _epic_id(previous),
+                "id": original_id,
+                "epic_id": original_id,
                 "title": candidate.title,
+                "name": candidate.title,
                 "features": candidate.features,
                 "one_line_story": candidate.one_line_story,
                 "dependencies": candidate.dependencies,

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import {
   Search, LayoutGrid, List, AlertTriangle, Check, CheckCircle2,
-  ChevronDown, ChevronUp, Edit2, RotateCw, X, Loader2, ArrowRight,
+  ChevronDown, ChevronUp, Edit2, RotateCw, X, XCircle, Loader2, ArrowRight,
 } from 'lucide-react';
 import { api } from '@/services/api';
 import { Story, EntityStatus } from '@/services/mockData';
@@ -38,19 +38,30 @@ export default function StoryBoardPage() {
       });
   }, [projectId]);
 
-  const handleStatusChange = async (storyId: string, newStatus: EntityStatus, bumpVersion?: boolean) => {
-    try {
-      const updated = await api.updateStory(projectId, storyId, { status: newStatus });
-      setStories((prev) =>
-        prev.map((s) =>
-          s.id === storyId
-            ? { ...updated, version: bumpVersion ? (s.version || 1) + 1 : s.version }
-            : s
-        )
-      );
-    } catch (err) {
-      console.error(err);
-    }
+  const handleStatusChange = (storyId: string, newStatus: EntityStatus, bumpVersion?: boolean) => {
+    // 1. Optimistic UI update
+    setStories((prev) =>
+      prev.map((s) =>
+        s.id === storyId
+          ? { ...s, status: newStatus, version: bumpVersion ? (s.version || 1) + 1 : s.version }
+          : s
+      )
+    );
+
+    // 2. Async background call
+    api.updateStory(projectId, storyId, { status: newStatus })
+      .then((updated) => {
+        setStories((prev) =>
+          prev.map((s) =>
+            s.id === storyId
+              ? { ...s, ...updated, version: bumpVersion ? (s.version || 1) + 1 : s.version }
+              : s
+          )
+        );
+      })
+      .catch((err) => {
+        console.error('Failed to update story status:', err);
+      });
   };
 
   const handleUpdateStory = (updatedStory: Story) => {
@@ -244,12 +255,27 @@ function StoryCard({
   onStatusChange: (status: EntityStatus, bumpVersion?: boolean) => void;
   onUpdate: (updated: Story) => void;
 }) {
-  const [expandedACs, setExpandedACs] = useState(false);
+  const [expandedACs, setExpandedACs] = useState(viewMode === 'list');
+
+  useEffect(() => {
+    setExpandedACs(viewMode === 'list');
+  }, [viewMode]);
+
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [feedbackText, setFeedbackText] = useState('');
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+
+  const handleRestoreStory = async (versionToRestore: number) => {
+    try {
+      await api.undoArtifact(projectId, 'story', story.id, versionToRestore);
+      window.location.reload();
+    } catch (err) {
+      console.error('Failed to restore story:', err);
+      alert('Failed to restore version');
+    }
+  };
   const [editTitle, setEditTitle] = useState(story.summary);
   const [editDesc, setEditDesc] = useState(story.description);
 
@@ -301,7 +327,7 @@ function StoryCard({
             })),
             priority: story.priority || 'MEDIUM',
             story_points: story.storyPoints || 3,
-            confidence_score: story.confidenceScore,
+            confidence_score: story.confidenceScore !== undefined ? story.confidenceScore / 100 : 1.0,
             traceability: { workflow_id: projectId },
           },
         ],
@@ -365,9 +391,11 @@ function StoryCard({
                   {story.usId}
                   {story.version && story.version > 1 && (
                     <span className="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold">
-                      v{story.version}
+                      version-{story.version}
                     </span>
                   )}
+                  {story.status === 'approved' && <CheckCircle2 className="w-4 h-4 text-green-500" />}
+                  {story.status === 'rejected' && <XCircle className="w-4 h-4 text-red-500" />}
                 </span>
                 <span className="text-xs font-medium text-muted-foreground bg-accent px-2 py-0.5 rounded line-clamp-1">
                   {story.epicName}
@@ -393,7 +421,7 @@ function StoryCard({
                 )}
               </div>
               <div className="flex items-center gap-2">
-                {story.status === 'needs_ba_review' && (
+                {story.status === 'needs_ba_review' && story.confidenceScore < 85 && (
                   <div className="group/warning relative">
                     <AlertTriangle className="w-4 h-4 text-amber-500 cursor-help" />
                     <div className="absolute top-full right-0 mt-2 hidden group-hover/warning:block z-50 w-64 p-2 bg-popover text-popover-foreground text-xs rounded border border-border shadow-lg">
@@ -437,7 +465,7 @@ function StoryCard({
             ) : (
               <div className="mb-4">
                 <h3 className="font-semibold text-foreground text-[15px] mb-1 leading-snug">{story.summary}</h3>
-                <p className="text-[13px] text-muted-foreground leading-relaxed line-clamp-2">{story.description}</p>
+                <p className={cn("text-[13px] text-muted-foreground leading-relaxed", viewMode === 'grid' ? "line-clamp-1" : "line-clamp-2")}>{story.description}</p>
               </div>
             )}
 
@@ -448,9 +476,9 @@ function StoryCard({
                 className="flex items-center justify-between w-full text-[13px] font-semibold text-foreground hover:text-primary transition-colors"
               >
                 <span>
-                  Acceptance Criteria{' '}
+                  Details{' '}
                   <span className="bg-muted text-muted-foreground text-[11px] px-1.5 py-0.5 rounded ml-2">
-                    {story.acceptanceCriteria.length}
+                    {story.acceptanceCriteria.length} ACs
                   </span>
                 </span>
                 {expandedACs ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -555,13 +583,23 @@ function StoryCard({
               >
                 <RotateCw className="w-3 h-3 mr-1.5" /> Regenerate
               </Button>
+              {story.version && story.version > 1 && (
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="h-7 px-2.5 text-[11px] font-semibold text-primary hover:bg-primary/10"
+                  onClick={() => handleRestoreStory(story.version! - 1)}
+                >
+                  <RotateCw className="w-3 h-3 mr-1.5 transform -scale-x-100" /> Undo
+                </Button>
+              )}
               <Button
                 size="sm"
                 variant="secondary"
                 className={cn(
                   'h-7 px-2.5 text-[11px] font-semibold bg-background hover:bg-red-50 hover:text-red-600 hover:border-red-200 dark:hover:bg-red-900/20 dark:hover:text-red-400',
                   story.status === 'rejected' &&
-                    'bg-red-50 border-red-200 text-red-600 dark:bg-red-900/20 dark:text-red-400'
+                    '!bg-red-50 !border-red-200 !text-red-600 dark:!bg-red-900/20 dark:!text-red-400'
                 )}
                 onClick={() => onStatusChange('rejected')}
               >
@@ -573,7 +611,7 @@ function StoryCard({
                 className={cn(
                   'h-7 px-2.5 text-[11px] font-semibold bg-background hover:bg-green-50 hover:text-green-600 hover:border-green-200 dark:hover:bg-green-900/20 dark:hover:text-green-400',
                   story.status === 'approved' &&
-                    'bg-green-50 border-green-200 text-green-600 dark:bg-green-900/20 dark:text-green-400'
+                    '!bg-green-50 !border-green-200 !text-green-600 dark:!bg-green-900/20 dark:!text-green-400'
                 )}
                 onClick={() => onStatusChange('approved')}
               >

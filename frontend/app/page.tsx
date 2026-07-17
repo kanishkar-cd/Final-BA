@@ -24,6 +24,9 @@ import {
 import { useInView } from 'react-intersection-observer';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useTheme } from 'next-themes';
+import MagicBento from '@/components/common/MagicBento';
+// @ts-ignore
+import * as THREE from 'three';
 
 // Reusable word animation variant for headlines
 const wordVariants = {
@@ -74,7 +77,7 @@ export default function LandingPage() {
 
     const initVanta = async () => {
       try {
-        await loadScript("https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js");
+        (window as any).THREE = THREE;
         await loadScript("https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js");
         /* eslint-disable @typescript-eslint/no-explicit-any */
         if ((window as any).VANTA && !vantaRef.current) {
@@ -322,24 +325,19 @@ export default function LandingPage() {
             <h2 className="text-[32px] font-bold text-foreground mt-[12px] text-center">Built for Modern Teams</h2>
           </div>
 
-          <div className="mt-[64px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px]">
-            {benefits.map((benefit, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={inViewBenefits ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-                className="bg-background/60 backdrop-blur-lg rounded-xl border border-border/50 p-[32px] flex flex-col items-start shadow-sm hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/50 transition-all group overflow-hidden relative"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="relative z-10">
-                  <benefit.icon className="w-[28px] h-[28px] text-primary mb-[16px] group-hover:scale-110 transition-transform origin-left" />
-                  <h3 className="font-bold text-[17px] text-card-foreground mb-[12px] group-hover:text-primary transition-colors">{benefit.title}</h3>
-                  <p className="text-[14px] text-muted-foreground leading-[1.6]">{benefit.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="mt-[64px] flex justify-center w-full">
+            <MagicBento 
+              textAutoHide={true}
+              enableStars={true}
+              enableSpotlight={true}
+              enableBorderGlow={true}
+              enableTilt={true}
+              enableMagnetism={true}
+              clickEffect={true}
+              spotlightRadius={300}
+              particleCount={12}
+              glowColor="0, 213, 255"
+            />
           </div>
         </div>
       </section>

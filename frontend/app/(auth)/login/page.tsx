@@ -4,6 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Globe } from 'lucide-react';
 import { useTheme } from 'next-themes';
+// @ts-ignore
+import * as THREE from 'three';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -32,7 +34,7 @@ export default function LoginPage() {
 
     const initVanta = async () => {
       try {
-        await loadScript("https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js");
+        (window as any).THREE = THREE;
         await loadScript("https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js");
         /* eslint-disable @typescript-eslint/no-explicit-any */
         if ((window as any).VANTA && !vantaRef.current) {

@@ -13,7 +13,7 @@ interface LiveActivityFeedProps {
 
 export function LiveActivityFeed({ logs, isFullWidth = false }: LiveActivityFeedProps) {
   return (
-    <div className={cn("flex flex-col bg-card border border-border overflow-hidden", isFullWidth ? "w-full rounded-xl" : "w-80 h-full shadow-lg")}>
+    <div className={cn("flex flex-col bg-card border border-border overflow-hidden", isFullWidth ? "w-full h-full rounded-xl" : "w-80 h-full shadow-lg")}>
       <div className="p-4 border-b border-border bg-muted/30 flex items-center justify-between">
         <h3 className="font-semibold text-sm flex items-center gap-2 text-foreground">
           <Bot className="w-4 h-4 text-primary" />
