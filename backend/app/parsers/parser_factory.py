@@ -4,16 +4,18 @@ from pathlib import Path
 from typing import Type
 
 from app.parsers.base_parser import BaseParser
-from app.parsers.docling_parser import DoclingParser
+from app.parsers.docx_parser import DOCXParser
+from app.parsers.pdf_parser import PDFParser
+from app.parsers.txt_parser import TXTParser
 
 
 class ParserFactory:
     """Factory for creating the appropriate parser for a document."""
 
     _parsers: dict[str, Type[BaseParser]] = {
-        ".pdf": DoclingParser,
-        ".docx": DoclingParser,
-        ".txt": DoclingParser,
+        ".pdf": PDFParser,
+        ".docx": DOCXParser,
+        ".txt": TXTParser,
     }
 
     @classmethod

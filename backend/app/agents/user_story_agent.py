@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+import os
 import re
 from collections.abc import Awaitable, Callable
 from typing import Any
@@ -17,6 +19,7 @@ from app.agents.shared_intelligence import (
     dedupe_strings,
     source_chunk_references as build_source_chunk_references,
 )
+from app.agents.token_budget import TokenBudgetManager, count_tokens
 from app.prompts.prompt_manager import PromptManager
 from app.schemas.user_story import (
     AcceptanceCriterion,
@@ -67,39 +70,238 @@ class UserStoryGenerationAgent(BaseAgent[GenerateUserStoriesRequest, list[UserSt
 
     async def execute(self, payload: GenerateUserStoriesRequest) -> list[UserStory]:
         evidence_packs = EvidencePackBuilder(payload).build()
-        prompt = self._prompt_manager.get_user_story_prompt(**payload.model_dump())
         self._logger.info("Generating user stories for workflow=%s", payload.workflow_id)
-        if self._agent_executor is not None:
-            stories = await self._agent_executor(prompt.system_prompt, prompt.user_prompt, payload)
-            return self._quality_gate_or_fallback(payload, evidence_packs, stories)
-        
+        batches = self._build_batches(payload, evidence_packs)
+        generated: list[UserStory] = []
+        for batch_index, batch in enumerate(batches, start=1):
+            generated.extend(await self._execute_batch(
+                payload, batch, batch_index=batch_index, split_depth=0
+            ))
+        return _dedupe_stories(generated, logger=self._logger)
+
+    async def _execute_batch(
+        self,
+        payload: GenerateUserStoriesRequest,
+        evidence_packs: list[EvidencePack],
+        *,
+        batch_index: int,
+        split_depth: int,
+    ) -> list[UserStory]:
+        scoped_payload = self._scoped_payload(payload, evidence_packs)
+        prompt = self._prompt_manager.get_user_story_batch_prompt(
+            self._batch_context(evidence_packs),
+            self._story_schema(),
+        )
+        estimated_input_tokens = count_tokens(prompt.system_prompt) + count_tokens(prompt.user_prompt)
+        output_tokens = self._output_token_allowance(len(evidence_packs))
         try:
-            output = await self.llm_service.execute(
-                prompt=prompt.user_prompt,
-                system_prompt=prompt.system_prompt,
-                response_schema=UserStoriesOutput,
-                prompt_version="v1",
-                # A complete structured story is verbose. The default 4096-token
-                # ceiling truncated multi-feature JSON before its closing list.
-                max_tokens=min(8192, max(2048, len(evidence_packs) * 1400)),
-            )
+            if self._agent_executor is not None:
+                raw_stories = await self._agent_executor(
+                    prompt.system_prompt, prompt.user_prompt, scoped_payload
+                )
+                output = UserStoriesOutput(user_stories=raw_stories)
+            else:
+                output = await self.llm_service.execute(
+                    prompt=prompt.user_prompt,
+                    system_prompt=prompt.system_prompt,
+                    response_schema=UserStoriesOutput,
+                    prompt_version="v1",
+                    max_tokens=output_tokens,
+                )
             if isinstance(output, UserStoriesOutput) and output.user_stories:
-                stories = self._quality_gate_or_fallback(
-                    payload,
+                return self._quality_gate_or_fallback(
+                    scoped_payload,
                     evidence_packs,
                     output.user_stories,
-                    generation_metadata=output.generation_metadata,
+                    generation_metadata={
+                        **output.generation_metadata,
+                        "batch_index": batch_index,
+                        "batch_size": len(evidence_packs),
+                        "split_depth": split_depth,
+                        "estimated_input_tokens": estimated_input_tokens,
+                        "max_output_tokens": output_tokens,
+                    },
                     aggregate_confidence=output.confidence_score,
                 )
-                return stories
-        except Exception as exc:
             self._logger.warning(
-                "LLM user story generation failed: %s. Falling back to deterministic rules.",
-                exc,
+                "User story generation provider returned no stories. Returning failure records."
+            )
+            return self._generation_failed_stories(evidence_packs, "empty_provider_output")
+        except Exception as exc:
+            if _is_too_large_request(exc) and len(evidence_packs) > 1:
+                midpoint = max(1, len(evidence_packs) // 2)
+                self._logger.warning(
+                    "User story batch %s exceeded the provider request limit; splitting %s stories into %s and %s.",
+                    batch_index, len(evidence_packs), midpoint, len(evidence_packs) - midpoint,
+                )
+                left = await self._execute_batch(
+                    payload, evidence_packs[:midpoint],
+                    batch_index=batch_index, split_depth=split_depth + 1,
+                )
+                right = await self._execute_batch(
+                    payload, evidence_packs[midpoint:],
+                    batch_index=batch_index, split_depth=split_depth + 1,
+                )
+                return [*left, *right]
+            self._logger.warning(
+                "LLM user story generation failed: %s. Returning failure records.",
+                exc.__class__.__name__,
                 exc_info=True,
             )
+            return self._generation_failed_stories(evidence_packs, exc.__class__.__name__)
 
-        return self._generate_deterministic_stories(payload, evidence_packs=evidence_packs)
+    def _build_batches(
+        self,
+        payload: GenerateUserStoriesRequest,
+        evidence_packs: list[EvidencePack],
+    ) -> list[list[EvidencePack]]:
+        budget = self._batch_token_budget()
+        max_stories = max(1, int(os.getenv("USER_STORY_BATCH_MAX_STORIES", "3")))
+        batches: list[list[EvidencePack]] = []
+        current: list[EvidencePack] = []
+        for pack in evidence_packs:
+            candidate = [*current, pack]
+            prompt = self._prompt_manager.get_user_story_batch_prompt(
+                self._batch_context(candidate),
+                self._story_schema(),
+            )
+            estimated_total = (
+                count_tokens(prompt.system_prompt)
+                + count_tokens(prompt.user_prompt)
+                + self._output_token_allowance(len(candidate))
+            )
+            if current and (estimated_total > budget or len(candidate) > max_stories):
+                batches.append(current)
+                current = [pack]
+            else:
+                current = candidate
+        if current:
+            batches.append(current)
+        return batches
+
+    @staticmethod
+    def _output_token_allowance(story_count: int) -> int:
+        per_story = max(500, int(os.getenv("USER_STORY_OUTPUT_TOKENS_PER_STORY", "2800")))
+        minimum = max(500, int(os.getenv("USER_STORY_MIN_OUTPUT_TOKENS", "2800")))
+        return min(8192, max(minimum, story_count * per_story))
+
+    @staticmethod
+    def _batch_token_budget() -> int:
+        configured = os.getenv("USER_STORY_BATCH_TOKEN_BUDGET")
+        if configured:
+            return max(1000, int(configured))
+        return TokenBudgetManager(
+            os.getenv("MODEL_PROVIDER", "openai"),
+            os.getenv("MODEL_NAME", "gpt-4o"),
+        ).ceiling
+
+    @staticmethod
+    def _batch_context(evidence_packs: list[EvidencePack]) -> str:
+        context = []
+        for pack in evidence_packs:
+            context.append({
+                "story_id": pack.story_id,
+                "epic": pack.epic.model_dump(mode="json"),
+                "feature": pack.feature.model_dump(mode="json"),
+                "one_line_story": pack.one_line_story.model_dump(mode="json"),
+                "actor": pack.actor,
+                "business_value": pack.business_value,
+                "chunks": [chunk.model_dump(mode="json") for chunk in pack.retrieved_chunks],
+                "requirements": [item.model_dump(mode="json") for item in pack.requirements],
+                "non_functional_requirements": [
+                    item.model_dump(mode="json") for item in pack.non_functional_requirements
+                ],
+                "business_rules": pack.business_rules,
+                "source_acceptance_criteria": pack.acceptance_criteria,
+                "dependencies": pack.dependencies,
+                "business_goals": pack.business_goals,
+                "chunk_refs": pack.chunk_refs,
+                "requirement_refs": pack.requirement_refs,
+                "traceability_rows": pack.traceability_rows,
+                "story_context": pack.story_context,
+                "rag_context": pack.rag_context,
+            })
+        return json.dumps(context, ensure_ascii=False, separators=(",", ":"), default=str)
+
+    @staticmethod
+    def _story_schema() -> str:
+        return json.dumps(
+            UserStory.model_json_schema(),
+            ensure_ascii=False,
+            separators=(",", ":"),
+        )
+
+    @staticmethod
+    def _scoped_payload(
+        payload: GenerateUserStoriesRequest,
+        evidence_packs: list[EvidencePack],
+    ) -> GenerateUserStoriesRequest:
+        chunks = list({item.id: item for pack in evidence_packs for item in pack.retrieved_chunks}.values())
+        requirements = list({item.id: item for pack in evidence_packs for item in pack.requirements}.values())
+        nfrs = list({item.id: item for pack in evidence_packs for item in pack.non_functional_requirements}.values())
+        epics = list({pack.epic.id: pack.epic for pack in evidence_packs}.values())
+        features = list({pack.feature.id: pack.feature for pack in evidence_packs}.values())
+        stories = list({pack.one_line_story.id: pack.one_line_story for pack in evidence_packs}.values())
+        actors = dedupe_strings([item for pack in evidence_packs for item in pack.actors])
+        rules = dedupe_strings([item for pack in evidence_packs for item in pack.business_rules])
+        criteria = dedupe_strings([item for pack in evidence_packs for item in pack.acceptance_criteria])
+        dependencies = dedupe_strings([item for pack in evidence_packs for item in pack.dependencies])
+        goals = dedupe_strings([item for pack in evidence_packs for item in pack.business_goals])
+        feature_ids = {pack.feature.id for pack in evidence_packs}
+        one_line_ids = {pack.one_line_story.id for pack in evidence_packs}
+        rows = [
+            row for row in payload.traceability.get("traceability_matrix", [])
+            if isinstance(row, dict)
+            and (row.get("feature_id") in feature_ids or row.get("one_line_story_id") in one_line_ids)
+        ]
+        if not rows:
+            rows = [row for pack in evidence_packs for row in pack.traceability_rows]
+        traceability = {
+            "traceability_matrix": rows,
+            "actor_requirement_mappings": payload.traceability.get("actor_requirement_mappings", []),
+            "story_context": payload.traceability.get("story_context", {}),
+            "master_context": payload.traceability.get("master_context", {}),
+        }
+        agent1_metadata = dict(
+            payload.agent1_output.traceability_metadata if payload.agent1_output else {}
+        )
+        agent1_metadata["business_goals"] = goals
+        agent1 = Agent1Output(
+            chunks=chunks,
+            actors=actors,
+            functional_requirements=requirements,
+            non_functional_requirements=nfrs,
+            business_rules=rules,
+            dependencies=dependencies,
+            acceptance_criteria=criteria,
+            traceability_metadata=agent1_metadata,
+        )
+        agent2 = Agent2Output(
+            epics=epics,
+            features=features,
+            one_line_stories=stories,
+            traceability_matrix=rows,
+            planning_metadata=(
+                payload.agent2_output.planning_metadata if payload.agent2_output else {}
+            ),
+        )
+        return payload.model_copy(update={
+            "retrieved_chunks": chunks,
+            "actors": actors,
+            "functional_requirements": requirements,
+            "requirements": requirements,
+            "non_functional_requirements": nfrs,
+            "business_rules": rules,
+            "acceptance_criteria": criteria,
+            "dependencies": dependencies,
+            "business_goals": goals,
+            "epics": epics,
+            "features": features,
+            "one_line_stories": stories,
+            "agent1_output": agent1,
+            "agent2_output": agent2,
+            "traceability": traceability,
+        })
 
     async def regenerate_failed_stories(
         self,
@@ -248,6 +450,65 @@ class UserStoryGenerationAgent(BaseAgent[GenerateUserStoriesRequest, list[UserSt
             stories.append(self._generate_story_from_pack(pack, existing_stories=stories))
         return stories
 
+    def _generation_failed_stories(
+        self,
+        evidence_packs: list[EvidencePack],
+        failure_type: str,
+    ) -> list[UserStory]:
+        """Return identity-only records so validation can retry or request review."""
+        failed_stories: list[UserStory] = []
+        for pack in evidence_packs:
+            traceability = self._traceability_service.build_story_traceability(
+                workflow_id=pack.workflow_id,
+                one_line_story=pack.one_line_story,
+                requirements=pack.requirements,
+                epics=[pack.epic],
+                features=[pack.feature],
+                generated_by=self.name,
+            )
+            traceability.chunk_refs = pack.chunk_refs
+            traceability.requirement_refs = (
+                pack.requirement_refs or traceability.requirement_refs
+            )
+            traceability.metadata["generation_status"] = "FAILED"
+            failed_stories.append(
+                UserStory(
+                    id=pack.story_id,
+                    feature_id=pack.feature.id,
+                    epic_id=pack.epic.id,
+                    one_line_story_id=pack.one_line_story.id,
+                    chunk_ids_used=pack.chunk_refs,
+                    title=_title_from_summary(
+                        pack.feature.name or pack.one_line_story.summary
+                    ),
+                    user_story="",
+                    description="",
+                    persona=pack.actor,
+                    goal=_clean_goal(
+                        pack.feature.name or pack.one_line_story.summary
+                    ),
+                    acceptance_criteria=[],
+                    definition_of_done=[],
+                    confidence_score=0.0,
+                    traceability=traceability,
+                    traceability_links={
+                        "chunk_ids": pack.chunk_refs,
+                        "requirement_ids": pack.requirement_refs,
+                        "feature_id": pack.feature.id,
+                        "epic_id": pack.epic.id,
+                        "story_id": pack.story_id,
+                        "one_line_story_id": pack.one_line_story.id,
+                    },
+                    metadata={
+                        "source": "agent3_user_story_generation",
+                        "generation_status": "FAILED",
+                        "generation_failure_type": failure_type,
+                        "fallback_content_generated": False,
+                    },
+                )
+            )
+        return failed_stories
+
     def _generate_story_from_pack(
         self,
         pack: EvidencePack,
@@ -390,7 +651,10 @@ class UserStoryGenerationAgent(BaseAgent[GenerateUserStoriesRequest, list[UserSt
                 len(evidence_packs),
                 len(stories),
             )
-            return self._generate_deterministic_stories(payload, evidence_packs=evidence_packs)
+            return self._generation_failed_stories(
+                evidence_packs,
+                "invalid_story_count",
+            )
 
         gated_stories: list[UserStory] = []
         try:
@@ -402,6 +666,7 @@ class UserStoryGenerationAgent(BaseAgent[GenerateUserStoriesRequest, list[UserSt
                         f"Generated story '{story.id}' does not map to an Evidence Pack"
                     )
                 SharedValidators.validate_story_against_pack(story, pack)
+                story.id = pack.story_id
                 story.persona = pack.actor
                 story.goal = _clean_goal(pack.feature.name or pack.one_line_story.summary)
                 story.business_value = pack.business_value
@@ -420,13 +685,6 @@ class UserStoryGenerationAgent(BaseAgent[GenerateUserStoriesRequest, list[UserSt
                     business_goals=pack.business_goals,
                     story_context=pack.story_context,
                     master_context=pack.master_context,
-                    relevant_chunks=pack.retrieved_chunks,
-                )
-                story.acceptance_criteria = _build_acceptance_criteria(
-                    actor=story.persona,
-                    goal=story.goal,
-                    feature_name=pack.feature.name or pack.feature.id,
-                    source_criteria=pack.acceptance_criteria,
                     relevant_chunks=pack.retrieved_chunks,
                 )
                 story.story_points = _estimate_points(pack)
@@ -459,15 +717,30 @@ class UserStoryGenerationAgent(BaseAgent[GenerateUserStoriesRequest, list[UserSt
                 gated_stories.append(story)
         except ValueError as exc:
             self._logger.warning(
-                "Agent 3 quality gate rejected LLM output: %s. Falling back to deterministic rules.",
+                "Agent 3 quality gate rejected LLM output: %s. Returning failure records.",
                 exc,
             )
-            return self._generate_deterministic_stories(payload, evidence_packs=evidence_packs)
+            return self._generation_failed_stories(
+                evidence_packs,
+                "quality_gate_rejected_output",
+            )
         return _dedupe_stories(gated_stories, logger=self._logger)
 
 
 def _first_or_default(values: list[str], default: str) -> str:
     return values[0] if values else default
+
+
+def _is_too_large_request(exc: Exception) -> bool:
+    message = str(exc).casefold()
+    return any(marker in message for marker in (
+        "request too large",
+        "context length",
+        "maximum context",
+        "too many tokens",
+        "requested tokens",
+        "413",
+    ))
 
 
 def _clean_goal(summary: str) -> str:
@@ -599,39 +872,47 @@ def _build_acceptance_criteria(
 ) -> list[AcceptanceCriterion]:
     chunk_refs = [chunk.id for chunk in relevant_chunks]
     criteria: list[AcceptanceCriterion] = []
-    for index, criterion in enumerate(source_criteria[:5], start=1):
+    evidence_statements = _story_evidence_statements(relevant_chunks, source_criteria)
+    for index, criterion in enumerate(evidence_statements[:5], start=1):
         criteria.append(
             AcceptanceCriterion(
                 id=f"AC-{index:03d}",
-                description=_as_given_when_then(criterion, feature_name),
+                description=_as_given_when_then(
+                    criterion,
+                    feature_name,
+                    actor=actor,
+                    goal=goal,
+                ),
                 source_refs=[criterion, *chunk_refs],
             )
         )
-    fallbacks = [
-        (
-            f"Given the {actor} can access {feature_name}, When they choose to {goal.lower()}, "
-            f"Then the system presents the {feature_name} behavior associated with that request."
-        ),
-        (
-            f"Given the {actor} has initiated {goal.lower()}, When the system processes the request, "
-            f"Then the resulting state is visible to the {actor}."
-        ),
-        (
-            f"Given the {feature_name} result is displayed, When the {actor} reviews it, "
-            f"Then the requested {goal.lower()} outcome can be verified from the displayed information."
-        ),
-    ]
-    for fallback in fallbacks:
-        if len(criteria) >= 3:
-            break
+    if not criteria:
         criteria.append(
             AcceptanceCriterion(
-                id=f"AC-{len(criteria) + 1:03d}",
-                description=fallback,
+                id="AC-001",
+                description=(
+                    f"Given the documented prerequisites are satisfied, When the {actor} attempts "
+                    f"to {goal.lower()}, Then the system must produce the observable outcome stated "
+                    "in the mapped source requirement."
+                ),
                 source_refs=chunk_refs or ["generated-from-one-line-story"],
             )
         )
     return criteria[:5]
+
+
+def _story_evidence_statements(
+    relevant_chunks: list[RetrievedChunk],
+    source_criteria: list[str],
+) -> list[str]:
+    """Return concrete, story-scoped statements before global criteria."""
+    statements: list[str] = []
+    for chunk in relevant_chunks:
+        statements.extend(re.split(r"(?<=[.!?])\s+", chunk.content))
+    statements.extend(source_criteria)
+    return _dedupe_explicit_rules(
+        [statement.strip() for statement in statements if len(statement.split()) >= 5]
+    )
 
 
 def _relevant_chunks_for_story(payload: GenerateUserStoriesRequest, chunk_refs: list[str]) -> list:
@@ -762,12 +1043,20 @@ def _story_confidence_score(
     return round(min(score, 1.0), 2)
 
 
-def _as_given_when_then(text: str, feature_name: str) -> str:
+def _as_given_when_then(
+    text: str,
+    feature_name: str,
+    *,
+    actor: str = "user",
+    goal: str | None = None,
+) -> str:
     stripped = text.strip().rstrip(".")
     if all(token in stripped.lower() for token in ["given", "when", "then"]):
         return f"{stripped}."
+    concrete_goal = (goal or feature_name).strip().lower()
     return (
-        f"Given {feature_name} is available, When the capability is used, "
+        f"Given the documented prerequisites for {concrete_goal} are satisfied, "
+        f"When the {actor} attempts to {concrete_goal}, "
         f"Then {stripped[:1].lower() + stripped[1:]}."
     )
 

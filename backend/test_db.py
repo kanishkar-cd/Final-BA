@@ -4,7 +4,7 @@ from sqlalchemy import text
 from app.database.connection import engine, async_session_maker
 from app.database.base import Base
 
-async def test_connection():
+async def check_connection():
     try:
         # Create tables in the configured database backend.
         async with engine.begin() as conn:
@@ -19,4 +19,4 @@ async def test_connection():
         print("Database connection error:", e)
 
 if __name__ == "__main__":
-    asyncio.run(test_connection())
+    asyncio.run(check_connection())

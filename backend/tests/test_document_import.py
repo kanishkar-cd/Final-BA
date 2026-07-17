@@ -8,7 +8,25 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app.parsers.parser_factory import ParserFactory
+from app.parsers.docx_parser import DOCXParser
+from app.parsers.pdf_parser import PDFParser
+from app.parsers.txt_parser import TXTParser
 from app.services.import_service import DocumentImportService
+
+
+@pytest.mark.parametrize(
+    ("filename", "parser_type"),
+    [
+        ("requirements.pdf", PDFParser),
+        ("requirements.docx", DOCXParser),
+        ("requirements.txt", TXTParser),
+    ],
+)
+def test_parser_factory_uses_format_specific_parser(
+    filename: str,
+    parser_type: type,
+) -> None:
+    assert isinstance(ParserFactory.create(filename), parser_type)
 
 
 @pytest.mark.asyncio

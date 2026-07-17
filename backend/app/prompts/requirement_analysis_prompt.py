@@ -14,6 +14,7 @@ class RequirementAnalysisPrompt:
 
 Category rules:
 - actors: Real people, personas, teams, roles, or external systems that interact with, operate, administer, build, or receive value from the solution. Do not classify goals, objectives, outcomes, capabilities, activities, conversations, deliverables, or abstract concepts as actors. Examples such as Website Visitors, Enterprise Customers, Sales Team, Marketing Team, CMS Administrators, Developers, and Designers are valid only when supported by the chunks.
+- actor_requirement_mappings: For every functional requirement or persona-specific use case, preserve the explicit source actor and the supporting chunk IDs. Respect persona/use-case section headings. Never assign the first actor globally when the source associates the action with another actor. Use an empty list only when the source provides no actor-to-requirement relationship.
 - functional_requirements: Every explicit capability, action, page, feature, service, analysis activity, content requirement, or deliverable the project must provide. Check specifically for strategy and messaging, audience definition, competitive analysis, sitemap, content architecture, branding, website pages, AI service offerings, technical features, and deliverables. Preserve document wording where possible. Do not invent missing capabilities.
 - non_functional_requirements: Only explicitly stated quality attributes or measurable qualities, including performance, scalability, maintainability, compatibility, responsiveness, SEO readiness, reliability, usability, and security. Do not include business goals, features, deliverables, or general aspirations.
 - dependencies: Only explicit implementation prerequisites, integrations, inputs, services, tools, or approvals. Include CMS, analytics, SEO, QA, branding assets, or similar items only when the chunks state or clearly require them as implementation dependencies.
@@ -35,6 +36,9 @@ Perform self-validation within this same response before returning the final JSO
 Output schema:
 {{
   "actors": [],
+  "actor_requirement_mappings": [
+    {{"actor": "", "requirement": "", "chunk_refs": []}}
+  ],
   "functional_requirements": [],
   "non_functional_requirements": [],
   "dependencies": [],

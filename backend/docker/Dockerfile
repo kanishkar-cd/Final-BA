@@ -31,7 +31,7 @@ RUN python -m pip install --upgrade pip setuptools wheel \
         python -m pip wheel \
             --wheel-dir=/wheels \
             --index-url="$TORCH_CPU_INDEX_URL" \
-            torch; \
+            torch torchvision; \
         python -m pip wheel \
             --wheel-dir=/wheels \
             --find-links=/wheels \
@@ -84,7 +84,8 @@ RUN python -m pip install \
 
 COPY backend /app
 
-RUN chmod +x /app/scripts/start.sh \
+RUN sed -i 's/\r$//' /app/scripts/start.sh \
+    && chmod +x /app/scripts/start.sh \
     && addgroup --system appgroup \
     && adduser --system --ingroup appgroup appuser \
     && chown -R appuser:appgroup /app

@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
@@ -20,6 +21,14 @@ from app.shared.llm_client import LLMService, LLMServiceError
 
 
 _logger = get_logger("agents.requirement_analysis")
+
+
+class ActorRequirementMapping(BaseModel):
+    """A source requirement/use case associated with its explicit persona."""
+
+    actor: str
+    requirement: str
+    chunk_refs: list[str] = Field(default_factory=list)
 
 
 # pyrefly: ignore [parse-error]
@@ -46,6 +55,7 @@ class RequirementAnalysisOutput(BaseModel):
     )
 
     actors: list[str] = Field(default_factory=list)
+    actor_requirement_mappings: list[ActorRequirementMapping] = Field(default_factory=list)
     functional_requirements: list[str] = Field(default_factory=list)
     non_functional_requirements: list[str] = Field(default_factory=list)
     dependencies: list[str] = Field(default_factory=list)
@@ -99,7 +109,12 @@ class RequirementAnalysisAgent(BaseAgent):
                 )
                 for batch in batches
             ]
-            return self._merge_outputs(outputs)
+            merged = self._merge_outputs(outputs)
+            explicit_use_cases = self._extract_explicit_actor_use_cases(
+                chunks,
+                actors=merged.actors,
+            )
+            return self._merge_explicit_use_cases(merged, explicit_use_cases)
 
         except (ValidationError, json.JSONDecodeError) as exc:
             _logger.error(
@@ -176,20 +191,45 @@ class RequirementAnalysisAgent(BaseAgent):
         cls,
         outputs: list[RequirementAnalysisOutput],
     ) -> RequirementAnalysisOutput:
-        merged: dict[str, list[str]] = {}
+        merged: dict[str, list[Any]] = {}
         for field_name in cls.output_schema.model_fields:
             values = [
                 item
                 for output in outputs
                 for item in getattr(output, field_name)
             ]
-            unique_values: list[str] = []
+            unique_values: list[Any] = []
             seen: set[str] = set()
             for value in values:
-                normalized = " ".join(value.casefold().split()).rstrip(".")
-                if normalized and normalized not in seen:
-                    seen.add(normalized)
-                    unique_values.append(value.strip())
+                if isinstance(value, ActorRequirementMapping):
+                    normalized = "|".join(
+                        [
+                            " ".join(value.actor.casefold().split()),
+                            " ".join(value.requirement.casefold().split()).rstrip("."),
+                        ]
+                    )
+                else:
+                    normalized = " ".join(value.casefold().split()).rstrip(".")
+                if not normalized:
+                    continue
+                if normalized in seen:
+                    if isinstance(value, ActorRequirementMapping):
+                        existing = next(
+                            item
+                            for item in unique_values
+                            if isinstance(item, ActorRequirementMapping)
+                            and "|".join([
+                                " ".join(item.actor.casefold().split()),
+                                " ".join(item.requirement.casefold().split()).rstrip("."),
+                            ]) == normalized
+                        )
+                        existing.chunk_refs = list(dict.fromkeys([
+                            *existing.chunk_refs,
+                            *value.chunk_refs,
+                        ]))
+                    continue
+                seen.add(normalized)
+                unique_values.append(value if isinstance(value, ActorRequirementMapping) else value.strip())
             merged[field_name] = unique_values
         return cls.output_schema(**merged)
 
@@ -198,6 +238,117 @@ class RequirementAnalysisAgent(BaseAgent):
         if isinstance(chunks, str):
             return chunks
         return json.dumps(chunks, ensure_ascii=False, indent=2)
+
+    @classmethod
+    def _extract_explicit_actor_use_cases(
+        cls,
+        chunks: list[dict[str, Any]] | str,
+        *,
+        actors: list[str],
+    ) -> list[ActorRequirementMapping]:
+        """Extract numbered entries under explicit '<Actor> Use Cases' headings."""
+        if isinstance(chunks, str):
+            sources = [("", chunks)]
+        else:
+            sources = [
+                (
+                    str(chunk.get("chunk_id") or chunk.get("id") or ""),
+                    str(chunk.get("content") or chunk.get("text") or ""),
+                )
+                for chunk in chunks
+            ]
+        text_parts: list[str] = []
+        spans: list[tuple[int, int, str]] = []
+        cursor = 0
+        for chunk_id, content in sources:
+            if text_parts:
+                text_parts.append(" ")
+                cursor += 1
+            start = cursor
+            text_parts.append(content)
+            cursor += len(content)
+            spans.append((start, cursor, chunk_id))
+        text = "".join(text_parts)
+
+        headings: list[tuple[int, int, str]] = []
+        for actor in actors:
+            for match in re.finditer(
+                rf"\b{re.escape(actor)}\s+Use\s+Cases\b",
+                text,
+                flags=re.IGNORECASE,
+            ):
+                headings.append((match.start(), match.end(), actor.strip()))
+        headings.sort()
+
+        mappings: list[ActorRequirementMapping] = []
+        for index, (_, section_start, actor) in enumerate(headings):
+            next_heading = headings[index + 1][0] if index + 1 < len(headings) else len(text)
+            requirement_heading = re.search(
+                r"\bSystem\s+Req\w*ments\b",
+                text[section_start:next_heading],
+                flags=re.IGNORECASE,
+            )
+            section_end = (
+                section_start + requirement_heading.start()
+                if requirement_heading
+                else next_heading
+            )
+            section = text[section_start:section_end]
+            markers = list(re.finditer(r"(?:^|\s)(\d+)\.\s+", section))
+            for marker_index, marker in enumerate(markers):
+                item_start = section_start + marker.start()
+                content_start = marker.end()
+                content_end = (
+                    markers[marker_index + 1].start()
+                    if marker_index + 1 < len(markers)
+                    else len(section)
+                )
+                item_text = section[content_start:content_end].strip()
+                requirement = re.split(
+                    r"\s+(?:○|Input:|Output:)",
+                    item_text,
+                    maxsplit=1,
+                    flags=re.IGNORECASE,
+                )[0].strip(" .")
+                if not requirement:
+                    continue
+                item_end = section_start + content_end
+                chunk_refs = [
+                    chunk_id
+                    for chunk_start, chunk_end, chunk_id in spans
+                    if chunk_id and chunk_start < item_end and chunk_end > item_start
+                ]
+                mappings.append(ActorRequirementMapping(
+                    actor=actor,
+                    requirement=requirement,
+                    chunk_refs=list(dict.fromkeys(chunk_refs)),
+                ))
+        return mappings
+
+    @classmethod
+    def _merge_explicit_use_cases(
+        cls,
+        output: RequirementAnalysisOutput,
+        explicit_use_cases: list[ActorRequirementMapping],
+    ) -> RequirementAnalysisOutput:
+        if not explicit_use_cases:
+            return output
+        explicit_actors = {
+            item.actor.casefold().strip()
+            for item in explicit_use_cases
+        }
+        output.actor_requirement_mappings = [
+            item
+            for item in output.actor_requirement_mappings
+            if item.actor.casefold().strip() not in explicit_actors
+        ]
+        return cls._merge_outputs([
+            output,
+            RequirementAnalysisOutput(
+                actor_requirement_mappings=explicit_use_cases,
+                functional_requirements=[item.requirement for item in explicit_use_cases],
+            ),
+        ])
 
     @staticmethod
     def _strip_markdown_fences(text: str) -> str:

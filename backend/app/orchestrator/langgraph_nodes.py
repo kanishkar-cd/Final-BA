@@ -163,7 +163,12 @@ class WorkflowNodes:
         )
 
     async def user_story_generation(self, state: WorkflowState) -> WorkflowState:
-        if state.get("user_stories"):
+        existing_stories = state.get("user_stories") or []
+        has_generation_failures = any(
+            getattr(story, "metadata", {}).get("generation_status") == "FAILED"
+            for story in existing_stories
+        )
+        if existing_stories and not has_generation_failures:
             return {}
         request = self._state_adapter.generation_request_from_state(state)
         user_stories = await self._user_story_agent.execute(request)
@@ -175,15 +180,15 @@ class WorkflowNodes:
     async def validation(self, state: WorkflowState) -> WorkflowState:
         validation_request = self._state_adapter.validation_request_from_state(state)
         validation_result = await self._validation_agent.execute(validation_request)
-        
+
         retry_count = int(state.get("retry_count", 0))
         max_retry_attempts = int(state.get("max_retry_attempts", 3))
-        
+
         from app.regeneration.retry_service import RetryService
         retry_service = RetryService()
         if retry_service.should_retry(validation_result, retry_count, max_retry_attempts):
             retry_count += 1
-            
+
         # Update state's user_stories list with calculated confidence scores
         user_stories = list(state.get("user_stories", []))
         if user_stories and validation_result.story_results:

@@ -45,6 +45,11 @@ class Epic(BaseModel):
         description="High-level features included in this Epic."
     )
 
+    feature_actors: dict[str, str] = Field(
+        default_factory=dict,
+        description="Source-grounded actor for each feature name."
+    )
+
     one_line_story: str = Field(
         description="One representative Agile user story for the Epic."
     )

@@ -19,6 +19,10 @@ async def ensure_database_schema(engine: AsyncEngine) -> None:
 
         schema = await conn.run_sync(_schema_snapshot)
 
+        if conn.dialect.name == "postgresql" and "document_chunks" not in schema:
+            await _install_rag_schema(conn)
+            schema = await conn.run_sync(_schema_snapshot)
+
         workflow_state_columns = schema.get("workflow_states", {})
         if workflow_state_columns and "version" not in workflow_state_columns:
             await conn.execute(
@@ -46,6 +50,58 @@ async def ensure_database_schema(engine: AsyncEngine) -> None:
 
         if conn.dialect.name == "postgresql":
             await _upgrade_postgres_timestamps(conn, schema)
+
+
+async def _install_rag_schema(conn: AsyncConnection) -> None:
+    """Install the standalone chunk table required by the RAG services."""
+
+    raw_connection = await conn.get_raw_connection()
+    driver_connection = raw_connection.driver_connection
+    await driver_connection.execute(
+        """
+        CREATE TABLE IF NOT EXISTS document_chunks (
+            id UUID PRIMARY KEY,
+            document_id UUID NOT NULL,
+            project_id UUID NOT NULL,
+            chunk_index INTEGER NOT NULL DEFAULT 0,
+            section_title TEXT NOT NULL DEFAULT '',
+            content TEXT NOT NULL,
+            token_count INTEGER,
+            content_hash TEXT,
+            context_label TEXT,
+            metadata JSONB NOT NULL DEFAULT '{}'::jsonb,
+            content_tsv TSVECTOR,
+            embedding_indexed_at TIMESTAMPTZ,
+            created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+            deleted_at TIMESTAMPTZ
+        );
+
+        CREATE OR REPLACE FUNCTION document_chunks_tsv_update()
+        RETURNS TRIGGER AS $$
+        BEGIN
+            NEW.content_tsv := to_tsvector(
+                'english', coalesce(NEW.section_title, '') || ' ' || coalesce(NEW.content, '')
+            );
+            RETURN NEW;
+        END;
+        $$ LANGUAGE plpgsql;
+
+        DROP TRIGGER IF EXISTS trg_document_chunks_tsv ON document_chunks;
+        CREATE TRIGGER trg_document_chunks_tsv
+            BEFORE INSERT OR UPDATE OF section_title, content ON document_chunks
+            FOR EACH ROW EXECUTE FUNCTION document_chunks_tsv_update();
+
+        CREATE INDEX IF NOT EXISTS idx_document_chunks_content_fts
+            ON document_chunks USING gin (content_tsv) WHERE deleted_at IS NULL;
+
+        CREATE OR REPLACE FUNCTION rag_tsquery(query_text TEXT)
+        RETURNS tsquery AS $$
+        BEGIN
+            RETURN websearch_to_tsquery('english', query_text);
+        END;
+        $$ LANGUAGE plpgsql IMMUTABLE;
+        """
+    )
 
 
 def _schema_snapshot(sync_conn: Any) -> dict[str, dict[str, Any]]:

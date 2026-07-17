@@ -12,6 +12,8 @@ Core Directives:
 - USE BUSINESS CONTEXT FROM EPICS: Align all user stories, goals, personas, and descriptions with the broader business context, capabilities, and business goals defined in the Epics and business goals.
 - USE TRACEABILITY: Maintain strict, explicit, and accurate traceability from every generated story back to its source chunks, functional requirements, epic, feature, one-line story, and dependencies.
 - USE APPROVED PLANNING ONLY: Generate stories only for the supplied Epics and their assigned Features. Expand one primary business capability per story; never turn implementation tasks or unrelated features into a combined story.
+- PRESERVE PERSONA SCOPE: Select the actor mapped to the current requirement, chunk, Feature, or One-Line Story. When multiple actors exist, never choose the first actor globally and never transfer one persona's actions to another persona.
+- WRITE CONCRETE ACCEPTANCE CRITERIA: Each criterion must identify an observable trigger/input and a verifiable output, state change, validation message, or business-rule result from the mapped evidence. Across each story include distinct happy-path, validation/error, and boundary/edge-case coverage when the evidence supports them. Explicitly forbidden: criteria whose substance is only that a feature is available, chosen, processed, displayed, or "behaves as requested"; repeating the feature name is not testable substance.
 - USE OPTIONAL RAG_CONTEXT: Inspect the `traceability` input for the optional `rag_context` or `retrieved_context`. If present, extract any additional business rules, chunks, dependencies, or supporting requirements defined there and incorporate them.
 """
 
@@ -90,7 +92,7 @@ Follow this sequential, field-by-field generation pipeline checklist for each st
 9. `persona`: The target user persona.
 10. `goal`: Cleaned concise goal statement.
 11. `business_value`: Specific business value delivered.
-12. `acceptance_criteria`: Concise, testable Given/When/Then system behaviors grounded strictly in Agent 1 criteria/chunks. Exclude risks, timelines, constraints, and generic outcomes such as "system completes successfully."
+12. `acceptance_criteria`: Distinct, concise, testable Given/When/Then behaviors grounded strictly in the story's mapped Agent 1 criteria/chunks. State concrete inputs or preconditions, the actor/system action, and observable outputs, validation errors, state changes, limits, or business-rule effects. Include a happy path plus validation/error and edge/boundary cases when supported. Do not use the Feature name itself as the criterion's substance, and do not emit interchangeable templates such as "capability is used", "system processes the request", "result is visible", or "behavior associated with that request".
 13. `business_rules`: Unique rules explicitly present in Agent 1 business rules/chunks. Do not infer rules.
 14. `dependencies`: List of dependency objects, each having `id`, `description`, `depends_on` (list of other story IDs), and `source_refs` (chunk/requirement IDs), derived strictly from Agent 1 dependencies/chunks/optional RAG context.
 15. `definition_of_done`: List of conditions required for the story to be complete.
@@ -412,4 +414,24 @@ Return ONLY a valid JSON object with the following fields:
 }}
 
 Ensure the JSON is strictly parsable. Do not add comments or markdown code fences.
+"""
+
+
+BATCH_USER_PROMPT = """
+Generate exactly one detailed Agile User Story for every evidence pack in the JSON below.
+Each pack is already scoped to one Feature and its authoritative Agent 1 evidence. Do not
+use information from one pack in another story.
+
+Evidence packs:
+{batch_context}
+
+Return only a JSON object with `user_stories`, where every array item conforms exactly
+to this JSON Schema. Respect every object/array type; do not shorten mapping objects to
+IDs, change arrays into strings, or change `invest_compliance` into a boolean/string:
+{story_schema}
+
+Acceptance criteria must be genuine, distinct Given/When/Then checks derived from the
+pack's concrete inputs, outputs, validation rules, and edge cases. Preserve every source
+ID in `source_refs`. If the evidence does not support a criterion, do not invent it.
+Return strictly parsable JSON without markdown.
 """
