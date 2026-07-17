@@ -59,6 +59,12 @@ export default function DashboardPage() {
       return;
     }
 
+    const lastVisited = localStorage.getItem(`wf_last_visited_${projectId}`);
+    if (lastVisited) {
+      router.push(`/projects/${projectId}/${lastVisited}`);
+      return;
+    }
+
     setOpeningId(projectId);
     try {
       const workflowId = localStorage.getItem(`wf_id_${projectId}`) || projectId;

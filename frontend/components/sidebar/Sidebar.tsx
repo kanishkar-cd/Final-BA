@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useParams } from 'next/navigation';
 import { 
@@ -45,6 +45,14 @@ export const Sidebar: React.FC = () => {
     { id: 6, label: 'Version Control', icon: Database, path: 'versioning' },
     { id: 7, label: 'Final Export', icon: CheckCircle, path: 'export' }
   ];
+
+  useEffect(() => {
+    if (!projectId) return;
+    const activeStep = steps.find(s => pathname.includes(s.path));
+    if (activeStep) {
+      localStorage.setItem(`wf_last_visited_${projectId}`, activeStep.path);
+    }
+  }, [projectId, pathname, steps]);
 
   const filteredSteps = currentWorkspace?.status === 'completed'
     ? steps.filter(s => s.path === 'export')
