@@ -21,6 +21,8 @@ export default function NewProjectPage() {
   const [activeSource, setActiveSource] = useState<string>('upload');
   const [validationMode, setValidationMode] = useState<'final' | 'every-step'>('every-step');
   const [connections, setConnections] = useState<Record<string, boolean>>({});
+  const [isVerifying, setIsVerifying] = useState<Record<string, boolean>>({});
+  const [verifyErrors, setVerifyErrors] = useState<Record<string, string | null>>({});
   const [isProcessing, setIsProcessing] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
 
@@ -44,6 +46,36 @@ export default function NewProjectPage() {
     if (file) {
       setSelectedFile(file);
       markConnected('upload');
+    }
+  };
+
+  const handleVerifyJira = async () => {
+    if (!jiraIssueKey.trim()) return;
+    setIsVerifying(prev => ({ ...prev, jira: true }));
+    setVerifyErrors(prev => ({ ...prev, jira: null }));
+    try {
+      await api.fetchJira(jiraIssueKey, jiraIncludeComments);
+      markConnected('jira');
+    } catch (err: any) {
+      setVerifyErrors(prev => ({ ...prev, jira: err.message || 'Verification failed. Please check your Jira configuration and issue key.' }));
+      setConnections(prev => ({ ...prev, jira: false }));
+    } finally {
+      setIsVerifying(prev => ({ ...prev, jira: false }));
+    }
+  };
+
+  const handleVerifyConfluence = async () => {
+    if (!confluencePageId.trim()) return;
+    setIsVerifying(prev => ({ ...prev, confluence: true }));
+    setVerifyErrors(prev => ({ ...prev, confluence: null }));
+    try {
+      await api.fetchConfluence(confluencePageId);
+      markConnected('confluence');
+    } catch (err: any) {
+      setVerifyErrors(prev => ({ ...prev, confluence: err.message || 'Verification failed. Please check your Confluence configuration and page ID.' }));
+      setConnections(prev => ({ ...prev, confluence: false }));
+    } finally {
+      setIsVerifying(prev => ({ ...prev, confluence: false }));
     }
   };
 
@@ -298,9 +330,22 @@ export default function NewProjectPage() {
                           />
                           <label htmlFor="jiraComments" className="text-xs font-semibold text-foreground select-none cursor-pointer">Include comments</label>
                         </div>
-                        <div className="flex gap-3 pt-2">
-                          <Button type="button" size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => markConnected('jira')}>Verify Connection</Button>
+                        <div className="flex gap-3 pt-2 items-center">
+                          <Button 
+                            type="button" 
+                            size="sm" 
+                            className="bg-primary hover:bg-primary/90 text-primary-foreground" 
+                            onClick={handleVerifyJira}
+                            disabled={isVerifying['jira']}
+                          >
+                            {isVerifying['jira'] ? 'Verifying...' : 'Verify Connection'}
+                          </Button>
                         </div>
+                        {verifyErrors['jira'] && (
+                          <div className="text-xs text-red-500 font-medium">
+                            {verifyErrors['jira']}
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
@@ -322,9 +367,22 @@ export default function NewProjectPage() {
                             required
                           />
                         </div>
-                        <div className="flex gap-3 pt-2">
-                          <Button type="button" size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => markConnected('confluence')}>Verify Connection</Button>
+                        <div className="flex gap-3 pt-2 items-center">
+                          <Button 
+                            type="button" 
+                            size="sm" 
+                            className="bg-primary hover:bg-primary/90 text-primary-foreground" 
+                            onClick={handleVerifyConfluence}
+                            disabled={isVerifying['confluence']}
+                          >
+                            {isVerifying['confluence'] ? 'Verifying...' : 'Verify Connection'}
+                          </Button>
                         </div>
+                        {verifyErrors['confluence'] && (
+                          <div className="text-xs text-red-500 font-medium">
+                            {verifyErrors['confluence']}
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
