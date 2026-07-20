@@ -39,11 +39,23 @@ export default function NewProjectPage() {
   // Confluence fields
   const [confluencePageId, setConfluencePageId] = useState('123456789');
 
+  // Google Drive fields
+  const [gdriveLink, setGdriveLink] = useState('');
+
+  // SharePoint fields
+  const [sharepointUrl, setSharepointUrl] = useState('');
+  const [sharepointPath, setSharepointPath] = useState('');
+
+  // Azure DevOps fields
+  const [adoOrgUrl, setAdoOrgUrl] = useState('');
+  const [adoProjectName, setAdoProjectName] = useState('');
+  const [adoQueryId, setAdoQueryId] = useState('');
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setSelectedFile(file);
-      markConnected('upload');
+      markConnected(activeSource);
     }
   };
 
@@ -123,28 +135,28 @@ export default function NewProjectPage() {
       label: 'Google Drive', 
       desc: 'Import documents using a Google Drive shared link.',
       icon: <FaGoogleDrive className="w-5 h-5 text-green-500" />,
-      enabled: false
+      enabled: true
     },
     { 
       id: 'sharepoint', 
       label: 'SharePoint', 
       desc: 'Connect to Microsoft SharePoint document libraries.',
       icon: <FaMicrosoft className="w-5 h-5 text-teal-600" />,
-      enabled: false
+      enabled: true
     },
     {
       id: 'voice',
       label: 'Voice Transcript',
       desc: 'Connect to Voice and speech-to-text transcripts.',
       icon: <FileText className="w-5 h-5 text-purple-600" />,
-      enabled: false
+      enabled: true
     },
     {
       id: 'ado',
       label: 'Azure DevOps',
       desc: 'Connect to Azure DevOps Boards and Wikis.',
       icon: <FileText className="w-5 h-5 text-blue-600" />,
-      enabled: false
+      enabled: true
     }
   ];
 
@@ -337,7 +349,7 @@ export default function NewProjectPage() {
                       <div className="space-y-5">
                         <div className="space-y-1.5">
                           <label className="text-xs font-semibold text-foreground">Google Drive Shared Link</label>
-                          <input type="url" placeholder="https://drive.google.com/file/d/..." className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                          <input type="url" value={gdriveLink} onChange={(e) => setGdriveLink(e.target.value)} placeholder="https://drive.google.com/file/d/..." className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
                         </div>
                         <div className="flex gap-3 pt-2">
                           <Button type="button" size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => markConnected('gdrive')}>Connect Drive</Button>
@@ -354,14 +366,74 @@ export default function NewProjectPage() {
                       <div className="space-y-5">
                         <div className="space-y-1.5">
                           <label className="text-xs font-semibold text-foreground">SharePoint Site URL</label>
-                          <input type="url" placeholder="https://company.sharepoint.com/sites/Project" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                          <input type="url" value={sharepointUrl} onChange={(e) => setSharepointUrl(e.target.value)} placeholder="https://company.sharepoint.com/sites/Project" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
                         </div>
                         <div className="space-y-1.5">
                           <label className="text-xs font-semibold text-foreground">Document Library / Folder Path</label>
-                          <input type="text" placeholder="/Shared Documents/PRDs" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                          <input type="text" value={sharepointPath} onChange={(e) => setSharepointPath(e.target.value)} placeholder="/Shared Documents/PRDs" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
                         </div>
                         <div className="flex gap-3 pt-2">
                           <Button type="button" size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => markConnected('sharepoint')}>Connect SharePoint</Button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeSource === 'voice' && (
+                    <div className="max-w-2xl">
+                      <h3 className="text-lg font-bold mb-1">Voice Transcript</h3>
+                      <p className="text-sm text-muted-foreground mb-6">Upload audio recordings or speech-to-text transcripts.</p>
+                      <div className="space-y-5">
+                        <input 
+                          type="file" 
+                          ref={fileInputRef} 
+                          onChange={handleFileChange} 
+                          className="hidden" 
+                          accept="audio/*,.txt,.pdf,.docx"
+                        />
+                        <div 
+                          onClick={() => fileInputRef.current?.click()}
+                          className="p-8 border-2 border-dashed border-border rounded-xl bg-muted/10 text-center hover:bg-muted/30 transition-colors cursor-pointer flex flex-col items-center justify-center gap-4"
+                        >
+                          <div className="w-16 h-16 rounded-full bg-background border border-border flex items-center justify-center text-muted-foreground shadow-sm">
+                            <Upload className="w-6 h-6" />
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-foreground mb-1">
+                              {selectedFile ? `Selected: ${selectedFile.name}` : "Drag and drop your audio files here"}
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              {selectedFile ? `${Math.round(selectedFile.size / 1024)} KB` : "or click to browse from your computer"}
+                            </div>
+                          </div>
+                          <Button type="button" size="sm" className="mt-2 bg-secondary text-secondary-foreground">
+                            {selectedFile ? "Change File" : "Select File"}
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeSource === 'ado' && (
+                    <div className="max-w-2xl">
+                      <h3 className="text-lg font-bold mb-1">Connect Azure DevOps</h3>
+                      <p className="text-sm text-muted-foreground mb-6">Connect to Azure DevOps Boards and Wikis.</p>
+                      
+                      <div className="space-y-5">
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-semibold text-foreground">Azure DevOps Organization URL</label>
+                          <input type="url" value={adoOrgUrl} onChange={(e) => setAdoOrgUrl(e.target.value)} placeholder="https://dev.azure.com/organization" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-semibold text-foreground">Project Name</label>
+                          <input type="text" value={adoProjectName} onChange={(e) => setAdoProjectName(e.target.value)} placeholder="e.g. MyProject" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-semibold text-foreground">Work Item ID / Query ID</label>
+                          <input type="text" value={adoQueryId} onChange={(e) => setAdoQueryId(e.target.value)} placeholder="e.g. 12345" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                        </div>
+                        <div className="flex gap-3 pt-2">
+                          <Button type="button" size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => markConnected('ado')}>Connect Azure DevOps</Button>
                         </div>
                       </div>
                     </div>
