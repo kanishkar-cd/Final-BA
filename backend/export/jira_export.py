@@ -335,9 +335,33 @@ class JiraExporter:
             except Exception:
                 logger.warning("Could not assign story %s", story.story_id)
 
-        # Create the issue
-        new_issue = self.jira_client.create_issue(fields=issue_dict)
-        return new_issue.key
+        # Create the issue with retry logic for common field errors
+        try:
+            new_issue = self.jira_client.create_issue(fields=issue_dict)
+            return new_issue.key
+        except Exception as exc:
+            from jira import JIRAError
+            if isinstance(exc, JIRAError) and hasattr(exc, "response") and exc.response is not None:
+                try:
+                    error_data = exc.response.json()
+                    errors = error_data.get("errors", {})
+                    
+                    retry = False
+                    if "priority" in errors:
+                        logger.warning("Priority '%s' is invalid. Retrying without priority.", story.priority)
+                        issue_dict.pop("priority", None)
+                        retry = True
+                    if "assignee" in errors:
+                        logger.warning("Assignee '%s' is invalid. Retrying without assignee.", self.email)
+                        issue_dict.pop("assignee", None)
+                        retry = True
+                        
+                    if retry:
+                        new_issue = self.jira_client.create_issue(fields=issue_dict)
+                        return new_issue.key
+                except Exception:
+                    pass
+            raise
 
     def _create_issue_link(self, story_key: str, original_issue_key: str) -> str | None:
         """Create an issue link for traceability. Tries configured type, then falls back.

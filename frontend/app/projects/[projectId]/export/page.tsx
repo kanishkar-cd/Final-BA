@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { Download, FileText, FileSpreadsheet, File, Loader2, AlertTriangle } from 'lucide-react';
+import { Download, FileText, FileSpreadsheet, File, Loader2, AlertTriangle, Cloud } from 'lucide-react';
 import { api } from '@/services/api';
 import { Story, Epic } from '@/services/mockData';
 import { Button } from '@/components/common/Button';
@@ -10,7 +10,7 @@ import { Modal } from '@/components/common/Modal';
 import { cn } from '@/lib/utils';
 import { useWorkspaceStore } from '@/store/workspaceStore';
 
-type ExportFormat = 'json' | 'csv' | 'txt';
+type ExportFormat = 'json' | 'csv' | 'txt' | 'jira';
 type ExportStatus = 'idle' | 'processing' | 'done' | 'error';
 
 export default function ExportPage() {
@@ -45,7 +45,11 @@ export default function ExportPage() {
     setExportStatus('processing');
     setExportError(null);
     try {
-      await api.exportWorkflow(projectId, selectedFormat);
+      if (selectedFormat === 'jira') {
+        await api.exportToJira(projectId);
+      } else {
+        await api.exportWorkflow(projectId, selectedFormat as 'json' | 'csv' | 'txt' | 'docx' | 'pdf');
+      }
       setExportStatus('done');
       useWorkspaceStore.getState().updateWorkspaceStatus(projectId, 'completed');
     } catch (err: any) {
@@ -197,6 +201,14 @@ export default function ExportPage() {
               selected={selectedFormat === 'txt'}
               onClick={() => { setSelectedFormat('txt'); setExportStatus('idle'); }}
             />
+            <ExportOption
+              id="jira"
+              title="Jira Direct Export"
+              desc="Create Epics and Stories directly in Jira."
+              icon={<Cloud className="w-5 h-5 text-blue-600" />}
+              selected={selectedFormat === 'jira'}
+              onClick={() => { setSelectedFormat('jira'); setExportStatus('idle'); }}
+            />
           </div>
 
           {exportError && (
@@ -209,15 +221,15 @@ export default function ExportPage() {
           <div className="pt-2">
             {exportStatus === 'idle' || exportStatus === 'error' ? (
               <Button onClick={handleExport} className="w-full h-10 text-[13px] font-semibold bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg">
-                Generate &amp; Download
+                {selectedFormat === 'jira' ? 'Export to Jira' : 'Generate & Download'}
               </Button>
             ) : exportStatus === 'processing' ? (
               <div className="flex items-center justify-center gap-2 w-full h-10 text-[13px] font-medium text-primary bg-primary/5 rounded-lg border border-primary/10">
-                <Loader2 className="w-4 h-4 animate-spin" /> Generating...
+                <Loader2 className="w-4 h-4 animate-spin" /> {selectedFormat === 'jira' ? 'Exporting...' : 'Generating...'}
               </div>
             ) : (
               <div className="flex items-center justify-center gap-2 w-full h-10 text-[13px] font-semibold bg-green-500/10 text-green-600 rounded-lg border border-green-500/20">
-                Download started ✓
+                {selectedFormat === 'jira' ? 'Export successful ✓' : 'Download started ✓'}
               </div>
             )}
           </div>

@@ -639,7 +639,19 @@ export const api = {
     _triggerDownload(blob, `${projectId}-prd.txt`);
   },
 
-  // ── Sync ────────────────────────────────────────────────────────────────────
+  exportToJira: async (projectId: string): Promise<any> => {
+    const res = await fetchProjectWorkflow(projectId);
+    const state = res.state || {};
+    const stories = state.user_stories || state.stories || [];
+    const metadata = state.metadata || {};
+
+    return apiClient.post(`/api/export/jira`, {
+      data: {
+        stories: stories,
+        metadata: metadata,
+      },
+    });
+  },
 
   syncToJira: async (
     _projectId: string,
