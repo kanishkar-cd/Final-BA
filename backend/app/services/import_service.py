@@ -51,6 +51,9 @@ class DocumentImportService:
 
         if path_str.startswith("confluence:"):
             return await self._fetch_from_mcp("confluence", path_str[len("confluence:"):])
+            
+        if path_str.startswith("ado:"):
+            return await self._fetch_from_mcp("ado", path_str[len("ado:"):])
 
         # ── Local file ────────────────────────────────────────────────────────
         path = Path(file_path)
@@ -77,22 +80,20 @@ class DocumentImportService:
         logger.info("Imported local document: %s", path)
         return extracted_text
 
-    # ── MCP helper ────────────────────────────────────────────────────────────
-
     async def _fetch_from_mcp(self, source: str, identifier: str) -> str:
         """Call the MCP connector and return only raw_text.
 
         Parameters
         ----------
         source:
-            ``"jira"`` or ``"confluence"``
+            ``"jira"``, ``"confluence"``, or ``"ado"``
         identifier:
-            Issue key (Jira) or page ID (Confluence), optionally followed by
-            ``,comments`` for Jira to include comment bodies.
+            Issue key (Jira), page ID (Confluence), or ado:<org>:<project>:<pat>:<id>
         """
         from mcp_server.schemas.mcp_schemas import (
             ConfluenceFetchRequest,
             JiraFetchRequest,
+            AdoFetchRequest,
             MCPFetchRequest,
         )
         from mcp_server.app import _dispatch
@@ -112,7 +113,20 @@ class DocumentImportService:
                     include_comments=include_comments,
                 ),
             )
-
+        elif source == "ado":
+            parts = identifier.split(":", 3)
+            if len(parts) != 4:
+                raise ValueError("ADO identifier must be format 'org:project:pat:id'")
+            org, proj, pat, wid = parts
+            request = MCPFetchRequest(
+                source="ado",
+                ado=AdoFetchRequest(
+                    org=org,
+                    project=proj,
+                    pat=pat,
+                    work_item_id=wid
+                )
+            )
         else:  # confluence
             request = MCPFetchRequest(
                 source="confluence",

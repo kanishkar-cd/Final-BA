@@ -54,18 +54,26 @@ class ConfluenceFetchRequest(BaseModel):
     }
 
 
+class AdoFetchRequest(BaseModel):
+    """Fetch a single ADO work item."""
+    
+    org: str
+    project: str
+    pat: str
+    work_item_id: str
+
 # ── Unified MCP Request / Response ───────────────────────────────────────────
 
 class MCPFetchRequest(BaseModel):
     """Unified request body for the /mcp/fetch endpoint.
 
-    Set ``source`` to ``"jira"`` or ``"confluence"`` and fill in the
+    Set ``source`` to ``"jira"``, ``"confluence"``, or ``"ado"`` and fill in the
     matching nested object.
     """
 
-    source: Literal["jira", "confluence"] = Field(
+    source: Literal["jira", "confluence", "ado"] = Field(
         ...,
-        description="Which connector to invoke: 'jira' or 'confluence'",
+        description="Which connector to invoke: 'jira', 'confluence', or 'ado'",
     )
     jira: Optional[JiraFetchRequest] = Field(
         None,
@@ -74,6 +82,10 @@ class MCPFetchRequest(BaseModel):
     confluence: Optional[ConfluenceFetchRequest] = Field(
         None,
         description="Required when source='confluence'",
+    )
+    ado: Optional[AdoFetchRequest] = Field(
+        None,
+        description="Required when source='ado'",
     )
 
     model_config = {
@@ -91,6 +103,13 @@ class MCPFetchRequest(BaseModel):
                     "value": {
                         "source": "confluence",
                         "confluence": {"page_id": "524289"},
+                    },
+                },
+                {
+                    "summary": "Fetch an ADO work item",
+                    "value": {
+                        "source": "ado",
+                        "ado": {"org": "myorg", "project": "myproj", "pat": "token", "work_item_id": "123"},
                     },
                 },
             ]

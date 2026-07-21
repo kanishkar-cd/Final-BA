@@ -29,7 +29,9 @@ api_router.include_router(export_router, prefix="/export")
 # Wrapped so a missing dependency never crashes the full backend at startup.
 try:
     from mcp_server.app import router as mcp_router
+    from mcp_server.azure_router import router as azure_router
     api_router.include_router(mcp_router)
+    api_router.include_router(azure_router)
     logger.info("MCP enterprise connector routes registered at /api/mcp/*")
 except Exception as _mcp_err:  # pragma: no cover
     logger.warning("MCP router could not be loaded — endpoints will be unavailable: %s", _mcp_err)

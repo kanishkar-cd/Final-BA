@@ -194,6 +194,29 @@ export const api = {
     });
   },
 
+  startWorkflowFromAdo: async (
+    org: string,
+    project: string,
+    pat: string,
+    workItemId: string,
+    confidenceThreshold: number,
+    maxRetryAttempts: number,
+    projectId: string,
+    validationMode: string = 'every-step'
+  ): Promise<any> => {
+    return apiClient.post('/api/workflow/mcp/ado/start', {
+      workflow_id: projectId,
+      org,
+      project,
+      pat,
+      work_item_id: workItemId,
+      project_id: projectId,
+      confidence_threshold: confidenceThreshold,
+      max_retry_attempts: maxRetryAttempts,
+      metadata: { validationMode },
+    });
+  },
+
   // ── MCP connectors ──────────────────────────────────────────────────────────
 
   fetchJira: async (issueKey: string, includeComments: boolean): Promise<string> => {
@@ -207,6 +230,15 @@ export const api = {
   fetchConfluence: async (pageId: string): Promise<string> => {
     const res = await apiClient.post('/api/mcp/confluence/fetch', { page_id: pageId });
     return res.raw_text || res.extracted_text || '';
+  },
+
+  fetchAdoWorkItem: async (organization: string, project: string, patToken: string, workItemId: string): Promise<any> => {
+    return apiClient.post('/api/connectors/azure/import/work-item', {
+      organization,
+      project,
+      pat_token: patToken,
+      work_item_id: workItemId
+    });
   },
 
   // ── Requirements ────────────────────────────────────────────────────────────
@@ -646,6 +678,20 @@ export const api = {
     const metadata = state.metadata || {};
 
     return apiClient.post(`/api/export/jira`, {
+      data: {
+        stories: stories,
+        metadata: metadata,
+      },
+    });
+  },
+
+  exportToAdo: async (projectId: string, org: string, project: string, pat: string): Promise<any> => {
+    const res = await fetchProjectWorkflow(projectId);
+    const state = res.state || {};
+    const stories = state.user_stories || state.stories || [];
+    const metadata = { ...(state.metadata || {}), org, project, pat };
+
+    return apiClient.post(`/api/export/ado`, {
       data: {
         stories: stories,
         metadata: metadata,

@@ -202,6 +202,42 @@ class ConfluenceWorkflowRequest(BaseModel):
     }
 
 
+class AdoWorkflowRequest(BaseModel):
+    """Start the requirement analysis pipeline from an Azure DevOps Work Item."""
+    org: str
+    project: str
+    pat: str
+    work_item_id: str
+    workflow_id: str = Field(
+        default_factory=lambda: f"WF-{uuid4().hex[:8].upper()}",
+    )
+    project_id: str | None = Field(None)
+    confidence_threshold: float = Field(0.8, ge=0, le=1)
+    max_retry_attempts: int = Field(3, ge=0, le=5)
+
+@router.post(
+    "/mcp/ado/start",
+    response_model=WorkflowStateResponse,
+    summary="ADO → MCP → raw_text → Agent-1 — start full pipeline",
+    tags=["Workflow"],
+)
+async def start_workflow_from_ado(
+    request: AdoWorkflowRequest,
+    workflow_service: WorkflowApiService = Depends(get_workflow_api_service),
+) -> WorkflowStateResponse:
+    """Kick off the full pipeline using an ADO Work Item as the document source."""
+    mcp_source = f"ado:{request.org}:{request.project}:{request.pat}:{request.work_item_id}"
+
+    workflow_request = WorkflowStartRequest(
+        workflow_id=request.workflow_id,
+        file_path=mcp_source,
+        project_id=request.project_id,
+        confidence_threshold=request.confidence_threshold,
+        max_retry_attempts=request.max_retry_attempts,
+        metadata={"mcp_source": "ado", "work_item_id": request.work_item_id},
+    )
+    return await workflow_service.start(workflow_request)
+
 @router.post(
     "/mcp/jira/start",
     response_model=WorkflowStateResponse,

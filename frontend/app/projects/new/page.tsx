@@ -49,9 +49,11 @@ export default function NewProjectPage() {
   const [sharepointPath, setSharepointPath] = useState('');
 
   // Azure DevOps fields
-  const [adoOrgUrl, setAdoOrgUrl] = useState('');
-  const [adoProjectName, setAdoProjectName] = useState('');
-  const [adoQueryId, setAdoQueryId] = useState('');
+  const [adoOrg, setAdoOrg] = useState('');
+  const [adoProject, setAdoProject] = useState('');
+  const [adoPat, setAdoPat] = useState('');
+  const [adoImportMethod, setAdoImportMethod] = useState<'work-item'>('work-item');
+  const [adoWorkItemId, setAdoWorkItemId] = useState('');
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -91,6 +93,21 @@ export default function NewProjectPage() {
     }
   };
 
+  const handleVerifyAdo = async () => {
+    if (!adoOrg.trim() || !adoProject.trim() || !adoPat.trim() || !adoWorkItemId.trim()) return;
+    setIsVerifying(prev => ({ ...prev, ado: true }));
+    setVerifyErrors(prev => ({ ...prev, ado: null }));
+    try {
+      await api.fetchAdoWorkItem(adoOrg, adoProject, adoPat, adoWorkItemId);
+      markConnected('ado');
+    } catch (err: any) {
+      setVerifyErrors(prev => ({ ...prev, ado: err.message || 'Verification failed. Please check your Azure DevOps configuration.' }));
+      setConnections(prev => ({ ...prev, ado: false }));
+    } finally {
+      setIsVerifying(prev => ({ ...prev, ado: false }));
+    }
+  };
+
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newName.trim()) return;
@@ -105,15 +122,25 @@ export default function NewProjectPage() {
         const importRes = await api.importDocument(selectedFile);
         localStorage.setItem(`wf_file_path_${newId}`, importRes.file_path);
         localStorage.setItem(`workflow_started_${newId}`, 'false');
+      } else if (activeSource === 'ado') {
+        const res = await api.startWorkflowFromAdo(adoOrg, adoProject, adoPat, adoWorkItemId, confidenceThreshold, maxRetryAttempts, newId, validationMode);
+        localStorage.setItem(`workflow_started_${newId}`, 'true');
+        localStorage.setItem(`wf_id_${newId}`, res.workflow_id || newId);
+        localStorage.setItem(`ado_org_${newId}`, adoOrg);
+        localStorage.setItem(`ado_project_${newId}`, adoProject);
+        localStorage.setItem(`ado_pat_${newId}`, adoPat);
       } else if (activeSource === 'jira') {
-        await api.startWorkflowFromJira(jiraIssueKey, jiraIncludeComments, confidenceThreshold, maxRetryAttempts, newId, validationMode);
+        const res = await api.startWorkflowFromJira(jiraIssueKey, jiraIncludeComments, confidenceThreshold, maxRetryAttempts, newId, validationMode);
         localStorage.setItem(`workflow_started_${newId}`, 'true');
+        localStorage.setItem(`wf_id_${newId}`, res.workflow_id || newId);
       } else if (activeSource === 'confluence') {
-        await api.startWorkflowFromConfluence(confluencePageId, confidenceThreshold, maxRetryAttempts, newId, validationMode);
+        const res = await api.startWorkflowFromConfluence(confluencePageId, confidenceThreshold, maxRetryAttempts, newId, validationMode);
         localStorage.setItem(`workflow_started_${newId}`, 'true');
+        localStorage.setItem(`wf_id_${newId}`, res.workflow_id || newId);
       } else {
         // No real source selected — go through processing with mock
         localStorage.setItem(`workflow_started_${newId}`, 'true');
+        localStorage.setItem(`wf_id_${newId}`, newId);
       }
       localStorage.setItem(`wf_validation_mode_${newId}`, validationMode);
       createWorkspace(newName, `Generated from ${activeSource}`);
@@ -474,25 +501,64 @@ export default function NewProjectPage() {
 
                   {activeSource === 'ado' && (
                     <div className="max-w-2xl">
-                      <h3 className="text-lg font-bold mb-1">Connect Azure DevOps</h3>
+                      <h3 className="text-lg font-bold mb-1">Import From Azure DevOps</h3>
                       <p className="text-sm text-muted-foreground mb-6">Connect to Azure DevOps Boards and Wikis.</p>
                       
                       <div className="space-y-5">
-                        <div className="space-y-1.5">
-                          <label className="text-xs font-semibold text-foreground">Azure DevOps Organization URL</label>
-                          <input type="url" value={adoOrgUrl} onChange={(e) => setAdoOrgUrl(e.target.value)} placeholder="https://dev.azure.com/organization" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                        <div className="border-b border-border pb-2 mb-4">
+                          <h4 className="text-sm font-bold text-foreground">Connection</h4>
                         </div>
                         <div className="space-y-1.5">
-                          <label className="text-xs font-semibold text-foreground">Project Name</label>
-                          <input type="text" value={adoProjectName} onChange={(e) => setAdoProjectName(e.target.value)} placeholder="e.g. MyProject" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                          <label className="text-xs font-semibold text-foreground">Organization</label>
+                          <input type="text" value={adoOrg} onChange={(e) => setAdoOrg(e.target.value)} placeholder="e.g. my-org" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
                         </div>
                         <div className="space-y-1.5">
-                          <label className="text-xs font-semibold text-foreground">Work Item ID / Query ID</label>
-                          <input type="text" value={adoQueryId} onChange={(e) => setAdoQueryId(e.target.value)} placeholder="e.g. 12345" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                          <label className="text-xs font-semibold text-foreground">Project</label>
+                          <input type="text" value={adoProject} onChange={(e) => setAdoProject(e.target.value)} placeholder="e.g. MyProject" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
                         </div>
-                        <div className="flex gap-3 pt-2">
-                          <Button type="button" size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => markConnected('ado')}>Connect Azure DevOps</Button>
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-semibold text-foreground">PAT</label>
+                          <input type="password" value={adoPat} onChange={(e) => setAdoPat(e.target.value)} placeholder="Personal Access Token" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
                         </div>
+
+                        <div className="border-b border-border pb-2 mb-4 mt-6">
+                          <h4 className="text-sm font-bold text-foreground">Import Method</h4>
+                        </div>
+                        
+                        <div className="space-y-3 mb-4">
+                          <label className="flex items-center gap-2 cursor-pointer opacity-50">
+                            <input type="radio" name="adoImportMethod" value="saved-query" disabled className="text-primary focus:ring-primary cursor-not-allowed" />
+                            <span className="text-sm font-medium">Saved Query (Coming soon)</span>
+                          </label>
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="adoImportMethod" value="work-item" checked={adoImportMethod === 'work-item'} onChange={() => setAdoImportMethod('work-item')} className="text-primary focus:ring-primary" />
+                            <span className="text-sm font-medium">Work Item ID</span>
+                          </label>
+                        </div>
+
+                        {adoImportMethod === 'work-item' && (
+                          <div className="space-y-1.5">
+                            <label className="text-xs font-semibold text-foreground">Work Item ID</label>
+                            <input type="text" value={adoWorkItemId} onChange={(e) => setAdoWorkItemId(e.target.value)} placeholder="e.g. 12345" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                          </div>
+                        )}
+                        
+                        <div className="flex gap-3 pt-2 items-center">
+                          <Button 
+                            type="button" 
+                            size="sm" 
+                            className="bg-primary hover:bg-primary/90 text-primary-foreground" 
+                            onClick={handleVerifyAdo}
+                            disabled={isVerifying['ado']}
+                          >
+                            {isVerifying['ado'] ? 'Verifying...' : 'Verify Connection'}
+                          </Button>
+                        </div>
+                        {verifyErrors['ado'] && (
+                          <div className="text-xs text-red-500 font-medium">
+                            {verifyErrors['ado']}
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}

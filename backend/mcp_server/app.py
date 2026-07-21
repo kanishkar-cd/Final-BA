@@ -180,7 +180,19 @@ def _dispatch(request: MCPFetchRequest) -> str:
             raise ValueError("source='confluence' but 'confluence' params are missing.")
         connector = ConnectorFactory.get_connector("confluence")
         return connector.fetch_page(request.confluence.page_id)
+        
+    if request.source == "ado":
+        if not request.ado:
+            raise ValueError("source='ado' but 'ado' params are missing.")
+        from mcp_server.services.azure_service import AzureService
+        service = AzureService(
+            organization=request.ado.org,
+            project=request.ado.project,
+            pat_token=request.ado.pat
+        )
+        wi = service.fetch_work_item(request.ado.work_item_id)
+        return wi.formatted_text
 
     raise ValueError(
-        f"Unsupported source: '{request.source}'. Supported: jira, confluence."
+        f"Unsupported source: '{request.source}'. Supported: jira, confluence, ado."
     )

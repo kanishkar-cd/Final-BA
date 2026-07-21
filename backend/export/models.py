@@ -17,6 +17,7 @@ class ExportFormat(str, Enum):
     PDF = "pdf"
     JIRA = "jira"
     CONFLUENCE = "confluence"
+    ADO = "ado"
 
 
 class ExportStatus(str, Enum):

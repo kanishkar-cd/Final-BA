@@ -69,6 +69,17 @@ class ExportService:
                 self._confluence_exporter = ConfluenceExporter()
                 return self._confluence_exporter.export(request)
 
+            elif request.format == ExportFormat.ADO:
+                from export.azure_export import AzureExporter
+                
+                metadata = request.metadata or {}
+                org = metadata.get("org") or "unknown_org"
+                project = metadata.get("project") or "unknown_project"
+                pat = metadata.get("pat") or ""
+                
+                exporter = AzureExporter(org, project, pat)
+                return exporter.export(request)
+
             else:
                 raise ValueError(f"Unsupported export format: {request.format}")
 
@@ -95,4 +106,5 @@ class ExportService:
             ExportFormat.PDF,
             ExportFormat.JIRA,
             ExportFormat.CONFLUENCE,
+            ExportFormat.ADO,
         ]
