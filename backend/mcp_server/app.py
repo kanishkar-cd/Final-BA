@@ -193,6 +193,20 @@ def _dispatch(request: MCPFetchRequest) -> str:
         wi = service.fetch_work_item(request.ado.work_item_id)
         return wi.formatted_text
 
+    if request.source == "sharepoint":
+        if not request.sharepoint:
+            raise ValueError("source='sharepoint' but 'sharepoint' params are missing.")
+        from mcp_server.services.sharepoint_service import SharePointService
+        service = SharePointService(
+            site_url=request.sharepoint.site_url,
+            folder_path=request.sharepoint.folder_path,
+            tenant_id=request.sharepoint.tenant_id,
+            client_id=request.sharepoint.client_id,
+            client_secret=request.sharepoint.client_secret,
+        )
+        res = service.fetch_folder_documents()
+        return res.raw_text
+
     raise ValueError(
-        f"Unsupported source: '{request.source}'. Supported: jira, confluence, ado."
+        f"Unsupported source: '{request.source}'. Supported: jira, confluence, ado, sharepoint."
     )

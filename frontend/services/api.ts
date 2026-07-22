@@ -217,7 +217,76 @@ export const api = {
     });
   },
 
+  startWorkflowFromSharePoint: async (
+    siteUrl: string,
+    documentLibrary: string,
+    folderPath: string,
+    fileName: string,
+    confidenceThreshold: number,
+    maxRetryAttempts: number,
+    projectId: string,
+    validationMode: string = 'every-step',
+    tenantId?: string,
+    clientId?: string,
+    clientSecret?: string
+  ): Promise<any> => {
+    return apiClient.post('/api/workflow/mcp/sharepoint/start', {
+      workflow_id: projectId,
+      site_url: siteUrl,
+      document_library: documentLibrary,
+      folder_path: folderPath,
+      file_name: fileName,
+      tenant_id: tenantId,
+      client_id: clientId,
+      client_secret: clientSecret,
+      project_id: projectId,
+      confidence_threshold: confidenceThreshold,
+      max_retry_attempts: maxRetryAttempts,
+      metadata: { validationMode },
+    });
+  },
+
   // ── MCP connectors ──────────────────────────────────────────────────────────
+
+  connectSharePoint: async (
+    siteUrl: string,
+    documentLibrary: string,
+    folderPath?: string,
+    fileName?: string,
+    tenantId?: string,
+    clientId?: string,
+    clientSecret?: string
+  ): Promise<any> => {
+    return apiClient.post('/api/mcp/connectors/sharepoint/connect', {
+      site_url: siteUrl,
+      document_library: documentLibrary,
+      folder_path: folderPath,
+      file_name: fileName,
+      tenant_id: tenantId,
+      client_id: clientId,
+      client_secret: clientSecret,
+    });
+  },
+
+  fetchSharePointDocs: async (
+    siteUrl: string,
+    documentLibrary: string,
+    folderPath?: string,
+    fileName?: string,
+    tenantId?: string,
+    clientId?: string,
+    clientSecret?: string
+  ): Promise<any> => {
+    return apiClient.post('/api/mcp/connectors/sharepoint/fetch', {
+      site_url: siteUrl,
+      document_library: documentLibrary,
+      folder_path: folderPath,
+      file_name: fileName,
+      tenant_id: tenantId,
+      client_id: clientId,
+      client_secret: clientSecret,
+    });
+  },
 
   fetchJira: async (issueKey: string, includeComments: boolean): Promise<string> => {
     const res = await apiClient.post('/api/mcp/jira/fetch', {
@@ -692,6 +761,20 @@ export const api = {
     const metadata = { ...(state.metadata || {}), org, project, pat };
 
     return apiClient.post(`/api/export/ado`, {
+      data: {
+        stories: stories,
+        metadata: metadata,
+      },
+    });
+  },
+
+  exportToSharePoint: async (projectId: string, siteUrl: string, folderPath: string): Promise<any> => {
+    const res = await fetchProjectWorkflow(projectId);
+    const state = res.state || {};
+    const stories = state.user_stories || state.stories || [];
+    const metadata = { ...(state.metadata || {}), site_url: siteUrl, folder_path: folderPath };
+
+    return apiClient.post(`/api/export/sharepoint`, {
       data: {
         stories: stories,
         metadata: metadata,

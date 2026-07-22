@@ -27,25 +27,16 @@ class DocumentImportService:
        No metadata is forwarded.
     """
 
-    SUPPORTED_EXTENSIONS = {".pdf", ".docx", ".txt"}
+    SUPPORTED_EXTENSIONS = {".pdf", ".doc", ".docx", ".xlsx", ".xls", ".ppt", ".pptx", ".txt"}
 
     async def import_document(self, file_path: str | Path) -> str:
-        """Return extracted plain text for a local file or an MCP source.
-
-        Parameters
-        ----------
-        file_path:
-            A local file path **or** an MCP identifier such as
-            ``"jira:KAN-2"`` or ``"confluence:524289"``.
-
-        Returns
-        -------
-        str
-            Raw plain text — the only value forwarded to Agent-1.
-        """
+        """Return extracted plain text for a local file or an MCP source."""
         path_str = str(file_path)
 
         # ── MCP source identifiers ────────────────────────────────────────────
+        if path_str.startswith("sharepoint:"):
+            return await self._fetch_from_mcp("sharepoint", path_str[len("sharepoint:"):])
+
         if path_str.startswith("jira:"):
             return await self._fetch_from_mcp("jira", path_str[len("jira:"):])
 
@@ -102,6 +93,15 @@ class DocumentImportService:
         from mcp_server.app import _dispatch
 
         logger.info("Fetching raw_text from MCP source='%s' identifier='%s'", source, identifier)
+
+        if source == "sharepoint":
+            parts = identifier.split("|", 1)
+            site_url = parts[0]
+            folder_path = parts[1] if len(parts) > 1 else ""
+            from mcp_server.services.sharepoint_service import SharePointService
+            service = SharePointService(site_url=site_url, folder_path=folder_path)
+            res = service.fetch_folder_documents()
+            return res.raw_text
 
         if source == "jira":
             include_comments = False
