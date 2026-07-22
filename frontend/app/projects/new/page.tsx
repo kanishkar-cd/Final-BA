@@ -38,15 +38,21 @@ export default function NewProjectPage() {
   const [jiraIssueKey, setJiraIssueKey] = useState('PROJ-25');
   const [jiraIncludeComments, setJiraIncludeComments] = useState(false);
 
-  // Confluence fields
-  const [confluencePageId, setConfluencePageId] = useState('123456789');
+
 
   // Google Drive fields
   const [gdriveLink, setGdriveLink] = useState('');
 
   // SharePoint fields
-  const [sharepointUrl, setSharepointUrl] = useState('');
-  const [sharepointPath, setSharepointPath] = useState('');
+  const [sharepointUrl, setSharepointUrl] = useState('https://itclouddestinations.sharepoint.com');
+  const [sharepointLibrary, setSharepointLibrary] = useState('BA Accelerator');
+  const [sharepointFolderPath, setSharepointFolderPath] = useState('');
+  const [sharepointFileName, setSharepointFileName] = useState('');
+  const [sharepointTenantId, setSharepointTenantId] = useState('');
+  const [sharepointClientId, setSharepointClientId] = useState('');
+  const [sharepointClientSecret, setSharepointClientSecret] = useState('');
+  const [sharepointFiles, setSharepointFiles] = useState<any[]>([]);
+  const [selectedSharepointFileName, setSelectedSharepointFileName] = useState<string>('all');
 
   // Azure DevOps fields
   const [adoOrg, setAdoOrg] = useState('');
@@ -60,6 +66,31 @@ export default function NewProjectPage() {
     if (file) {
       setSelectedFile(file);
       markConnected(activeSource);
+    }
+  };
+
+  const handleVerifySharepoint = async () => {
+    if (!sharepointUrl.trim() || !sharepointLibrary.trim()) return;
+    setIsVerifying(prev => ({ ...prev, sharepoint: true }));
+    setVerifyErrors(prev => ({ ...prev, sharepoint: null }));
+    try {
+      const res = await api.connectSharePoint(
+        sharepointUrl, sharepointLibrary, sharepointFolderPath, sharepointFileName,
+        sharepointTenantId, sharepointClientId, sharepointClientSecret
+      );
+      const files = res.supported_files || [];
+      setSharepointFiles(files);
+      if (files.length === 1) {
+        setSelectedSharepointFileName(files[0].name);
+      } else {
+        setSelectedSharepointFileName('all');
+      }
+      markConnected('sharepoint');
+    } catch (err: any) {
+      setVerifyErrors(prev => ({ ...prev, sharepoint: err.message || 'SharePoint verification failed. Please check Site URL and Document Library.' }));
+      setConnections(prev => ({ ...prev, sharepoint: false }));
+    } finally {
+      setIsVerifying(prev => ({ ...prev, sharepoint: false }));
     }
   };
 
@@ -78,20 +109,7 @@ export default function NewProjectPage() {
     }
   };
 
-  const handleVerifyConfluence = async () => {
-    if (!confluencePageId.trim()) return;
-    setIsVerifying(prev => ({ ...prev, confluence: true }));
-    setVerifyErrors(prev => ({ ...prev, confluence: null }));
-    try {
-      await api.fetchConfluence(confluencePageId);
-      markConnected('confluence');
-    } catch (err: any) {
-      setVerifyErrors(prev => ({ ...prev, confluence: err.message || 'Verification failed. Please check your Confluence configuration and page ID.' }));
-      setConnections(prev => ({ ...prev, confluence: false }));
-    } finally {
-      setIsVerifying(prev => ({ ...prev, confluence: false }));
-    }
-  };
+
 
   const handleVerifyAdo = async () => {
     if (!adoOrg.trim() || !adoProject.trim() || !adoPat.trim() || !adoWorkItemId.trim()) return;
@@ -122,6 +140,17 @@ export default function NewProjectPage() {
         const importRes = await api.importDocument(selectedFile);
         localStorage.setItem(`wf_file_path_${newId}`, importRes.file_path);
         localStorage.setItem(`workflow_started_${newId}`, 'false');
+      } else if (activeSource === 'sharepoint') {
+        const targetFile = (selectedSharepointFileName && selectedSharepointFileName !== 'all') ? selectedSharepointFileName : sharepointFileName;
+        const res = await api.startWorkflowFromSharePoint(
+          sharepointUrl, sharepointLibrary, sharepointFolderPath, targetFile,
+          confidenceThreshold, maxRetryAttempts, newId, validationMode,
+          sharepointTenantId, sharepointClientId, sharepointClientSecret
+        );
+        localStorage.setItem(`workflow_started_${newId}`, 'true');
+        localStorage.setItem(`wf_id_${newId}`, res.workflow_id || newId);
+        localStorage.setItem(`sharepoint_url_${newId}`, sharepointUrl);
+        localStorage.setItem(`sharepoint_path_${newId}`, `${sharepointLibrary}/${sharepointFolderPath}/${targetFile}`);
       } else if (activeSource === 'ado') {
         const res = await api.startWorkflowFromAdo(adoOrg, adoProject, adoPat, adoWorkItemId, confidenceThreshold, maxRetryAttempts, newId, validationMode);
         localStorage.setItem(`workflow_started_${newId}`, 'true');
@@ -180,13 +209,6 @@ export default function NewProjectPage() {
       label: 'Jira Cloud', 
       desc: 'Import requirements directly from Jira Epics or Stories.',
       icon: <FaJira className="w-5 h-5 text-blue-500" />,
-      enabled: true
-    },
-    { 
-      id: 'confluence', 
-      label: 'Confluence', 
-      desc: 'Import requirements from Confluence spaces.',
-      icon: <FaConfluence className="w-5 h-5 text-blue-400" />,
       enabled: true
     },
     { 
@@ -389,42 +411,7 @@ export default function NewProjectPage() {
                     </div>
                   )}
 
-                  {activeSource === 'confluence' && (
-                    <div className="max-w-2xl">
-                      <h3 className="text-lg font-bold mb-1">Connect Confluence</h3>
-                      <p className="text-sm text-muted-foreground mb-6">Import PRDs directly from Confluence spaces.</p>
-                      
-                      <div className="space-y-5">
-                        <div className="space-y-1.5">
-                          <label className="text-xs font-semibold text-foreground">Confluence Page ID</label>
-                          <input 
-                            type="text" 
-                            value={confluencePageId}
-                            onChange={(e) => setConfluencePageId(e.target.value)}
-                            placeholder="e.g. 123456789" 
-                            className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" 
-                            required
-                          />
-                        </div>
-                        <div className="flex gap-3 pt-2 items-center">
-                          <Button 
-                            type="button" 
-                            size="sm" 
-                            className="bg-primary hover:bg-primary/90 text-primary-foreground" 
-                            onClick={handleVerifyConfluence}
-                            disabled={isVerifying['confluence']}
-                          >
-                            {isVerifying['confluence'] ? 'Verifying...' : 'Verify Connection'}
-                          </Button>
-                        </div>
-                        {verifyErrors['confluence'] && (
-                          <div className="text-xs text-red-500 font-medium">
-                            {verifyErrors['confluence']}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
+
 
                   {activeSource === 'gdrive' && (
                     <div className="max-w-2xl">
@@ -446,20 +433,172 @@ export default function NewProjectPage() {
                   {activeSource === 'sharepoint' && (
                     <div className="max-w-2xl">
                       <h3 className="text-lg font-bold mb-1">Connect SharePoint</h3>
-                      <p className="text-sm text-muted-foreground mb-6">Connect to Microsoft SharePoint document libraries.</p>
+                      <p className="text-sm text-muted-foreground mb-6">Authenticate via Microsoft Graph API / Entra ID and verify site and folder existence.</p>
                       
                       <div className="space-y-5">
                         <div className="space-y-1.5">
-                          <label className="text-xs font-semibold text-foreground">SharePoint Site URL</label>
-                          <input type="url" value={sharepointUrl} onChange={(e) => setSharepointUrl(e.target.value)} placeholder="https://company.sharepoint.com/sites/Project" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                          <label className="text-xs font-semibold text-foreground">SharePoint Site URL <span className="text-red-500">*</span></label>
+                          <input 
+                            type="url" 
+                            value={sharepointUrl} 
+                            onChange={(e) => setSharepointUrl(e.target.value)} 
+                            placeholder="https://itclouddestinations.sharepoint.com" 
+                            className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" 
+                            required
+                          />
                         </div>
+
                         <div className="space-y-1.5">
-                          <label className="text-xs font-semibold text-foreground">Document Library / Folder Path</label>
-                          <input type="text" value={sharepointPath} onChange={(e) => setSharepointPath(e.target.value)} placeholder="/Shared Documents/PRDs" className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" />
+                          <label className="text-xs font-semibold text-foreground">Document Library <span className="text-red-500">*</span></label>
+                          <input 
+                            type="text" 
+                            value={sharepointLibrary} 
+                            onChange={(e) => setSharepointLibrary(e.target.value)} 
+                            placeholder="e.g. BA Accelerator or Shared Documents" 
+                            className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" 
+                            required
+                          />
                         </div>
-                        <div className="flex gap-3 pt-2">
-                          <Button type="button" size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => markConnected('sharepoint')}>Connect SharePoint</Button>
+
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1.5">
+                            <label className="text-xs font-semibold text-foreground">Folder Path <span className="text-muted-foreground font-normal">(Optional)</span></label>
+                            <input 
+                              type="text" 
+                              value={sharepointFolderPath} 
+                              onChange={(e) => setSharepointFolderPath(e.target.value)} 
+                              placeholder="e.g. Requirements or PRD" 
+                              className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" 
+                            />
+                          </div>
+
+                          <div className="space-y-1.5">
+                            <label className="text-xs font-semibold text-foreground">File Name <span className="text-muted-foreground font-normal">(Optional)</span></label>
+                            <input 
+                              type="text" 
+                              value={sharepointFileName} 
+                              onChange={(e) => setSharepointFileName(e.target.value)} 
+                              placeholder="e.g. Sample_PRD_Document.pdf" 
+                              className="w-full bg-background border border-input rounded-lg px-3 py-2 text-sm" 
+                            />
+                          </div>
                         </div>
+
+                        {/* Optional Entra ID Authentication Details */}
+                        <details className="border border-border/80 rounded-lg p-3 bg-muted/10 text-xs">
+                          <summary className="font-semibold text-foreground cursor-pointer select-none">
+                            Microsoft Entra ID App Credentials (Optional for Live OAuth Graph API)
+                          </summary>
+                          <div className="mt-3 space-y-3">
+                            <div>
+                              <label className="text-[11px] font-semibold text-muted-foreground block mb-1">Tenant ID</label>
+                              <input 
+                                type="text" 
+                                value={sharepointTenantId} 
+                                onChange={(e) => setSharepointTenantId(e.target.value)} 
+                                placeholder="e.g. 00000000-0000-0000-0000-000000000000" 
+                                className="w-full bg-background border border-input rounded px-2.5 py-1.5 text-xs font-mono" 
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-semibold text-muted-foreground block mb-1">Client ID (App Registration)</label>
+                              <input 
+                                type="text" 
+                                value={sharepointClientId} 
+                                onChange={(e) => setSharepointClientId(e.target.value)} 
+                                placeholder="e.g. 11111111-1111-1111-1111-111111111111" 
+                                className="w-full bg-background border border-input rounded px-2.5 py-1.5 text-xs font-mono" 
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-semibold text-muted-foreground block mb-1">Client Secret</label>
+                              <input 
+                                type="password" 
+                                value={sharepointClientSecret} 
+                                onChange={(e) => setSharepointClientSecret(e.target.value)} 
+                                placeholder="••••••••••••••••••••••••" 
+                                className="w-full bg-background border border-input rounded px-2.5 py-1.5 text-xs font-mono" 
+                              />
+                            </div>
+                          </div>
+                        </details>
+                        <div className="flex gap-3 pt-2 items-center">
+                          <Button 
+                            type="button" 
+                            size="sm" 
+                            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-4 py-2 rounded-lg" 
+                            onClick={handleVerifySharepoint}
+                            disabled={isVerifying['sharepoint']}
+                          >
+                            {isVerifying['sharepoint'] ? 'Connecting...' : 'Connect SharePoint'}
+                          </Button>
+                          {connections['sharepoint'] && (
+                            <span className="text-xs font-bold text-green-600 bg-green-500/10 border border-green-500/20 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                              <CheckCircle2 className="w-4 h-4 text-green-600" />
+                              Connected Successfully
+                            </span>
+                          )}
+                        </div>
+
+                        {verifyErrors['sharepoint'] && (
+                          <div className="text-xs text-red-500 font-medium bg-red-500/10 p-3 rounded-lg border border-red-500/20">
+                            {verifyErrors['sharepoint']}
+                          </div>
+                        )}
+
+                        {connections['sharepoint'] && sharepointFiles.length > 0 && (
+                          <div className="mt-4 p-4 bg-muted/20 border border-border rounded-xl space-y-3">
+                            <div className="text-xs font-bold text-foreground flex items-center justify-between">
+                              <span>Found {sharepointFiles.length} Supported Document{sharepointFiles.length > 1 ? 's' : ''}</span>
+                              <span className="text-[10px] text-muted-foreground">Select file to extract</span>
+                            </div>
+                            
+                            <div className="space-y-1.5 text-xs">
+                              {sharepointFiles.length > 1 && (
+                                <label 
+                                  className={cn(
+                                    "flex items-center justify-between p-2.5 rounded-lg border cursor-pointer transition-all",
+                                    selectedSharepointFileName === 'all' ? "border-primary bg-primary/5 ring-1 ring-primary" : "border-border/60 hover:bg-accent/40"
+                                  )}
+                                >
+                                  <div className="flex items-center gap-2.5">
+                                    <input 
+                                      type="radio" 
+                                      name="sp_file_select" 
+                                      checked={selectedSharepointFileName === 'all'} 
+                                      onChange={() => setSelectedSharepointFileName('all')} 
+                                      className="text-primary focus:ring-primary"
+                                    />
+                                    <span className="font-semibold text-foreground">Extract All Documents ({sharepointFiles.length} Files)</span>
+                                  </div>
+                                  <span className="text-[10px] uppercase font-mono bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold">ALL</span>
+                                </label>
+                              )}
+
+                              {sharepointFiles.map((file: any, idx: number) => (
+                                <label 
+                                  key={idx} 
+                                  className={cn(
+                                    "flex items-center justify-between p-2.5 rounded-lg border cursor-pointer transition-all",
+                                    selectedSharepointFileName === file.name ? "border-primary bg-primary/5 ring-1 ring-primary" : "border-border/60 hover:bg-accent/40"
+                                  )}
+                                >
+                                  <div className="flex items-center gap-2.5">
+                                    <input 
+                                      type="radio" 
+                                      name="sp_file_select" 
+                                      checked={selectedSharepointFileName === file.name} 
+                                      onChange={() => setSelectedSharepointFileName(file.name)} 
+                                      className="text-primary focus:ring-primary"
+                                    />
+                                    <span className="font-medium text-foreground">{file.name}</span>
+                                  </div>
+                                  <span className="text-[10px] uppercase font-mono bg-accent px-1.5 py-0.5 rounded font-bold">{file.extension}</span>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}

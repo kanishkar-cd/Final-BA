@@ -30,8 +30,10 @@ api_router.include_router(export_router, prefix="/export")
 try:
     from mcp_server.app import router as mcp_router
     from mcp_server.azure_router import router as azure_router
+    from mcp_server.sharepoint_router import router as sharepoint_router
     api_router.include_router(mcp_router)
     api_router.include_router(azure_router)
+    api_router.include_router(sharepoint_router)
     logger.info("MCP enterprise connector routes registered at /api/mcp/*")
 except Exception as _mcp_err:  # pragma: no cover
     logger.warning("MCP router could not be loaded — endpoints will be unavailable: %s", _mcp_err)

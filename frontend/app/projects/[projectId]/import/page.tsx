@@ -294,12 +294,11 @@ export default function IntakePage() {
     promptValidationMode(`Confluence Space ${confluenceSpace || 'PRODUCT'}`);
   };
 
-  const carouselItems: { id: 'Local' | 'Google Drive' | 'SharePoint' | 'Jira' | 'Confluence'; icon: string; title: string; desc: string; status: string }[] = [
+  const carouselItems: { id: 'Local' | 'Google Drive' | 'SharePoint' | 'Jira'; icon: string; title: string; desc: string; status: string }[] = [
     { id: 'Local', icon: '📄', title: 'Local Upload', desc: 'Upload PDF, DOC, DOCX, XLS and XLSX files directly.', status: 'Connected' },
     { id: 'Google Drive', icon: '☁', title: 'Google Drive', desc: 'Import documents using a Google Drive shared link.', status: 'Not Connected' },
     { id: 'SharePoint', icon: '🏢', title: 'Microsoft SharePoint', desc: 'Import documents using a SharePoint link.', status: 'Not Connected' },
     { id: 'Jira', icon: '🟦', title: 'Jira Cloud', desc: 'Import requirements directly from Jira issues.', status: 'Not Connected' },
-    { id: 'Confluence', icon: '📘', title: 'Confluence', desc: 'Import Business Requirement Documents.', status: 'Not Connected' },
   ];
 
   // Duplicate items array to make seamless infinite loop slider
@@ -696,117 +695,7 @@ export default function IntakePage() {
               </div>
             )}
 
-            {/* CONFLUENCE */}
-            {selectedSource === 'Confluence' && (
-              <div className="max-w-xl mx-auto space-y-6 py-4">
-                {confluenceState === 'idle' && (
-                  <form onSubmit={handleConfluenceConnect} className="space-y-4">
-                    <div className="border-b border-slate-100 pb-3">
-                      <h3 className="font-bold text-sm text-slate-950">Connect Confluence Cloud</h3>
-                      <p className="text-[10px] text-slate-400">Pull requirement documents and wiki templates directly.</p>
-                    </div>
 
-                    <div className="space-y-3">
-                      <div className="space-y-1">
-                        <label className="text-xs font-semibold text-slate-500">Confluence URL</label>
-                        <input 
-                          type="url"
-                          placeholder="https://company.atlassian.net/wiki"
-                          value={confluenceUrl}
-                          onChange={(e) => setConfluenceUrl(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                          required
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div className="space-y-1">
-                          <label className="text-xs font-semibold text-slate-500">Email</label>
-                          <input 
-                            type="email"
-                            placeholder="user@company.com"
-                            value={confluenceEmail}
-                            onChange={(e) => setConfluenceEmail(e.target.value)}
-                            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                            required
-                          />
-                        </div>
-                        
-                        <div className="space-y-1 relative">
-                          <label className="text-xs font-semibold text-slate-500">API Token</label>
-                          <input 
-                            type={showConfluenceToken ? 'text' : 'password'}
-                            placeholder="Confluence API Token"
-                            value={confluenceToken}
-                            onChange={(e) => setConfluenceToken(e.target.value)}
-                            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 pr-9 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                            required
-                          />
-                          <button 
-                            type="button"
-                            onClick={() => setShowConfluenceToken(!showConfluenceToken)}
-                            className="absolute right-2.5 bottom-2.5 text-slate-400 hover:text-slate-600"
-                          >
-                            {showConfluenceToken ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="space-y-1">
-                        <label className="text-xs font-semibold text-slate-500">Confluence Space</label>
-                        <input 
-                          type="text"
-                          placeholder="Space Key (e.g. PROD)"
-                          value={confluenceSpace}
-                          onChange={(e) => setConfluenceSpace(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="flex justify-end gap-2 pt-2">
-                      <Button type="button" variant="ghost" size="sm" onClick={() => setConfluenceState('idle')}>
-                        Cancel
-                      </Button>
-                      <Button type="submit" size="sm" className="bg-blue-600 hover:bg-blue-700 text-white font-medium">
-                        Connect
-                      </Button>
-                    </div>
-                  </form>
-                )}
-
-                {confluenceState === 'connecting' && (
-                  <div className="flex flex-col items-center justify-center space-y-4 py-8">
-                    <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
-                    <p className="text-xs text-slate-500">Connecting wiki services & pulling Confluence page hierarchy...</p>
-                  </div>
-                )}
-
-                {confluenceState === 'success' && (
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2 bg-emerald-50 text-emerald-800 text-xs p-3 rounded-lg border border-emerald-100 animate-fadeIn">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                      <span>Connected Successfully to <strong>Confluence</strong></span>
-                    </div>
-
-                    <div className="bg-slate-50 rounded-lg border border-slate-200 p-4 space-y-2">
-                      <h4 className="text-xs font-bold text-slate-900">Browse Space Pages</h4>
-                      <p className="text-[11px] text-slate-500">Loaded 3 main requirement pages inside the space.</p>
-                    </div>
-
-                    <div className="flex justify-between pt-2">
-                      <Button variant="ghost" size="sm" onClick={() => setConfluenceState('idle')}>
-                        Disconnect
-                      </Button>
-                      <Button size="sm" onClick={handleConfluenceImport} className="bg-blue-600 hover:bg-blue-700 text-white">
-                        Import Selected Pages
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
 
           </div>
         )}

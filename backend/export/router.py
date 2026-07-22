@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import os
 from typing import Any
+from dotenv import load_dotenv
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
@@ -27,7 +29,6 @@ class Agent4Payload(BaseModel):
 
 def _map_agent4_to_story_export_data(story_dict: dict[str, Any]) -> StoryExportData:
     """Map Agent-4 UserStory dict to StoryExportData."""
-    # Handle Acceptance Criteria (might be list of strings or list of dicts)
     raw_ac = story_dict.get("acceptance_criteria", [])
     ac_list = []
     for ac in raw_ac:
@@ -36,7 +37,6 @@ def _map_agent4_to_story_export_data(story_dict: dict[str, Any]) -> StoryExportD
         else:
             ac_list.append(ac)
             
-    # Priority
     priority = story_dict.get("priority")
     if hasattr(priority, "value"):
         priority = priority.value
@@ -104,9 +104,6 @@ async def export_to_pdf(payload: Agent4Payload) -> Any:
     return response
 
 
-import os
-from dotenv import load_dotenv
-
 @router.post("/jira")
 async def export_to_jira(payload: Agent4Payload) -> Any:
     """Export validated Agent-4 output to Jira. Loads credentials from .env."""
@@ -114,12 +111,10 @@ async def export_to_jira(payload: Agent4Payload) -> Any:
     if not stories:
         raise HTTPException(status_code=400, detail="No stories found in Agent-4 payload data.")
 
-    # Dynamically reload .env to ensure fresh credentials are loaded
     load_dotenv(override=True)
 
     export_stories = [_map_agent4_to_story_export_data(s) for s in stories]
     
-    # Extract metadata including original_issue_key if present
     request_metadata = {}
     if payload.data and "metadata" in payload.data:
         request_metadata = payload.data["metadata"]
@@ -147,12 +142,10 @@ async def export_to_confluence(payload: Agent4Payload, page_id: str | None = Non
     if not stories:
         raise HTTPException(status_code=400, detail="No stories found in Agent-4 payload data.")
     
-    # Dynamically reload .env to ensure fresh credentials are loaded
     load_dotenv(override=True)
 
     export_stories = [_map_agent4_to_story_export_data(s) for s in stories]
     
-    # Extract metadata including page_id if provided
     request_metadata = {}
     if payload.data and "metadata" in payload.data:
         request_metadata = payload.data["metadata"].copy()
@@ -190,20 +183,17 @@ async def export_to_confluence(payload: Agent4Payload, page_id: str | None = Non
 
 @router.post("/ado")
 async def export_to_ado(payload: Agent4Payload) -> Any:
-    """Export validated Agent-4 output to Azure DevOps. Loads credentials from .env or request."""
+    """Export validated Agent-4 output to Azure DevOps."""
     stories = payload.raw_stories
     if not stories:
         raise HTTPException(status_code=400, detail="No stories found in Agent-4 payload data.")
         
     export_stories = [_map_agent4_to_story_export_data(s) for s in stories]
     
-    # Extract metadata for ADO
     request_metadata = {}
     if payload.data and "metadata" in payload.data:
         request_metadata = payload.data["metadata"]
         
-    # We expect the frontend to pass org, project, pat in the metadata, or we can use the ones in env
-    
     request = ExportRequest(
         format=ExportFormat.ADO,
         stories=export_stories,
@@ -211,8 +201,32 @@ async def export_to_ado(payload: Agent4Payload) -> Any:
         metadata=request_metadata
     )
     
-    # Wait, the export_service needs to know about AzureExporter.
-    # I should also update export/export_service.py to route ADO.
+    response = export_service.export(request)
+    if response.status == ExportStatus.FAILED:
+        raise HTTPException(status_code=500, detail=response.error_message)
+        
+    return response
+
+
+@router.post("/sharepoint")
+async def export_to_sharepoint(payload: Agent4Payload) -> Any:
+    """Export validated Agent-4 output to a SharePoint folder."""
+    stories = payload.raw_stories
+    if not stories:
+        raise HTTPException(status_code=400, detail="No stories found in Agent-4 payload data.")
+        
+    export_stories = [_map_agent4_to_story_export_data(s) for s in stories]
+    
+    request_metadata = {}
+    if payload.data and "metadata" in payload.data:
+        request_metadata = payload.data["metadata"]
+
+    request = ExportRequest(
+        format=ExportFormat.SHAREPOINT,
+        stories=export_stories,
+        project_name="Exported Stories",
+        metadata=request_metadata,
+    )
     
     response = export_service.export(request)
     if response.status == ExportStatus.FAILED:

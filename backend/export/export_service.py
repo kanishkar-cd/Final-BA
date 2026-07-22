@@ -80,6 +80,16 @@ class ExportService:
                 exporter = AzureExporter(org, project, pat)
                 return exporter.export(request)
 
+            elif request.format == ExportFormat.SHAREPOINT:
+                from export.sharepoint_export import SharePointExporter
+
+                metadata = request.metadata or {}
+                site_url = metadata.get("site_url") or "https://company.sharepoint.com/sites/ECommerce"
+                folder_path = metadata.get("folder_path") or "Shared Documents/Requirements"
+
+                exporter = SharePointExporter(site_url=site_url, folder_path=folder_path)
+                return exporter.export(request)
+
             else:
                 raise ValueError(f"Unsupported export format: {request.format}")
 

@@ -10,7 +10,7 @@ import { Modal } from '@/components/common/Modal';
 import { cn } from '@/lib/utils';
 import { useWorkspaceStore } from '@/store/workspaceStore';
 
-type ExportFormat = 'json' | 'csv' | 'txt' | 'jira' | 'ado';
+type ExportFormat = 'json' | 'csv' | 'txt' | 'jira' | 'ado' | 'sharepoint';
 type ExportStatus = 'idle' | 'processing' | 'done' | 'error';
 
 export default function ExportPage() {
@@ -55,6 +55,10 @@ export default function ExportPage() {
           throw new Error("Azure DevOps credentials not found. Please connect ADO in the new project screen first.");
         }
         await api.exportToAdo(projectId, org, proj, pat);
+      } else if (selectedFormat === 'sharepoint') {
+        const siteUrl = localStorage.getItem(`sharepoint_url_${projectId}`) || 'https://company.sharepoint.com/sites/ECommerce';
+        const folderPath = localStorage.getItem(`sharepoint_path_${projectId}`) || 'Shared Documents/Requirements';
+        await api.exportToSharePoint(projectId, siteUrl, folderPath);
       } else {
         await api.exportWorkflow(projectId, selectedFormat as 'json' | 'csv' | 'txt' | 'docx' | 'pdf');
       }
@@ -225,6 +229,14 @@ export default function ExportPage() {
               selected={selectedFormat === 'ado'}
               onClick={() => { setSelectedFormat('ado'); setExportStatus('idle'); }}
             />
+            <ExportOption
+              id="sharepoint"
+              title="SharePoint Document Library"
+              desc="Export requirement documents & user stories to SharePoint."
+              icon={<Cloud className="w-5 h-5 text-teal-600" />}
+              selected={selectedFormat === 'sharepoint'}
+              onClick={() => { setSelectedFormat('sharepoint'); setExportStatus('idle'); }}
+            />
           </div>
 
           {exportError && (
@@ -237,15 +249,15 @@ export default function ExportPage() {
           <div className="pt-2">
             {exportStatus === 'idle' || exportStatus === 'error' ? (
               <Button onClick={handleExport} className="w-full h-10 text-[13px] font-semibold bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg">
-                {selectedFormat === 'jira' ? 'Export to Jira' : selectedFormat === 'ado' ? 'Export to Azure DevOps' : 'Generate & Download'}
+                {selectedFormat === 'jira' ? 'Export to Jira' : selectedFormat === 'ado' ? 'Export to Azure DevOps' : selectedFormat === 'sharepoint' ? 'Export to SharePoint' : 'Generate & Download'}
               </Button>
             ) : exportStatus === 'processing' ? (
               <div className="flex items-center justify-center gap-2 w-full h-10 text-[13px] font-medium text-primary bg-primary/5 rounded-lg border border-primary/10">
-                <Loader2 className="w-4 h-4 animate-spin" /> {(selectedFormat === 'jira' || selectedFormat === 'ado') ? 'Exporting...' : 'Generating...'}
+                <Loader2 className="w-4 h-4 animate-spin" /> {(selectedFormat === 'jira' || selectedFormat === 'ado' || selectedFormat === 'sharepoint') ? 'Exporting...' : 'Generating...'}
               </div>
             ) : (
               <div className="flex items-center justify-center gap-2 w-full h-10 text-[13px] font-semibold bg-green-500/10 text-green-600 rounded-lg border border-green-500/20">
-                {(selectedFormat === 'jira' || selectedFormat === 'ado') ? 'Export successful ✓' : 'Download started ✓'}
+                {(selectedFormat === 'jira' || selectedFormat === 'ado' || selectedFormat === 'sharepoint') ? 'Export successful ✓' : 'Download started ✓'}
               </div>
             )}
           </div>

@@ -330,12 +330,26 @@ class GenerateUserStoriesRequest(PlanningPipelineOutput):
 class ValidationIssue(BaseModel):
     issue_id: str = Field(default_factory=lambda: f"ISSUE-{uuid4().hex[:8].upper()}")
     severity: IssueSeverity = IssueSeverity.ERROR
-    category: str
+    category: str = Field(default="GENERAL")
     story_id: str | None = None
-    field: str
-    message: str
+    field: str = Field(default="general")
+    message: str = Field(default="")
     source_reference: str | None = None
     suggested_action: str | None = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_issue_data(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            normalized = dict(data)
+            if not normalized.get("category"):
+                normalized["category"] = "GENERAL"
+            if not normalized.get("field"):
+                normalized["field"] = "general"
+            if not normalized.get("message"):
+                normalized["message"] = str(normalized.get("description") or normalized.get("issue") or "Validation issue detected")
+            return normalized
+        return data
 
 
 class TraceabilityMatrixRow(BaseModel):

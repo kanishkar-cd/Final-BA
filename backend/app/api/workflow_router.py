@@ -345,6 +345,60 @@ async def start_workflow_from_confluence(
     return await workflow_service.start(workflow_request)
 
 
+class SharePointWorkflowRequest(BaseModel):
+    site_url: str
+    folder_path: str | None = None
+    document_library: str | None = None
+    file_name: str | None = None
+    tenant_id: str | None = None
+    client_id: str | None = None
+    client_secret: str | None = None
+    confidence_threshold: float = Field(default=0.8)
+    max_retry_attempts: int = Field(default=3)
+    project_id: str | None = Field(default=None)
+    workflow_id: str | None = Field(default=None)
+    validation_mode: str | None = Field(default="every-step")
+
+
+@router.post(
+    "/mcp/sharepoint/start",
+    response_model=WorkflowStateResponse,
+    summary="SharePoint → MCP → raw_text → Agent-1 — start full pipeline",
+    tags=["Workflow"],
+)
+async def start_workflow_from_sharepoint(
+    request: SharePointWorkflowRequest,
+    workflow_service: WorkflowApiService = Depends(get_workflow_api_service),
+) -> WorkflowStateResponse:
+    """Kick off the full pipeline using a SharePoint site, document library, folder, and file."""
+    parts = []
+    if request.document_library:
+        parts.append(request.document_library.strip("/"))
+    if request.folder_path:
+        parts.append(request.folder_path.strip("/"))
+    if request.file_name:
+        parts.append(request.file_name.strip("/"))
+    
+    full_path = "/".join(parts) if parts else (request.folder_path or "")
+
+    sp_source = f"sharepoint:{request.site_url}|{full_path}"
+    workflow_request = WorkflowStartRequest(
+        workflow_id=request.workflow_id,
+        file_path=sp_source,
+        project_id=request.project_id,
+        confidence_threshold=request.confidence_threshold,
+        max_retry_attempts=request.max_retry_attempts,
+        metadata={
+            "mcp_source": "sharepoint",
+            "site_url": request.site_url,
+            "folder_path": full_path,
+            "document_library": request.document_library,
+            "file_name": request.file_name,
+        },
+    )
+    return await workflow_service.start(workflow_request)
+
+
 # ── Helper ────────────────────────────────────────────────────────────────────
 
 def _not_found(exc: Exception) -> HTTPException:

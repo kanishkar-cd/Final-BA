@@ -62,18 +62,16 @@ class AdoFetchRequest(BaseModel):
     pat: str
     work_item_id: str
 
+from mcp_server.schemas.sharepoint import SharePointFetchRequest
+
 # ── Unified MCP Request / Response ───────────────────────────────────────────
 
 class MCPFetchRequest(BaseModel):
-    """Unified request body for the /mcp/fetch endpoint.
+    """Unified request body for the /mcp/fetch endpoint."""
 
-    Set ``source`` to ``"jira"``, ``"confluence"``, or ``"ado"`` and fill in the
-    matching nested object.
-    """
-
-    source: Literal["jira", "confluence", "ado"] = Field(
+    source: Literal["jira", "confluence", "ado", "sharepoint"] = Field(
         ...,
-        description="Which connector to invoke: 'jira', 'confluence', or 'ado'",
+        description="Which connector to invoke: 'jira', 'confluence', 'ado', or 'sharepoint'",
     )
     jira: Optional[JiraFetchRequest] = Field(
         None,
@@ -86,6 +84,10 @@ class MCPFetchRequest(BaseModel):
     ado: Optional[AdoFetchRequest] = Field(
         None,
         description="Required when source='ado'",
+    )
+    sharepoint: Optional[SharePointFetchRequest] = Field(
+        None,
+        description="Required when source='sharepoint'",
     )
 
     model_config = {
