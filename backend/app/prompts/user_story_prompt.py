@@ -287,7 +287,7 @@ Follow this sequential, field-by-field generation pipeline checklist for each st
 9. `persona`: The target user persona.
 10. `goal`: Cleaned concise goal statement.
 11. `business_value`: Specific business value delivered.
-12. `acceptance_criteria`: Concise, testable Given/When/Then system behaviors grounded strictly in Agent 1 criteria/chunks. Exclude risks, timelines, constraints, and generic outcomes such as "system completes successfully."
+12. `acceptance_criteria`: Distinct, concise, testable Given/When/Then behaviors grounded strictly in the story's mapped Agent 1 criteria/chunks. State concrete inputs or preconditions, the actor/system action, and observable outputs, validation errors, state changes, limits, or business-rule effects. Include a happy path plus validation/error and edge/boundary cases when supported. Do not use the Feature name itself as the criterion's substance, and do not emit interchangeable templates such as "capability is used", "system processes the request", "result is visible", or "behavior associated with that request".
 13. `business_rules`: Unique rules explicitly present in Agent 1 business rules/chunks. Do not infer rules.
 14. `dependencies`: List of dependency objects, each having `id`, `description`, `depends_on` (list of other story IDs), and `source_refs` (chunk/requirement IDs), derived strictly from Agent 1 dependencies/chunks/optional RAG context.
 15. `definition_of_done`: List of conditions required for the story to be complete.
