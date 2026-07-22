@@ -60,3 +60,59 @@ async def test_import_service_rejects_unsupported_extension(tmp_path: Path) -> N
 
     with pytest.raises(ValueError):
         await service.import_document(str(file_path))
+
+
+@pytest.mark.asyncio
+async def test_import_service_onedrive_integration(monkeypatch) -> None:
+    service = DocumentImportService()
+    
+    async def mock_download(url: str):
+        assert url == "https://1drv.ms/w/s!mock-link"
+        return b"Sample OneDrive Content", "test_file.txt", ".txt"
+        
+    monkeypatch.setattr(service, "_download_onedrive_file", mock_download)
+    
+    extracted_text = await service.import_document("onedrive:https://1drv.ms/w/s!mock-link")
+    assert extracted_text == "Sample OneDrive Content"
+
+
+@pytest.mark.asyncio
+async def test_import_service_onedrive_auth_failure(monkeypatch) -> None:
+    service = DocumentImportService()
+    
+    class MockResponse:
+        def __init__(self, url, status_code, headers, content):
+            self.url = url
+            self.status_code = status_code
+            self.headers = headers
+            self.content = content
+            
+    async def mock_head(*args, **kwargs):
+        class MockHeadResponse:
+            url = "https://login.microsoftonline.com/oauth2/v2.0/authorize"
+        return MockHeadResponse()
+        
+    async def mock_get(*args, **kwargs):
+        return MockResponse(
+            url="https://login.microsoftonline.com/oauth2/v2.0/authorize",
+            status_code=200,
+            headers={"content-type": "text/html"},
+            content=b"<html>Login Page</html>"
+        )
+        
+    class MockAsyncClient:
+        async def __aenter__(self):
+            return self
+        async def __aexit__(self, exc_type, exc_val, exc_tb):
+            pass
+        async def head(self, url, *args, **kwargs):
+            return await mock_head()
+        async def get(self, url, *args, **kwargs):
+            return await mock_get()
+            
+    monkeypatch.setattr("httpx.AsyncClient", lambda *args, **kwargs: MockAsyncClient())
+    
+    with pytest.raises(PermissionError) as exc_info:
+        await service._download_onedrive_file("https://1drv.ms/w/s!mock-link")
+        
+    assert "requires organizational authentication" in str(exc_info.value)
